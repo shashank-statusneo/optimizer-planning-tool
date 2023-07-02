@@ -7,6 +7,7 @@ import warehouseProductivity from './warehouse/productivity'
 import warehouseDemand from './warehouse/demand'
 import warehouseRequirement from './warehouse/requirement'
 import warehouseResult from './warehouse/result'
+import routeOptimizer from './transport/route'
 import { combineReducers } from 'redux'
 
 export const rootReducer = combineReducers({
@@ -19,4 +20,5 @@ export const rootReducer = combineReducers({
     warehouseDemand: warehouseDemand,
     warehouseRequirement: warehouseRequirement,
     warehouseResult: warehouseResult,
+    routeOptimizer: routeOptimizer,
 })

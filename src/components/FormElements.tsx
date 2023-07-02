@@ -23,6 +23,8 @@ import {
     RadioGroup,
     FormControlLabel,
     Radio,
+    FormGroup,
+    Switch,
 } from '@mui/material'
 import { LocalizationProvider } from '@mui/x-date-pickers'
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
@@ -154,6 +156,36 @@ export const FormSubLabel = (props: { label: string }) => {
     )
 }
 
+// General function to export Form Sub label 2
+export const FormSubLabel2 = (props: { label: string }) => {
+    return (
+        <Typography variant='body1' fontWeight='bold' color='text.secondary'>
+            {props.label}
+        </Typography>
+    )
+}
+
+type switchPostion = 'start' | 'end' | 'top' | 'bottom'
+
+// General function to export Form Swtich Button
+export const FormSwitchBtn = (props: {
+    label: string
+    value: string
+    position: switchPostion
+    // checked: boolean
+}) => {
+    return (
+        <FormGroup row>
+            <FormControlLabel
+                value={props.value}
+                control={<Switch color='primary' />}
+                label={props.label}
+                labelPlacement={props.position}
+            />
+        </FormGroup>
+    )
+}
+
 // General function to export Form Dropdown
 export const FormDropDown = (props: {
     id: string
@@ -278,9 +310,7 @@ export const InventoryFormCard = (props: {
                     <Typography variant='h4' fontWeight='bold'>
                         {props.value}
                     </Typography>{' '}
-                    <Typography variant='body1'>
-                        {props.label}
-                    </Typography>
+                    <Typography variant='body1'>{props.label}</Typography>
                 </Grid>
             </Paper>
         </Grid>

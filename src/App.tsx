@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { BrowserRouter, Routes, Route, useNavigate } from 'react-router-dom'
 import InventoryOptimizer from './pages/InventoryOptimizer'
 import WareHouse from './pages/Warehouse'
+import Transport from './pages/Transport'
 import TopBar from './components/TopBar'
 import SignIn from './pages/Home/signIn'
 import SignUp from './pages/Home/signUp'
@@ -19,9 +20,7 @@ const App = () => {
         const mainMenuTabs: any = {
             warehouse: 'Warehouse',
             inventory: 'Inventory',
-            network: 'Network',
-            blending: 'Blending',
-            pricing: 'Pricing',
+            transport: 'Transport',
         }
 
         return (
@@ -87,8 +86,13 @@ const App = () => {
                     path='/inventory/:pageName'
                     element={<InventoryOptimizer />}
                 ></Route>
-             
-               
+
+                <Route path='/transport' element={<Transport />}></Route>
+                <Route
+                    path='/transport/:pageName'
+                    element={<Transport />}
+                ></Route>
+
                 <Route path='/signin' element={<SignIn />}></Route>
                 <Route path='/signup' element={<SignUp />}></Route>
                 <Route path='/profile' element={<Profile />}></Route>

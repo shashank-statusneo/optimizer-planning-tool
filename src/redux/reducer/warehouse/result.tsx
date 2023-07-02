@@ -117,7 +117,7 @@ export const {
     postResultFailed,
     updateResultCategoriesValue,
     updateResultCategoryValue,
-    updateResultTableValue
+    updateResultTableValue,
 } = warehouseResult.actions
 
 export default warehouseResult.reducer
