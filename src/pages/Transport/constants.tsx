@@ -61,84 +61,61 @@ export const policyTableHeaders = [
 ]
 
 export const DataTemplates: any = {
-    weeklyDemandForecast: [
+    distanceMatrix: [
         {
-            weekend: '7/05/23',
-            month_no: 4,
-            month_week: 1,
-            article: '499190192',
-            site: 'R007',
-            predict: 7,
+            start_node: 'DEPOT',
+            end_node: 'DEPOT',
+            distance: 1,
+            time: 1,
         },
         {
-            weekend: ' 14/05/23',
-            month_no: 4,
-            month_week: 2,
-            article: '499190192',
-            site: 'R007',
-            predict: 10,
-        },
-        {
-            weekend: '21/05/23',
-            month_no: 4,
-            month_week: 3,
-            article: '499190192',
-            site: 'R007',
-            predict: 15,
-        },
-        {
-            weekend: '28/05/23',
-            month_no: 4,
-            month_week: 4,
-            article: '499190192',
-            site: 'R007',
-            predict: 9,
+            start_node: 'DEPOT',
+            end_node: 'DEPOT',
+            distance: 2,
+            time: 2,
         },
     ],
-    vendorCostTime: [
+    sourceCoodinates: [
         {
-            vendor_id: 'RIL3928',
-            lead_time_avg: 5,
-            lead_time_std_dev: 2,
-            price: 1000,
-            order_cost: 100,
-            stockout_cost: 400,
-        },
-        {
-            vendor_id: 'RIL3927',
-            lead_time_avg: 4,
-            lead_time_std_dev: 3,
-            price: 2000,
-            order_cost: 200,
-            stockout_cost: 300,
+            hub_id: 'RIL3928',
+            hub_latitude: '18.50',
+            hub_longitude: '50.56',
         },
     ],
-    purchaseOrder: [
+    destinationCoordinates: [
         {
-            id: 1,
-            data: 1,
-        },
-        {
-            id: 2,
-            data: 2,
-        },
-        {
-            id: 3,
-            data: 3,
+            destination_id: 'RIL1020',
+            destination_latitude: '78.50',
+            destination_longitude: '90.56',
         },
     ],
-    volumeDiscount: [
+    fleetDetails: [
         {
-            id: 1,
-            data: 1,
+            vehicle_type: 'truck',
+            vehicle_count: 10,
+            fixed_cost: 1055.5,
+            variable_cost_per_km: 5.0,
+            capacity_kg: 500.0,
+            avg_speed_kmph: 60.0,
+            characteristics: 'heavy',
         },
+    ],
+    vehicleAvailability: [
         {
-            id: 2,
-            data: 2,
+            vehicle_id: 'VEH1020',
+            availability_start_time: '28/05/23 12:00',
+            availability_end_time: '28/05/25 12:00',
         },
+    ],
+    orderDetails: [
         {
-            id: 3,
-            data: 3,
+            order_id: 'ORD123',
+            destination: 'DELHI',
+            order_weight: 10.0,
+            order_volume: 20.0,
+            delivery_slot_start_time: '28/05/23 12:00',
+            delivery_slot_end_time: '28/05/24 12:00',
+            special_vehicle_requirements: 'heavy',
         },
     ],
 }

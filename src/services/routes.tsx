@@ -6,6 +6,8 @@ export const LOGOUT_API = '/auth/logout'
 
 export const UPLOAD_INVENTORY_API = '/inventory/upload'
 
+export const UPLOAD_ROUTE_API = '/route/upload'
+
 export const GET_WAREHOUSE_API = 'wmp/warehouses'
 export const UPLOAD_PRODUCTIVITY_FILE_API = 'wmp/upload_productivity_file'
 export const BENCHMARK_PRODUCTIVITY_API = 'wmp/benchmark_productivity'

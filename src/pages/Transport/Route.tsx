@@ -18,15 +18,10 @@ import {
     FormSwitchBtn,
 } from '../../components/FormElements'
 import { FormUploadButton, PrimaryButton } from '../../components/Buttons'
-// import { DataTemplates } from './constants'
+import { DataTemplates } from './constants'
 import { utils, writeFile } from 'xlsx'
 
-import {
-    uploadInventory,
-    updateAnnualCost,
-    updateFillRate,
-    updateCycleServiceLevel,
-} from '../../redux/actions/inventory/optimizer'
+import { uploadRoute } from '../../redux/actions/transport/route'
 
 import { algorithmApi } from '../../redux/actions/inventory/result'
 
@@ -54,11 +49,13 @@ const RouteOptimizer = () => {
     const [fillRateEnabled, setFillRateEnabled] = useState(true)
 
     const distanceMatrixFile = useRef() as MutableRefObject<HTMLInputElement>
-    const sourceCoordinateFile = useRef() as MutableRefObject<HTMLInputElement>
-    const destinationCoordinateFile =
+    const sourceCoordinatesFile = useRef() as MutableRefObject<HTMLInputElement>
+    const destinationCoordinatesFile =
         useRef() as MutableRefObject<HTMLInputElement>
-    const purchaseOrderFile = useRef() as MutableRefObject<HTMLInputElement>
-    const volumeDiscountFile = useRef() as MutableRefObject<HTMLInputElement>
+    const fleetDetailsFile = useRef() as MutableRefObject<HTMLInputElement>
+    const vehicleAvailabilityFile =
+        useRef() as MutableRefObject<HTMLInputElement>
+    const orderDetailsFile = useRef() as MutableRefObject<HTMLInputElement>
 
     const handleFileUpload = (event: any, fileType: string) => {
         event.preventDefault()
@@ -70,7 +67,7 @@ const RouteOptimizer = () => {
             }
             dispatch(
                 // @ts-ignore
-                uploadInventory(context, fileType, fileObj.name),
+                uploadRoute(context, fileType, fileObj.name),
             )
         }
     }
@@ -133,15 +130,14 @@ const RouteOptimizer = () => {
     }
 
     const DownloadTemplateData = (templateType: string) => {
-        // const worksheetData: any = DataTemplates[templateType]
+        const worksheetData: any = DataTemplates[templateType]
 
-        // const worksheet = utils.json_to_sheet(worksheetData)
-        // worksheet['!cols'] = [{ wch: 10 }, { wch: 9 }, { wch: 21 }]
-        // const workbook = utils.book_new()
-        // utils.book_append_sheet(workbook, worksheet, 'Sheet1')
+        const worksheet = utils.json_to_sheet(worksheetData)
+        worksheet['!cols'] = [{ wch: 10 }, { wch: 9 }, { wch: 21 }]
+        const workbook = utils.book_new()
+        utils.book_append_sheet(workbook, worksheet, 'Sheet1')
 
-        // writeFile(workbook, templateType + '.xlsx')
-        console.log('Download data')
+        writeFile(workbook, templateType + '.xlsx')
     }
 
     useEffect(() => {
@@ -249,14 +245,14 @@ const RouteOptimizer = () => {
                             <Grid item container>
                                 <Grid item lg={6}>
                                     <FormUploadButton
-                                        id='source-coordinate-upload-btn'
+                                        id='source-coordinates-upload-btn'
                                         label='CHOOSE FILE'
-                                        fileRef={sourceCoordinateFile}
+                                        fileRef={sourceCoordinatesFile}
                                         loader={false}
                                         onChange={(e: any) => {
                                             handleFileUpload(
                                                 e,
-                                                'source_coordinate',
+                                                'source_coordinates',
                                             )
                                         }}
                                         disabled={false}
@@ -264,11 +260,11 @@ const RouteOptimizer = () => {
                                 </Grid>
                                 <Grid item lg={6}>
                                     <PrimaryButton
-                                        id='source-coordinate-template-download-btn'
+                                        id='source-coordinates-template-download-btn'
                                         label='DOWNLOAD TEMPLATE'
                                         onClick={() =>
                                             DownloadTemplateData(
-                                                'sourceCoordinate',
+                                                'sourceCoodinates',
                                             )
                                         }
                                         disabled={false}
@@ -278,7 +274,7 @@ const RouteOptimizer = () => {
                             <Grid container>
                                 <Typography>
                                     {
-                                        routeOptimizerState.source_coordinate_file_name
+                                        routeOptimizerState.source_coordinates_file_name
                                     }
                                 </Typography>
                             </Grid>
@@ -306,14 +302,14 @@ const RouteOptimizer = () => {
                             <Grid item container>
                                 <Grid item lg={6}>
                                     <FormUploadButton
-                                        id='destination-coordinate-upload-btn'
+                                        id='destination-coordinates-upload-btn'
                                         label='CHOOSE FILE'
-                                        fileRef={destinationCoordinateFile}
+                                        fileRef={destinationCoordinatesFile}
                                         loader={false}
                                         onChange={(e: any) => {
                                             handleFileUpload(
                                                 e,
-                                                'destination_coordinate',
+                                                'destination_coordinates',
                                             )
                                         }}
                                         disabled={false}
@@ -321,11 +317,11 @@ const RouteOptimizer = () => {
                                 </Grid>
                                 <Grid item lg={6}>
                                     <PrimaryButton
-                                        id='destination-coordinate-template-download-btn'
+                                        id='destination-coordinates-template-download-btn'
                                         label='DOWNLOAD TEMPLATE'
                                         onClick={() =>
                                             DownloadTemplateData(
-                                                'destinationCoordinate',
+                                                'destinationCoordinates',
                                             )
                                         }
                                         disabled={false}
@@ -335,7 +331,7 @@ const RouteOptimizer = () => {
                             <Grid container>
                                 <Typography>
                                     {
-                                        routeOptimizerState.destination_coordinate_file_name
+                                        routeOptimizerState.destination_coordinates_file_name
                                     }
                                 </Typography>
                             </Grid>
@@ -596,27 +592,22 @@ const RouteOptimizer = () => {
                             <Grid item container>
                                 <Grid item lg={6}>
                                     <FormUploadButton
-                                        id='source-coordinate-upload-btn'
+                                        id='fleet-details-upload-btn'
                                         label='CHOOSE FILE'
-                                        fileRef={sourceCoordinateFile}
+                                        fileRef={fleetDetailsFile}
                                         loader={false}
                                         onChange={(e: any) => {
-                                            handleFileUpload(
-                                                e,
-                                                'source_coordinate',
-                                            )
+                                            handleFileUpload(e, 'fleet_details')
                                         }}
                                         disabled={false}
                                     />
                                 </Grid>
                                 <Grid item lg={6}>
                                     <PrimaryButton
-                                        id='source-coordinate-template-download-btn'
+                                        id='fleet-details-template-download-btn'
                                         label='DOWNLOAD TEMPLATE'
                                         onClick={() =>
-                                            DownloadTemplateData(
-                                                'sourceCoordinate',
-                                            )
+                                            DownloadTemplateData('fleetDetails')
                                         }
                                         disabled={false}
                                     />
@@ -625,7 +616,7 @@ const RouteOptimizer = () => {
                             <Grid container>
                                 <Typography>
                                     {
-                                        routeOptimizerState.source_coordinate_file_name
+                                        routeOptimizerState.fleet_details_file_name
                                     }
                                 </Typography>
                             </Grid>
@@ -717,14 +708,14 @@ const RouteOptimizer = () => {
                             <Grid item container>
                                 <Grid item lg={6}>
                                     <FormUploadButton
-                                        id='source-coordinate-upload-btn'
+                                        id='vehicle-availability-upload-btn'
                                         label='CHOOSE FILE'
-                                        fileRef={sourceCoordinateFile}
+                                        fileRef={vehicleAvailabilityFile}
                                         loader={false}
                                         onChange={(e: any) => {
                                             handleFileUpload(
                                                 e,
-                                                'source_coordinate',
+                                                'vehicle_availability',
                                             )
                                         }}
                                         disabled={false}
@@ -732,11 +723,11 @@ const RouteOptimizer = () => {
                                 </Grid>
                                 <Grid item lg={6}>
                                     <PrimaryButton
-                                        id='source-coordinate-template-download-btn'
+                                        id='vehicle-availability-template-download-btn'
                                         label='DOWNLOAD TEMPLATE'
                                         onClick={() =>
                                             DownloadTemplateData(
-                                                'sourceCoordinate',
+                                                'vehicleAvailability',
                                             )
                                         }
                                         disabled={false}
@@ -746,7 +737,7 @@ const RouteOptimizer = () => {
                             <Grid container>
                                 <Typography>
                                     {
-                                        routeOptimizerState.source_coordinate_file_name
+                                        routeOptimizerState.vehicle_availability_file_name
                                     }
                                 </Typography>
                             </Grid>
@@ -775,27 +766,22 @@ const RouteOptimizer = () => {
                             <Grid item container>
                                 <Grid item lg={6}>
                                     <FormUploadButton
-                                        id='source-coordinate-upload-btn'
+                                        id='order-details-upload-btn'
                                         label='CHOOSE FILE'
-                                        fileRef={sourceCoordinateFile}
+                                        fileRef={orderDetailsFile}
                                         loader={false}
                                         onChange={(e: any) => {
-                                            handleFileUpload(
-                                                e,
-                                                'source_coordinate',
-                                            )
+                                            handleFileUpload(e, 'order_details')
                                         }}
                                         disabled={false}
                                     />
                                 </Grid>
                                 <Grid item lg={6}>
                                     <PrimaryButton
-                                        id='source-coordinate-template-download-btn'
+                                        id='order-details-template-download-btn'
                                         label='DOWNLOAD TEMPLATE'
                                         onClick={() =>
-                                            DownloadTemplateData(
-                                                'sourceCoordinate',
-                                            )
+                                            DownloadTemplateData('orderDetails')
                                         }
                                         disabled={false}
                                     />
@@ -804,7 +790,7 @@ const RouteOptimizer = () => {
                             <Grid container>
                                 <Typography>
                                     {
-                                        routeOptimizerState.source_coordinate_file_name
+                                        routeOptimizerState.order_details_file_name
                                     }
                                 </Typography>
                             </Grid>
