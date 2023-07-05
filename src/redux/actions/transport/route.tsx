@@ -11,6 +11,17 @@ import {
     postVehicleAvailabiltySuccess,
     postOrderDetailsSuccess,
     postRouteFailed,
+    updateObjectiveValue,
+    updateRoundTripDistanceValue,
+    updateMaxTripDistanceValue,
+    updateMaxTripDurationValue,
+    updateFixedComponentValue,
+    updateVariableComponentPerOrderValue,
+    updateVariableComponentPerHandlingUnitValue,
+    updateInfiniteFleetSizeValue,
+    updateFlagVehicleWeightCapacityValue,
+    updateFlagVehicleVolumetricCapacityValue,
+    updateFlagVehicleMaxOrderCapacityValue,
 } from '../../reducer/transport/route'
 
 // @ts-ignore
@@ -61,4 +72,58 @@ export const uploadRoute =
         } catch (err) {
             return dispatch(postRouteFailed(err))
         }
+    }
+
+// @ts-ignore
+export const updateObjective = (payload) => async (dispatch) => {
+    await dispatch(updateObjectiveValue(payload))
+}
+// @ts-ignore
+export const updateRoundTripDistance = (payload) => async (dispatch) => {
+    await dispatch(updateRoundTripDistanceValue(payload))
+}
+
+// @ts-ignore
+export const updateMaxTripDistance = (payload) => async (dispatch) => {
+    await dispatch(updateMaxTripDistanceValue(payload))
+}
+// @ts-ignore
+export const updateMaxTripDuration = (payload) => async (dispatch) => {
+    await dispatch(updateMaxTripDurationValue(payload))
+}
+// @ts-ignore
+export const updateFixedComponent = (payload) => async (dispatch) => {
+    await dispatch(updateFixedComponentValue(payload))
+}
+
+export const updateVariableComponentPerOrder =
+    // @ts-ignore
+    (payload) => async (dispatch) => {
+        await dispatch(updateVariableComponentPerOrderValue(payload))
+    }
+export const updateVariableComponentPerHandlingUnit =
+    // @ts-ignore
+    (payload) => async (dispatch) => {
+        await dispatch(updateVariableComponentPerHandlingUnitValue(payload))
+    }
+export const updateInfiniteFleetSize =
+    // @ts-ignore
+    (payload) => async (dispatch) => {
+        await dispatch(updateInfiniteFleetSizeValue(payload))
+    }
+
+export const updateFlagVehicleWeightCapacity =
+    // @ts-ignore
+    (payload) => async (dispatch) => {
+        await dispatch(updateFlagVehicleWeightCapacityValue(payload))
+    }
+export const updateFlagVehicleVolumetricCapacity =
+    // @ts-ignore
+    (payload) => async (dispatch) => {
+        await dispatch(updateFlagVehicleVolumetricCapacityValue(payload))
+    }
+export const updateFlagVehicleMaxOrderCapacity =
+    // @ts-ignore
+    (payload) => async (dispatch) => {
+        await dispatch(updateFlagVehicleMaxOrderCapacityValue(payload))
     }

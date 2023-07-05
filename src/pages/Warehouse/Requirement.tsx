@@ -74,11 +74,15 @@ const WarehouseRequirement = () => {
                                             %
                                         </InputAdornment>
                                     ),
+                                    inputProps: {
+                                        min: 0,
+                                    },
                                 }}
                                 error={false}
                                 onErrorMessage={''}
                                 disabled={false}
                                 size={'medium'}
+                                sx={{}}
                             />
                         </Grid>
                     </Grid>
@@ -109,11 +113,16 @@ const WarehouseRequirement = () => {
                                         ),
                                     )
                                 }}
-                                inputProps={{}}
+                                inputProps={{
+                                    inputProps: {
+                                        min: 0,
+                                    },
+                                }}
                                 error={false}
                                 onErrorMessage={''}
                                 disabled={false}
                                 size={'medium'}
+                                sx={{}}
                             />
                         </Grid>
                     </Grid>
@@ -148,6 +157,9 @@ const WarehouseRequirement = () => {
                                             ₹
                                         </InputAdornment>
                                     ),
+                                    inputProps: {
+                                        min: 0,
+                                    },
                                 }}
                                 error={
                                     warehouseRequirementState.total_hiring_budget <
@@ -158,6 +170,7 @@ const WarehouseRequirement = () => {
                                 }
                                 disabled={false}
                                 size={'medium'}
+                                sx={{}}
                             />
                         </Grid>
                     </Grid>
@@ -194,11 +207,15 @@ const WarehouseRequirement = () => {
                                             ₹
                                         </InputAdornment>
                                     ),
+                                    inputProps: {
+                                        min: 0,
+                                    },
                                 }}
                                 error={false}
                                 onErrorMessage={''}
                                 disabled={false}
                                 size={'medium'}
+                                sx={{}}
                             />
                         </Grid>
                     </Grid>
@@ -227,7 +244,12 @@ const WarehouseRequirement = () => {
                                         updateDayWorkingHours(e.target.value),
                                     )
                                 }}
-                                inputProps={{}}
+                                inputProps={{
+                                    inputProps: {
+                                        min: 0,
+                                        max: 24,
+                                    },
+                                }}
                                 error={
                                     warehouseRequirementState.day_working_hours >
                                     24
@@ -237,6 +259,7 @@ const WarehouseRequirement = () => {
                                 }
                                 disabled={false}
                                 size={'medium'}
+                                sx={{}}
                             />
                         </Grid>
                     </Grid>

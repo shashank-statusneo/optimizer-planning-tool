@@ -106,6 +106,7 @@ export const FormTextField = (props: {
     onErrorMessage: string
     disabled: boolean
     size: any
+    sx: any
 }) => {
     return (
         <Tooltip title={props.onErrorMessage} disableInteractive>
@@ -119,6 +120,11 @@ export const FormTextField = (props: {
                 InputProps={props.inputProps}
                 error={props.error}
                 disabled={props.disabled}
+                sx={{
+                    backgroundColor: props.disabled ? '#DCDCDC' : null,
+                    borderRadius: props.disabled ? '4px' : null,
+                    ...props.sx,
+                }}
             />
         </Tooltip>
     )
@@ -172,13 +178,20 @@ export const FormSwitchBtn = (props: {
     label: string
     value: string
     position: switchPostion
-    // checked: boolean
+    onChange: any
+    defaultChecked: boolean
 }) => {
     return (
         <FormGroup row>
             <FormControlLabel
                 value={props.value}
-                control={<Switch color='primary' />}
+                control={
+                    <Switch
+                        color='primary'
+                        defaultChecked={props.defaultChecked}
+                        onChange={props.onChange}
+                    />
+                }
                 label={props.label}
                 labelPlacement={props.position}
             />
@@ -426,6 +439,7 @@ export const CustomFormRadioButton = (props: {
                             }
                             disabled={props.textFieldsProps[index].disabled}
                             size={'small'}
+                            sx={props.textFieldsProps[index].sx}
                         />
                     </Grid>
                 ))}

@@ -272,11 +272,16 @@ const SimulatorContainer = () => {
                                                 ),
                                             )
                                         }}
-                                        inputProps={{}}
+                                        inputProps={{
+                                            inputProps: {
+                                                min: 0,
+                                            },
+                                        }}
                                         error={false}
                                         onErrorMessage={''}
                                         disabled={false}
                                         size={'small'}
+                                        sx={{}}
                                     />
                                 </Grid>
                                 <Grid
@@ -302,11 +307,16 @@ const SimulatorContainer = () => {
                                                 ),
                                             )
                                         }}
-                                        inputProps={{}}
+                                        inputProps={{
+                                            inputProps: {
+                                                min: 0,
+                                            },
+                                        }}
                                         error={false}
                                         onErrorMessage={''}
                                         disabled={false}
                                         size={'small'}
+                                        sx={{}}
                                     />
                                 </Grid>
                             </Grid>
@@ -339,11 +349,16 @@ const SimulatorContainer = () => {
                                                 ),
                                             )
                                         }}
-                                        inputProps={{}}
+                                        inputProps={{
+                                            inputProps: {
+                                                min: 0,
+                                            },
+                                        }}
                                         error={false}
                                         onErrorMessage={''}
                                         disabled={false}
                                         size={'small'}
+                                        sx={{}}
                                     />
                                 </Grid>
                                 <Grid
@@ -369,11 +384,16 @@ const SimulatorContainer = () => {
                                                 ),
                                             )
                                         }}
-                                        inputProps={{}}
+                                        inputProps={{
+                                            inputProps: {
+                                                min: 0,
+                                            },
+                                        }}
                                         error={false}
                                         onErrorMessage={''}
                                         disabled={false}
                                         size={'small'}
+                                        sx={{}}
                                     />
                                 </Grid>
                             </Grid>

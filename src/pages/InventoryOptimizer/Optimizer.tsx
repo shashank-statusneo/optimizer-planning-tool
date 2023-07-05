@@ -30,7 +30,6 @@ import { algorithmApi } from '../../redux/actions/inventory/result'
 const theme = createTheme()
 
 const Optimizer = () => {
-
     const dispatch = useAppDispatch()
 
     const inventoryOptimizerState = useAppSelector(
@@ -435,11 +434,16 @@ const Optimizer = () => {
                                         updateAnnualCost(e.target.value),
                                     )
                                 }}
-                                inputProps={{}}
+                                inputProps={{
+                                    inputProps: {
+                                        min: 0,
+                                    },
+                                }}
                                 error={false}
                                 onErrorMessage={''}
                                 disabled={false}
                                 size={'small'}
+                                sx={{}}
                             />
                         </Grid>
                     </Grid>
@@ -475,7 +479,11 @@ const Optimizer = () => {
                                         value: inventoryOptimizerState.fill_rate,
                                         type: 'number',
                                         onChange: handleFillRateChange,
-                                        inputProps: {},
+                                        inputProps: {
+                                            inputProps: {
+                                                min: 0,
+                                            },
+                                        },
                                         error: false,
                                         onErrorMessage: '',
                                         disabled: !fillRateEnabled,
@@ -485,7 +493,11 @@ const Optimizer = () => {
                                         value: inventoryOptimizerState.cycle_service_level,
                                         type: 'number',
                                         onChange: handleCycleServiceLevelChange,
-                                        inputProps: {},
+                                        inputProps: {
+                                            inputProps: {
+                                                min: 0,
+                                            },
+                                        },
                                         error: false,
                                         onErrorMessage: '',
                                         disabled: fillRateEnabled,

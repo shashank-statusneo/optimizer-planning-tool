@@ -13,7 +13,6 @@ import {
     FormTextField,
     FormRadioButton,
     CustomFormRadioButton,
-    FormSubLabel,
     FormSubLabel2,
     FormSwitchBtn,
 } from '../../components/FormElements'
@@ -21,7 +20,20 @@ import { FormUploadButton, PrimaryButton } from '../../components/Buttons'
 import { DataTemplates } from './constants'
 import { utils, writeFile } from 'xlsx'
 
-import { uploadRoute } from '../../redux/actions/transport/route'
+import {
+    uploadRoute,
+    updateObjective,
+    updateRoundTripDistance,
+    updateMaxTripDistance,
+    updateMaxTripDuration,
+    updateFixedComponent,
+    updateVariableComponentPerOrder,
+    updateVariableComponentPerHandlingUnit,
+    updateInfiniteFleetSize,
+    updateFlagVehicleWeightCapacity,
+    updateFlagVehicleVolumetricCapacity,
+    updateFlagVehicleMaxOrderCapacity,
+} from '../../redux/actions/transport/route'
 
 import { algorithmApi } from '../../redux/actions/inventory/result'
 
@@ -44,9 +56,9 @@ const RouteOptimizer = () => {
 
     const [isObjectiveCost, setIsObjectiveCost] = useState(true)
     const [roundTripEnabled, setRoundTripEnabled] = useState(false)
-    const [volumneDiscountEnabled, setVolumeDiscountEnabled] = useState(false)
+    const [infiniteFleetSizeEnabled, setInfiniteFleetSizeEnabled] =
+        useState(true)
     const [perOrderEnabled, setPerOrderEnabled] = useState(true)
-    const [fillRateEnabled, setFillRateEnabled] = useState(true)
 
     const distanceMatrixFile = useRef() as MutableRefObject<HTMLInputElement>
     const sourceCoordinatesFile = useRef() as MutableRefObject<HTMLInputElement>
@@ -78,6 +90,14 @@ const RouteOptimizer = () => {
         event.target.value == 'minimizeCost'
             ? setIsObjectiveCost(true)
             : setIsObjectiveCost(false)
+        dispatch(
+            // @ts-ignore
+            updateObjective(
+                event.target.value == 'minimizeCost'
+                    ? 'minimize_cost'
+                    : 'minimize_time',
+            ),
+        )
     }
 
     const handleRoundTripChange = (
@@ -86,13 +106,24 @@ const RouteOptimizer = () => {
         event.target.value == 'yes'
             ? setRoundTripEnabled(true)
             : setRoundTripEnabled(false)
+
+        dispatch(
+            // @ts-ignore
+            updateRoundTripDistance(event.target.value == 'yes' ? true : false),
+        )
     }
-    const handleVolumDiscountChange = (
+
+    const handleInfiniteFleetSizeChange = (
         event: React.ChangeEvent<HTMLInputElement>,
     ) => {
         event.target.value == 'yes'
-            ? setVolumeDiscountEnabled(true)
-            : setVolumeDiscountEnabled(false)
+            ? setInfiniteFleetSizeEnabled(true)
+            : setInfiniteFleetSizeEnabled(false)
+
+        dispatch(
+            // @ts-ignore
+            updateInfiniteFleetSize(event.target.value == 'yes' ? true : false),
+        )
     }
 
     const handleDistanceServiceTimeChange = (
@@ -102,31 +133,24 @@ const RouteOptimizer = () => {
             ? setPerOrderEnabled(true)
             : setPerOrderEnabled(false)
     }
-    const handleServiceLevelChange = (
-        event: React.ChangeEvent<HTMLInputElement>,
-    ) => {
-        event.target.value == 'fillRate'
-            ? setFillRateEnabled(true)
-            : setFillRateEnabled(false)
-    }
 
-    const handleFillRateChange = (e: any) => {
+    const handleVariablePerOrderChange = (e: any) => {
         dispatch(
             // @ts-ignore
-            updateFillRate(e.target.value),
+            updateVariableComponentPerOrder(e.target.value),
         )
     }
-
-    const handleCycleServiceLevelChange = (e: any) => {
+    const handleVariablePerHandlingUnitChange = (e: any) => {
         dispatch(
             // @ts-ignore
-            updateCycleServiceLevel(e.target.value),
+            updateVariableComponentPerHandlingUnit(e.target.value),
         )
     }
 
     const handleSubmit = () => {
         // @ts-ignore
-        dispatch(algorithmApi(routeOptimizerState))
+        // dispatch(algorithmApi(routeOptimizerState))
+        console.log(routeOptimizerState)
     }
 
     const DownloadTemplateData = (templateType: string) => {
@@ -406,13 +430,13 @@ const RouteOptimizer = () => {
                                         <FormTextField
                                             id='max-trip-distance-textfield'
                                             value={
-                                                routeOptimizerState.annual_cost
+                                                routeOptimizerState.max_trip_distance
                                             }
                                             type='number'
                                             onChange={(e: any) => {
                                                 dispatch(
                                                     // @ts-ignore
-                                                    updateAnnualCost(
+                                                    updateMaxTripDistance(
                                                         e.target.value,
                                                     ),
                                                 )
@@ -423,11 +447,15 @@ const RouteOptimizer = () => {
                                                         km
                                                     </InputAdornment>
                                                 ),
+                                                inputProps: {
+                                                    min: 0,
+                                                },
                                             }}
                                             error={false}
                                             onErrorMessage={''}
                                             disabled={false}
                                             size={'small'}
+                                            sx={{}}
                                         />
                                     </Grid>
                                 </Grid>
@@ -444,13 +472,13 @@ const RouteOptimizer = () => {
                                         <FormTextField
                                             id='max-trip-duration-textfield'
                                             value={
-                                                routeOptimizerState.annual_cost
+                                                routeOptimizerState.max_trip_duration
                                             }
                                             type='number'
                                             onChange={(e: any) => {
                                                 dispatch(
                                                     // @ts-ignore
-                                                    updateAnnualCost(
+                                                    updateMaxTripDuration(
                                                         e.target.value,
                                                     ),
                                                 )
@@ -461,11 +489,15 @@ const RouteOptimizer = () => {
                                                         hrs
                                                     </InputAdornment>
                                                 ),
+                                                inputProps: {
+                                                    min: 0,
+                                                },
                                             }}
                                             error={false}
                                             onErrorMessage={''}
                                             disabled={!roundTripEnabled}
                                             size={'small'}
+                                            sx={{}}
                                         />
                                     </Grid>
                                 </Grid>
@@ -497,12 +529,14 @@ const RouteOptimizer = () => {
                             <Grid item lg={6}>
                                 <FormTextField
                                     id='max-trip-distance-textfield'
-                                    value={routeOptimizerState.annual_cost}
+                                    value={routeOptimizerState.fixed_cost}
                                     type='number'
                                     onChange={(e: any) => {
                                         dispatch(
                                             // @ts-ignore
-                                            updateAnnualCost(e.target.value),
+                                            updateFixedComponent(
+                                                e.target.value,
+                                            ),
                                         )
                                     }}
                                     inputProps={{
@@ -511,11 +545,15 @@ const RouteOptimizer = () => {
                                                 mins
                                             </InputAdornment>
                                         ),
+                                        inputProps: {
+                                            min: 0,
+                                        },
                                     }}
                                     error={false}
                                     onErrorMessage={''}
                                     disabled={false}
                                     size={'small'}
+                                    sx={{ width: '192px' }}
                                 />
                             </Grid>
                             <Grid item lg={6}>
@@ -532,36 +570,47 @@ const RouteOptimizer = () => {
                                     textFieldsProps={[
                                         {
                                             id: 'per-order-level-selector',
-                                            value: routeOptimizerState.fill_rate,
+                                            value: routeOptimizerState.variable_component_per_order,
                                             type: 'number',
-                                            onChange: handleFillRateChange,
+                                            onChange:
+                                                handleVariablePerOrderChange,
                                             inputProps: {
                                                 endAdornment: (
                                                     <InputAdornment position='end'>
                                                         mins
                                                     </InputAdornment>
                                                 ),
+                                                inputProps: {
+                                                    min: 0,
+                                                },
                                             },
                                             error: false,
                                             onErrorMessage: '',
                                             disabled: !perOrderEnabled,
+                                            sx: { width: '192px' },
                                         },
                                         {
                                             id: 'per-handling-unit-level-textfield',
-                                            value: routeOptimizerState.cycle_service_level,
+                                            value: routeOptimizerState.variable_component_per_handling_unit,
                                             type: 'number',
                                             onChange:
-                                                handleCycleServiceLevelChange,
+                                                handleVariablePerHandlingUnitChange,
                                             inputProps: {
                                                 endAdornment: (
                                                     <InputAdornment position='end'>
                                                         mins
                                                     </InputAdornment>
                                                 ),
+                                                inputProps: {
+                                                    min: 0,
+                                                },
                                             },
                                             error: false,
                                             onErrorMessage: '',
                                             disabled: perOrderEnabled,
+                                            sx: {
+                                                width: '192px',
+                                            },
                                         },
                                     ]}
                                     onChange={handleDistanceServiceTimeChange}
@@ -637,12 +686,12 @@ const RouteOptimizer = () => {
                         <Grid item container lg={6}>
                             <FormRadioButton
                                 id='objective-selector'
-                                identifier={isObjectiveCost}
+                                identifier={infiniteFleetSizeEnabled}
                                 options={{
                                     yes: 'Yes',
                                     no: 'No',
                                 }}
-                                onChange={handleIsObjectiveCostChange}
+                                onChange={handleInfiniteFleetSizeChange}
                             />
                         </Grid>
                     </Grid>
@@ -661,26 +710,56 @@ const RouteOptimizer = () => {
                         <Grid item container lg={12}>
                             <Grid item lg={4}>
                                 <FormSwitchBtn
-                                    value={'Yes'}
+                                    value={
+                                        routeOptimizerState.flag_vehicle_weight_capacity
+                                    }
                                     label={'Vehicle weight capacity'}
                                     position='start'
-                                    // checked={true}
+                                    onChange={(e: any) =>
+                                        dispatch(
+                                            // @ts-ignore
+                                            updateFlagVehicleWeightCapacity(
+                                                e.target.checked,
+                                            ),
+                                        )
+                                    }
+                                    defaultChecked={true}
                                 />
                             </Grid>
                             <Grid item lg={4}>
                                 <FormSwitchBtn
-                                    value={'Yes'}
+                                    value={
+                                        routeOptimizerState.flag_vehicle_volumetric_capacity
+                                    }
                                     label={'Vehicle volumetric capacity'}
                                     position='start'
-                                    // checked={false}
+                                    onChange={(e: any) =>
+                                        dispatch(
+                                            // @ts-ignore
+                                            updateFlagVehicleVolumetricCapacity(
+                                                e.target.checked,
+                                            ),
+                                        )
+                                    }
+                                    defaultChecked={false}
                                 />
                             </Grid>
                             <Grid item lg={4}>
                                 <FormSwitchBtn
-                                    value={'Yes'}
+                                    value={
+                                        routeOptimizerState.flag_vehicle_max_order_capacity
+                                    }
                                     label={'Vehicle max order capacity'}
                                     position='start'
-                                    // checked={false}
+                                    onChange={(e: any) =>
+                                        dispatch(
+                                            // @ts-ignore
+                                            updateFlagVehicleMaxOrderCapacity(
+                                                e.target.checked,
+                                            ),
+                                        )
+                                    }
+                                    defaultChecked={false}
                                 />
                             </Grid>
                         </Grid>
@@ -810,15 +889,16 @@ const RouteOptimizer = () => {
                             id='generate-order-policy-btn'
                             label='GENERATE ROUTE PLAN'
                             onClick={() => handleSubmit()}
-                            disabled={
-                                !(
-                                    routeOptimizerState?.demand_master_id &&
-                                    routeOptimizerState?.vendor_master_id &&
-                                    routeOptimizerState?.annual_cost &&
-                                    (routeOptimizerState.fill_rate ||
-                                        routeOptimizerState.cycle_service_level)
-                                )
-                            }
+                            // disabled={
+                            //     !(
+                            //         routeOptimizerState?.demand_master_id &&
+                            //         routeOptimizerState?.vendor_master_id &&
+                            //         routeOptimizerState?.annual_cost &&
+                            //         (routeOptimizerState.fill_rate ||
+                            //             routeOptimizerState.cycle_service_level)
+                            //     )
+                            // }
+                            disabled={false}
                         />
                         <PrimaryButton
                             id='generate-order-policy-btn'
