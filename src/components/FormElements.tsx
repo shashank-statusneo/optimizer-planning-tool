@@ -121,7 +121,7 @@ export const FormTextField = (props: {
                 error={props.error}
                 disabled={props.disabled}
                 sx={{
-                    backgroundColor: props.disabled ? '#DCDCDC' : null,
+                    backgroundColor: props.disabled ? '#E0E0E0' : null,
                     borderRadius: props.disabled ? '4px' : null,
                     ...props.sx,
                 }}

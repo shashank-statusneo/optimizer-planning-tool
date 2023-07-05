@@ -35,8 +35,6 @@ import {
     updateFlagVehicleMaxOrderCapacity,
 } from '../../redux/actions/transport/route'
 
-import { algorithmApi } from '../../redux/actions/inventory/result'
-
 const theme = createTheme()
 
 const RouteOptimizer = () => {
@@ -45,11 +43,6 @@ const RouteOptimizer = () => {
     const routeOptimizerState = useAppSelector(
         // @ts-ignore
         (state) => state.routeOptimizer,
-    )
-
-    const inventoryResultState = useAppSelector(
-        // @ts-ignore
-        (state) => state.inventoryResult,
     )
 
     const [snackbarState, setSnackbarState] = useState(false)
@@ -171,24 +164,13 @@ const RouteOptimizer = () => {
     return (
         <ThemeProvider theme={theme}>
             <Container component='main' sx={{ flexGrow: 1 }} fixed>
-                <FormBackdropElement
-                    loader={
-                        routeOptimizerState.isLoading ||
-                        inventoryResultState.isLoading
-                    }
-                />
-                {snackbarState &&
-                    (routeOptimizerState.message ||
-                        inventoryResultState.message) && (
-                        <FormSnackBarElement
-                            message={
-                                routeOptimizerState.message
-                                    ? routeOptimizerState.message
-                                    : inventoryResultState.message
-                            }
-                            onClose={() => setSnackbarState(false)}
-                        />
-                    )}
+                <FormBackdropElement loader={routeOptimizerState.isLoading} />
+                {snackbarState && routeOptimizerState.message && (
+                    <FormSnackBarElement
+                        message={routeOptimizerState.message}
+                        onClose={() => setSnackbarState(false)}
+                    />
+                )}
 
                 <Grid container direction='column' rowGap={4}>
                     <Grid
