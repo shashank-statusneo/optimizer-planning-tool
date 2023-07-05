@@ -173,13 +173,13 @@ const RouteOptimizer = () => {
                 )}
 
                 <Grid container direction='column' rowGap={4}>
-                    <Grid
-                        container
-                        item
-                        justifyContent='center'
-                        alignContent='center'
-                        alignItems='flex-start'
-                    >
+                        <Grid
+                            container
+                            item
+                            justifyContent='center'
+                            alignContent='center'
+                            alignItems='flex-start'
+                        >
                         <Grid item lg={6}>
                             <FormLabel label='Upload distance matrix' />
                         </Grid>

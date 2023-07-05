@@ -202,7 +202,6 @@ const DemandWiseOutputDataCells = (props: { rowData: any; rowKey: any }) => {
     )
 }
 
-
 type InventoryTableHeaders = string[]
 
 type InventoryTableData = {
@@ -254,6 +253,57 @@ export const FormInventoryTable = (props: {
                         <StyledTableCell>{props.totalOrderQty}</StyledTableCell>
                         <StyledTableCell>{props.totalCost}</StyledTableCell>
                     </TableRow>
+                </TableBody>
+            </Table>
+        </TableContainer>
+    )
+}
+
+type RouteTableData = {
+    trip_id: number | string | undefined
+    vehicle_id: number | string | undefined
+    order_id: number | string | undefined
+    order_hu_content: number | string | undefined
+    source: number | string | undefined
+    destination: number | string | undefined
+}[]
+
+export const FormRouteTable = (props: {
+    id: string
+    tableHeaders: string[]
+    tableData: RouteTableData
+}) => {
+    return (
+        <TableContainer component={Paper} sx={{ maxHeight: '100%' }}>
+            <Table aria-label={props.id} stickyHeader>
+                <TableHead>
+                    <TableRow>
+                        {props.tableHeaders.map((row: string, key: any) => (
+                            <StyledTableCell key={key}>{row}</StyledTableCell>
+                        ))}
+                    </TableRow>
+                </TableHead>
+
+                <TableBody>
+                    {props.tableData.map((obj: any, key: any) => (
+                        <TableRow
+                            key={key}
+                            sx={{
+                                '&:last-child td, &:last-child th': {
+                                    border: 0,
+                                },
+                            }}
+                        >
+                            <StyledTableCell>{obj.trip_id}</StyledTableCell>
+                            <StyledTableCell>{obj.vehicle_id}</StyledTableCell>
+                            <StyledTableCell>{obj.order_id}</StyledTableCell>
+                            <StyledTableCell>
+                                {obj.order_hu_content}
+                            </StyledTableCell>
+                            <StyledTableCell>{obj.source}</StyledTableCell>
+                            <StyledTableCell>{obj.destination}</StyledTableCell>
+                        </TableRow>
+                    ))}
                 </TableBody>
             </Table>
         </TableContainer>

@@ -52,12 +52,40 @@ export const lineData = [
 //     },
 // ]
 
-export const policyTableHeaders = [
-    'Order Date',
-    'Vendor',
-    'Reorder Level',
-    'Order Qty',
-    'Cost',
+export const routeSimulationHeaders = [
+    'Trip ID    ',
+    'Vehicle ID',
+    'Order ID',
+    'Order HU Count',
+    'Source',
+    'Destination',
+]
+
+export const routeSampleTableData: any = [
+    {
+        trip_id: '1',
+        vehicle_id: 'Truck',
+        order_id: 'RIL123',
+        order_hu_content: 'HUB1',
+        source: 'Delhi',
+        destination: 'Mumbai',
+    },
+    {
+        trip_id: '2',
+        vehicle_id: 'Car',
+        order_id: 'RIL456',
+        order_hu_content: 'HUB2',
+        source: 'Pune',
+        destination: 'Chandigarh',
+    },
+    {
+        trip_id: '3',
+        vehicle_id: 'Train',
+        order_id: 'RIL789',
+        order_hu_content: 'HUB3',
+        source: 'Kerela',
+        destination: 'Jaipur',
+    },
 ]
 
 export const DataTemplates: any = {

@@ -4,9 +4,32 @@ import { useNavigate, useParams } from 'react-router-dom'
 
 import { TabContext } from '@mui/lab'
 import RouteOptimizer from './Route'
-import { useAppSelector } from '../../hooks/redux-hooks'
+import RouteResult from './Result'
 
 const Transport = () => {
+    const navigate = useNavigate()
+
+    const TransportMenuTabs: any = {
+        route: {
+            label: 'Route Simulator',
+            element: <RouteOptimizer />,
+            active: true,
+        },
+        result: {
+            label: 'Simulation Result',
+            element: <RouteResult />,
+            active: true,
+        },
+    }
+
+    const ScreenNames = Object.keys(TransportMenuTabs)
+
+    const { pageName = ScreenNames[0] } = useParams()
+
+    useEffect(() => {
+        navigate('/transport/route')
+    }, [])
+
     return (
         <Container maxWidth='xl'>
             <Grid container>
@@ -22,7 +45,37 @@ const Transport = () => {
                         padding: '5px',
                     }}
                 >
-                    <RouteOptimizer />
+                    <TabContext value={pageName}>
+                        <Tabs
+                            variant='fullWidth'
+                            style={{ marginBottom: '20px' }}
+                            selectionFollowsFocus
+                            aria-label='Transport Menu Tabs'
+                            value={pageName}
+                            onChange={(_, value) => {
+                                TransportMenuTabs[value].active
+                                    ? navigate(`/transport/${value}`)
+                                    : null
+                            }}
+                        >
+                            {Object.keys(TransportMenuTabs).map(
+                                (value: any, index: any) => (
+                                    <Tab
+                                        key={index}
+                                        value={value}
+                                        label={TransportMenuTabs[value].label}
+                                        sx={{
+                                            fontSize: '1.1rem',
+                                        }}
+                                        disabled={
+                                            !TransportMenuTabs[value].active
+                                        }
+                                    />
+                                ),
+                            )}
+                        </Tabs>
+                    </TabContext>
+                    {TransportMenuTabs[pageName].element}
                 </Grid>
             </Grid>
         </Container>

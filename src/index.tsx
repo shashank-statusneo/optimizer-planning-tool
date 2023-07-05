@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom/client'
 import './index.css'
 import App from './App'
 import reportWebVitals from './reportWebVitals'
-import InventoryOptimizer from './pages/InventoryOptimizer'
 import { Provider } from 'react-redux'
 import store from './redux/store'
 
@@ -12,7 +11,6 @@ root.render(
     // <React.StrictMode>
     <Provider store={store}>
         <App />
-        {/* <InventoryOptimizer/> */}
     </Provider>,
     // </React.StrictMode>
 )
