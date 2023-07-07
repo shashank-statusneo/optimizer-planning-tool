@@ -25,7 +25,11 @@ import {
     Radio,
     FormGroup,
     Switch,
+    SxProps,
+    Theme,
+    OutlinedTextFieldProps,
 } from '@mui/material'
+
 import { LocalizationProvider } from '@mui/x-date-pickers'
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
 import { DatePicker } from '@mui/x-date-pickers/DatePicker'
@@ -98,32 +102,39 @@ export const FormAlertElement = (props: {
 // General function to export Form Textfield
 export const FormTextField = (props: {
     id: string
-    value: any
-    inputProps: any
-    onChange: any
-    type: any
-    error: any
-    onErrorMessage: string
-    disabled: boolean
-    size: any
-    sx: any
-}) => {
+    value: string | number | undefined | null
+    type: 'text' | 'number' | 'password'
+    label?: string | null | undefined
+    placeholder?: string | undefined
+    inputProps?: OutlinedTextFieldProps['InputProps']
+    onChange?: OutlinedTextFieldProps['onChange']
+    error?: boolean
+    onErrorMessage?: string
+    disabled?: boolean
+    size?: 'small' | 'medium' | undefined
+    sx?: SxProps<Theme>
+}): JSX.Element => {
     return (
-        <Tooltip title={props.onErrorMessage} disableInteractive>
+        <Tooltip
+            title={props?.onErrorMessage ? props?.onErrorMessage : ''}
+            disableInteractive
+        >
             <TextField
+                variant='outlined'
                 id={props.id}
                 type={props.type}
                 value={props.value}
-                onChange={props.onChange}
-                size={props.size}
-                variant='outlined'
-                InputProps={props.inputProps}
-                error={props.error}
-                disabled={props.disabled}
+                label={props?.label}
+                placeholder={props?.placeholder}
+                onChange={props?.onChange}
+                size={props?.size}
+                InputProps={props?.inputProps ? props.inputProps : {}}
+                error={props?.error ? props?.error : false}
+                disabled={props.disabled ? props?.disabled : false}
                 sx={{
                     backgroundColor: props.disabled ? '#E0E0E0' : null,
                     borderRadius: props.disabled ? '4px' : null,
-                    ...props.sx,
+                      ...props?.sx,
                 }}
             />
         </Tooltip>

@@ -1,12 +1,14 @@
-import { Button } from '@mui/material'
+import { Button, SxProps, Theme } from '@mui/material'
+import { MouseEventHandler } from 'react'
 
 // General function to export Form Primary Button
 export const PrimaryButton = (props: {
     id: string
     label: string
-    onClick: any
-    disabled: boolean
-}) => {
+    onClick: MouseEventHandler
+    disabled?: boolean
+    sx?: SxProps<Theme>
+}): JSX.Element  => {
     return (
         <Button
             variant='contained'
@@ -14,7 +16,8 @@ export const PrimaryButton = (props: {
             size='medium'
             id={props.id}
             onClick={props.onClick}
-            disabled={props.disabled}
+            disabled={props?.disabled ? props?.disabled : false} 
+            sx={{...props?.sx}}
         >
             {props.label}
         </Button>

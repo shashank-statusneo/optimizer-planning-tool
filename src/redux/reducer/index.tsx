@@ -1,4 +1,5 @@
-import authReducer from './auth'
+// import authReducer from './auth'
+import userAuth  from './user/auth'
 import inventoryOptimizer from './inventory/optimizer'
 import inventoryResult from './inventory/result'
 import inventorySimulator from './inventory/simulator'
@@ -11,7 +12,7 @@ import routeOptimizer from './transport/route'
 import { combineReducers } from 'redux'
 
 export const rootReducer = combineReducers({
-    authReducer: authReducer,
+    userAuth: userAuth,
     inventoryOptimizer: inventoryOptimizer,
     inventoryResult: inventoryResult,
     inventorySimulator: inventorySimulator,

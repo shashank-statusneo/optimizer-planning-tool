@@ -12,6 +12,14 @@ export const apiClient = axios.create({
     },
 })
 
+export const apiClientForForm = axios.create({
+    baseURL: `${process.env.REACT_APP_API_URL}`,
+    headers: {
+        Authorization: token ? `Bearer ${token}` : '',
+        'Content-Type': 'multipart/form-data',
+    },
+})
+
 export const warehouseApiClient = axios.create({
     baseURL: `${process.env.REACT_APP_API_URL_WAREHOUSE}`,
     headers: {
@@ -27,15 +35,24 @@ export const warehouseApiClientForForm = axios.create({
         'Content-Type': 'multipart/form-data',
     },
 })
+export const authApiClient = axios.create({
+    baseURL: `${process.env.REACT_APP_API_URL_AUTH}`,
+    headers: {
+        Authorization: token ? `Bearer ${token}` : '',
+        'Content-Type': 'application/json',
+    },
+})
 
-export const apiClientForForm = axios.create({
-    baseURL: `${process.env.REACT_APP_API_URL}`,
+export const authApiClientForForm = axios.create({
+    baseURL: `${process.env.REACT_APP_API_URL_AUTH}`,
     headers: {
         Authorization: token ? `Bearer ${token}` : '',
         'Content-Type': 'multipart/form-data',
     },
 })
 
+
+// interceptor if a request failed then retry getting user token
 apiClient.interceptors.response.use(
     (response) => {
         console.log(response)

@@ -59,6 +59,11 @@ export const warehouseResult = createSlice({
 
         // @ts-ignore
         postResultSuccess(state, action) {
+
+            const getResultCategories = (output: any) => {
+                const resultCategoriesCols = Object.keys(output[Object.keys(output)[0]])
+                return resultCategoriesCols
+            }
             return {
                 ...state,
                 result_output: action?.payload?.output,
@@ -103,10 +108,6 @@ export const warehouseResult = createSlice({
     },
 })
 
-const getResultCategories = (output: any) => {
-    const resultCategoriesCols = Object.keys(output[Object.keys(output)[0]])
-    return resultCategoriesCols
-}
 
 export const {
     resetWarehouseResultData,

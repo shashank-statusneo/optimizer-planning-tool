@@ -439,11 +439,7 @@ const Optimizer = () => {
                                         min: 0,
                                     },
                                 }}
-                                error={false}
-                                onErrorMessage={''}
-                                disabled={false}
                                 size={'small'}
-                                sx={{}}
                             />
                         </Grid>
                     </Grid>

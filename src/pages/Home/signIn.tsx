@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react'
 import { createTheme, ThemeProvider } from '@mui/material/styles'
 import { useAppDispatch, useAppSelector } from '../../hooks/redux-hooks'
 import UserSession from '../../services/auth'
-import { login } from '../../redux/actions/auth'
+import { userLogin } from '../../redux/actions/user/auth'
+
 import {
     Container,
     CssBaseline,
@@ -47,7 +48,7 @@ const SignIn = () => {
             password: data.get('password'),
         }
         // @ts-ignore
-        dispatch(login(context))
+        dispatch(userLogin(context))
     }
 
     useEffect(() => {
