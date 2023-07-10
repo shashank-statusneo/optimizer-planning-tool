@@ -5,6 +5,7 @@ import { useNavigate, useParams } from 'react-router-dom'
 import { TabContext } from '@mui/lab'
 import RouteOptimizer from './Route'
 import RouteResult from './Result'
+import UserSession from '../../../services/auth'
 
 const Transport = () => {
     const navigate = useNavigate()
@@ -27,8 +28,22 @@ const Transport = () => {
     const { pageName = ScreenNames[0] } = useParams()
 
     useEffect(() => {
-        navigate('/transport/route')
+        if (!ScreenNames.includes(pageName)) {
+            navigate('/transport/route')
+        }
     }, [])
+
+    useEffect(() => {
+        if (ScreenNames.includes(pageName)) {
+            navigate('/transport/route')
+        }
+    }, [])
+
+    useEffect(() => {
+        if (!UserSession.isAuthenticated()) {
+            navigate('/signin')
+        }
+    }, [UserSession.isAuthenticated()])
 
     return (
         <Container maxWidth='xl'>
@@ -75,7 +90,8 @@ const Transport = () => {
                             )}
                         </Tabs>
                     </TabContext>
-                    {TransportMenuTabs[pageName].element}
+                    {ScreenNames.includes(pageName) &&
+                        TransportMenuTabs[pageName].element}
                 </Grid>
             </Grid>
         </Container>

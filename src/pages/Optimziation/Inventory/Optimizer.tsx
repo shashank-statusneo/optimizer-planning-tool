@@ -3,7 +3,7 @@ import { Container, Grid, Typography } from '@mui/material'
 
 import { createTheme, ThemeProvider } from '@mui/material/styles'
 
-import { useAppDispatch, useAppSelector } from '../../hooks/redux-hooks'
+import { useAppDispatch, useAppSelector } from '../../../hooks/redux-hooks'
 
 import {
     FormLabel,
@@ -13,8 +13,8 @@ import {
     FormTextField,
     FormRadioButton,
     CustomFormRadioButton,
-} from '../../components/FormElements'
-import { FormUploadButton, PrimaryButton } from '../../components/Buttons'
+} from '../../../components/FormElements'
+import { FormUploadButton, PrimaryButton } from '../../../components/Buttons'
 import { DataTemplates } from './constants'
 import { utils, writeFile } from 'xlsx'
 
@@ -23,9 +23,9 @@ import {
     updateAnnualCost,
     updateFillRate,
     updateCycleServiceLevel,
-} from '../../redux/actions/inventory/optimizer'
+} from '../../../redux/actions/inventory/optimizer'
 
-import { algorithmApi } from '../../redux/actions/inventory/result'
+import { algorithmApi } from '../../../redux/actions/inventory/result'
 
 const theme = createTheme()
 

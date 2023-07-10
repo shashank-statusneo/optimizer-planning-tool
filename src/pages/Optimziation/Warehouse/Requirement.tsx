@@ -1,6 +1,6 @@
 import { Container, Grid, InputAdornment } from '@mui/material'
-import { FormLabel, FormTextField } from '../../components/FormElements'
-import { useAppDispatch, useAppSelector } from '../../hooks/redux-hooks'
+import { FormLabel, FormTextField } from '../../../components/FormElements'
+import { useAppDispatch, useAppSelector } from '../../../hooks/redux-hooks'
 
 import {
     updatePercentageAbsentExpected,
@@ -8,7 +8,7 @@ import {
     updateTotalHiringBudget,
     updateCostPerEmployeePerMonth,
     updateDayWorkingHours,
-} from '../../redux/actions/warehouse/requirement'
+} from '../../../redux/actions/warehouse/requirement'
 
 import { createTheme, ThemeProvider } from '@mui/material/styles'
 const theme = createTheme()

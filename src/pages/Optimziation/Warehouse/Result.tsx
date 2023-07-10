@@ -1,7 +1,7 @@
 import { Container, Grid, Paper } from '@mui/material'
 import { useEffect, useState } from 'react'
 
-import { useAppDispatch, useAppSelector } from '../../hooks/redux-hooks'
+import { useAppDispatch, useAppSelector } from '../../../hooks/redux-hooks'
 import {
     FormMultiDropDown,
     FormLabel,
@@ -9,9 +9,9 @@ import {
     FormCardField,
     FormSubLabel,
     FormDropDown,
-} from '../../components/FormElements'
-import { FormGraph, FormTable } from '../../components/Table'
-import { PrimaryButton } from '../../components/Buttons'
+} from '../../../components/FormElements'
+import { FormGraph, FormTable } from '../../../components/Table'
+import { PrimaryButton } from '../../../components/Buttons'
 
 import object from 'lodash'
 import { utils, writeFile } from 'xlsx'
@@ -22,7 +22,7 @@ import {
     postResultData,
     updateResultCategory,
     updateResultTable,
-} from '../../redux/actions/warehouse/result'
+} from '../../../redux/actions/warehouse/result'
 
 import dayjs from 'dayjs'
 import {

@@ -2,18 +2,18 @@ import { useState, useEffect } from 'react'
 import { Grid, Container, Paper } from '@mui/material'
 import { createTheme, ThemeProvider } from '@mui/material/styles'
 
-import { useAppDispatch, useAppSelector } from '../../hooks/redux-hooks'
+import { useAppDispatch, useAppSelector } from '../../../hooks/redux-hooks'
 
 import { lineData, policyTableHeaders } from './constants'
-import { PrimaryButton } from '../../components/Buttons'
+import { PrimaryButton } from '../../../components/Buttons'
 import {
     FormLabel,
     FormTextField,
     InventoryFormCard,
     FormSnackBarElement,
     FormBackdropElement,
-} from '../../components/FormElements'
-import { FormGraph, FormInventoryTable } from '../../components/Table'
+} from '../../../components/FormElements'
+import { FormGraph, FormInventoryTable } from '../../../components/Table'
 
 import {
     simulationApi,
@@ -21,7 +21,7 @@ import {
     updateAvgLeadTime,
     updateReorderQty,
     updateSdOfLeadTime,
-} from '../../redux/actions/inventory/simulator'
+} from '../../../redux/actions/inventory/simulator'
 import object from 'lodash'
 import { utils, writeFile } from 'xlsx'
 

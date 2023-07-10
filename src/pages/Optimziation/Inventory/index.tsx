@@ -6,7 +6,8 @@ import { TabContext } from '@mui/lab'
 import Optimizer from './Optimizer'
 import OptimizerResultContainer from './OptimizerResult'
 import SimulatorContainer from './Simulator'
-import { useAppSelector } from '../../hooks/redux-hooks'
+import { useAppSelector } from '../../../hooks/redux-hooks'
+import UserSession from '../../../services/auth'
 
 const InventoryOptimizer = () => {
     const navigate = useNavigate()
@@ -61,8 +62,22 @@ const InventoryOptimizer = () => {
     const { pageName = ScreenNames[0] } = useParams()
 
     useEffect(() => {
-        navigate('/inventory/optimizer')
+        if (!ScreenNames.includes(pageName)) {
+            navigate('/inventory/optimizer')
+        }
     }, [])
+
+    useEffect(() => {
+        if (ScreenNames.includes(pageName)) {
+            navigate('/inventory/optimizer')
+        }
+    }, [])
+
+    useEffect(() => {
+        if (!UserSession.isAuthenticated()) {
+            navigate('/signin')
+        }
+    }, [UserSession.isAuthenticated()])
 
     return (
         <Container maxWidth='xl'>
@@ -109,7 +124,8 @@ const InventoryOptimizer = () => {
                             )}
                         </Tabs>
                     </TabContext>
-                    {InventoryMenuTabs[pageName].element}
+                    {ScreenNames.includes(pageName) &&
+                        InventoryMenuTabs[pageName].element}
                 </Grid>
             </Grid>
         </Container>

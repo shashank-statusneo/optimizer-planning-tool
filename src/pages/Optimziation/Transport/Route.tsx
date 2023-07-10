@@ -3,7 +3,7 @@ import { Container, Grid, Typography, InputAdornment } from '@mui/material'
 
 import { createTheme, ThemeProvider } from '@mui/material/styles'
 
-import { useAppDispatch, useAppSelector } from '../../hooks/redux-hooks'
+import { useAppDispatch, useAppSelector } from '../../../hooks/redux-hooks'
 
 import {
     FormLabel,
@@ -15,8 +15,8 @@ import {
     CustomFormRadioButton,
     FormSubLabel2,
     FormSwitchBtn,
-} from '../../components/FormElements'
-import { FormUploadButton, PrimaryButton } from '../../components/Buttons'
+} from '../../../components/FormElements'
+import { FormUploadButton, PrimaryButton } from '../../../components/Buttons'
 import { DataTemplates } from './constants'
 import { utils, writeFile } from 'xlsx'
 
@@ -33,7 +33,7 @@ import {
     updateFlagVehicleWeightCapacity,
     updateFlagVehicleVolumetricCapacity,
     updateFlagVehicleMaxOrderCapacity,
-} from '../../redux/actions/transport/route'
+} from '../../../redux/actions/transport/route'
 
 const theme = createTheme()
 
@@ -173,13 +173,13 @@ const RouteOptimizer = () => {
                 )}
 
                 <Grid container direction='column' rowGap={4}>
-                        <Grid
-                            container
-                            item
-                            justifyContent='center'
-                            alignContent='center'
-                            alignItems='flex-start'
-                        >
+                    <Grid
+                        container
+                        item
+                        justifyContent='center'
+                        alignContent='center'
+                        alignItems='flex-start'
+                    >
                         <Grid item lg={6}>
                             <FormLabel label='Upload distance matrix' />
                         </Grid>

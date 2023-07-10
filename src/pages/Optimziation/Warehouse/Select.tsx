@@ -8,15 +8,15 @@ import {
     FormDateSelector,
     FormBackdropElement,
     FormSnackBarElement,
-} from '../../components/FormElements'
-import { useAppDispatch, useAppSelector } from '../../hooks/redux-hooks'
+} from '../../../components/FormElements'
+import { useAppDispatch, useAppSelector } from '../../../hooks/redux-hooks'
 
 import {
     getWarehouse,
     updatePlanningWarehouse,
     updatePlanningStartDate,
     updatePlanningEndDate,
-} from '../../redux/actions/warehouse/select'
+} from '../../../redux/actions/warehouse/select'
 
 import dayjs from 'dayjs'
 

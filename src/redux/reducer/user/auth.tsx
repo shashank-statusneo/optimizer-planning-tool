@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
 import UserSession from '../../../services/auth'
+import Cookies from 'js-cookie'
 
 const initialState = {
     isLoading: false,
@@ -48,17 +49,68 @@ export const userAuth = createSlice({
             }
         },
         postUserLoginSuccess(state, action) {
-            // Update auth details into localStorage
-            UserSession.setUser(action.payload.data)
+            // add user_id into localStorage
+            UserSession.setUserId(Cookies.get('user_id'))
             return {
                 ...state,
                 isLoading: false,
             }
         },
         postUserLoginFailed(state, action) {
+            const errorMessage = action?.payload?.response?.data?.error
+                ? action?.payload?.response?.data?.error
+                : ''
             return {
                 ...state,
-                message: 'User login failed',
+                message: `User login failed: ${errorMessage}`,
+                isLoading: false,
+            }
+        },
+        postUserLogout(state, action) {
+            return {
+                ...state,
+                message: '',
+                isLoading: true,
+            }
+        },
+        postUserLogoutSuccess(state, action) {
+            // remove user_id into localStorage
+            UserSession.removeUserId()
+            return {
+                ...state,
+                isLoading: false,
+            }
+        },
+        postUserLogoutFailed(state, action) {
+            const errorMessage = action?.payload?.response?.data?.error
+                ? action?.payload?.response?.data?.error
+                : ''
+            return {
+                ...state,
+                message: `User logout failed: ${errorMessage}`,
+                isLoading: false,
+            }
+        },
+        getUserDetail(state, action) {
+            return {
+                ...state,
+                message: '',
+                isLoading: true,
+            }
+        },
+        getUserDetailSuccess(state, action) {
+            return {
+                ...state,
+                isLoading: false,
+            }
+        },
+        getUserDetailFailed(state, action) {
+            const errorMessage = action?.payload?.response?.data?.error
+                ? action?.payload?.response?.data?.error
+                : ''
+            return {
+                ...state,
+                message: `User details fetch failed: ${errorMessage}`,
                 isLoading: false,
             }
         },
@@ -73,6 +125,12 @@ export const {
     postUserLogin,
     postUserLoginSuccess,
     postUserLoginFailed,
+    postUserLogout,
+    postUserLogoutSuccess,
+    postUserLogoutFailed,
+    getUserDetail,
+    getUserDetailSuccess,
+    getUserDetailFailed,
 } = userAuth.actions
 
 export default userAuth.reducer

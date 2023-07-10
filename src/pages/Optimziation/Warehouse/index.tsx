@@ -5,12 +5,13 @@ import WarehouseRequirement from './Requirement'
 import BenchmarkProductivity from './Productivity'
 import DemandForecast from './Demand'
 import Result from './Result'
-import { NavigationBtn } from '../../components/Buttons'
-import { useAppSelector } from '../../hooks/redux-hooks'
-import { FormAlertElement } from '../../components/FormElements'
+import { NavigationBtn } from '../../../components/Buttons'
+import { useAppSelector } from '../../../hooks/redux-hooks'
+import { FormAlertElement } from '../../../components/FormElements'
 import dayjs from 'dayjs'
 import { useParams, useNavigate } from 'react-router-dom'
 import object from 'lodash'
+import UserSession from '../../../services/auth'
 
 const WareHouse = () => {
     const navigate = useNavigate()
@@ -129,10 +130,25 @@ const WareHouse = () => {
     const { pageName = ScreenNames[0] } = useParams()
 
     useEffect(() => {
-        if (!PageToScreen[pageName].complete) {
+        if (!ScreenNames.includes(pageName)) {
             navigate('/warehouse/select')
         }
     }, [])
+
+    useEffect(() => {
+        if (
+            ScreenNames.includes(pageName) &&
+            !PageToScreen[pageName].complete
+        ) {
+            navigate('/warehouse/select')
+        }
+    }, [])
+
+    useEffect(() => {
+        if (!UserSession.isAuthenticated()) {
+            navigate('/signin')
+        }
+    }, [UserSession.isAuthenticated()])
 
     const handleNext = () => {
         if (PageToScreen[pageName].prompt) {
@@ -154,68 +170,74 @@ const WareHouse = () => {
     const handleCancel = () => {
         setAlertState(false)
     }
-
-    return (
-        <Container maxWidth='xl'>
-            <Grid container>
-                {alertState && (
-                    <FormAlertElement
-                        open={alertState}
-                        onClose={() => setAlertState(false)}
-                        label='warehouse-form-save-alert-label'
-                        id='warehouse-form-save-alert'
-                        title='Review Changes'
-                        content='There are unsaved changes! Do you wish to continue?'
-                        buttons={[
-                            { label: 'Proceed', onClick: handleProceed },
-                            { label: 'Cancel', onClick: handleCancel },
-                        ]}
-                    />
-                )}
-                <Grid item lg={2} md={2} sm={2} bgcolor='#D0E8FD'></Grid>
-                <Grid
-                    item
-                    lg={10}
-                    md={10}
-                    sm={10}
-                    style={{
-                        borderStyle: 'solid',
-                        borderWidth: '0.2px',
-                        padding: '5px',
-                    }}
-                >
-                    <Grid item>{PageToScreen[pageName].element}</Grid>
-
+    try {
+        return (
+            <Container maxWidth='xl'>
+                <Grid container>
+                    {alertState && (
+                        <FormAlertElement
+                            open={alertState}
+                            onClose={() => setAlertState(false)}
+                            label='warehouse-form-save-alert-label'
+                            id='warehouse-form-save-alert'
+                            title='Review Changes'
+                            content='There are unsaved changes! Do you wish to continue?'
+                            buttons={[
+                                { label: 'Proceed', onClick: handleProceed },
+                                { label: 'Cancel', onClick: handleCancel },
+                            ]}
+                        />
+                    )}
+                    <Grid item lg={2} md={2} sm={2} bgcolor='#D0E8FD'></Grid>
                     <Grid
-                        container
                         item
-                        justifyContent='space-between'
-                        alignItems='center'
-                        sx={{ marginTop: '150px' }}
+                        lg={10}
+                        md={10}
+                        sm={10}
+                        style={{
+                            borderStyle: 'solid',
+                            borderWidth: '0.2px',
+                            padding: '5px',
+                        }}
                     >
                         <Grid item>
-                            <NavigationBtn
-                                id='navigation-btn-previous'
-                                label='< Previous'
-                                onClick={handlePrevious}
-                                disabled={false}
-                                render={PageToScreen[pageName].previous}
-                            />
+                            {ScreenNames.includes(pageName) &&
+                                PageToScreen[pageName].element}
                         </Grid>
-                        <Grid item>
-                            <NavigationBtn
-                                id='navigation-btn-next'
-                                label='Next >'
-                                onClick={handleNext}
-                                disabled={!PageToScreen[pageName].complete}
-                                render={PageToScreen[pageName].next}
-                            />
+
+                        <Grid
+                            container
+                            item
+                            justifyContent='space-between'
+                            alignItems='center'
+                            sx={{ marginTop: '150px' }}
+                        >
+                            <Grid item>
+                                <NavigationBtn
+                                    id='navigation-btn-previous'
+                                    label='< Previous'
+                                    onClick={handlePrevious}
+                                    disabled={false}
+                                    render={PageToScreen[pageName].previous}
+                                />
+                            </Grid>
+                            <Grid item>
+                                <NavigationBtn
+                                    id='navigation-btn-next'
+                                    label='Next >'
+                                    onClick={handleNext}
+                                    disabled={!PageToScreen[pageName].complete}
+                                    render={PageToScreen[pageName].next}
+                                />
+                            </Grid>
                         </Grid>
                     </Grid>
                 </Grid>
-            </Grid>
-        </Container>
-    )
+            </Container>
+        )
+    } catch (e) {
+        return <></>
+    }
 }
 
 export default WareHouse

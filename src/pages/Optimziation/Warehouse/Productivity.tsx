@@ -1,29 +1,33 @@
-import { useState, useRef, MutableRefObject, useEffect } from 'react'
+import { useState, useEffect, useRef, MutableRefObject } from 'react'
 
 import { Container, Grid, Typography } from '@mui/material'
-import { useAppDispatch, useAppSelector } from '../../hooks/redux-hooks'
-import dayjs from 'dayjs'
 
-import {
-    uploadDemandFile,
-    getDemandForecastData,
-    putDemandForecastData,
-    updateFlagDemandTableUpdated,
-} from '../../redux/actions/warehouse/demand'
-
-import { PrimaryButton, FormUploadButton } from '../../components/Buttons'
+import { PrimaryButton, FormUploadButton } from '../../../components/Buttons'
 import {
     FormLabel,
     FormBackdropElement,
     FormSnackBarElement,
-} from '../../components/FormElements'
-import { FormDataGrid } from '../../components/Table'
+} from '../../../components/FormElements'
+import { FormDataGrid } from '../../../components/Table'
+import { useAppDispatch, useAppSelector } from '../../../hooks/redux-hooks'
+import { useNavigate } from 'react-router-dom'
+
+import {
+    uploadProductivityFile,
+    getBenchmarkProductivityData,
+    putBenchmarkProductivityData,
+    updateFlagProductivityTableUpdated,
+} from '../../../redux/actions/warehouse/productivity'
+
 import { GridRowModel } from '@mui/x-data-grid'
 
 import { createTheme, ThemeProvider } from '@mui/material/styles'
 const theme = createTheme()
 
-const DemandForecast = () => {
+import { benchmarkProductivityTableColumns } from './constants'
+
+const BenchmarkProductivity = () => {
+    const navigate = useNavigate()
     const dispatch = useAppDispatch()
 
     const warehouseSelectState = useAppSelector(
@@ -31,27 +35,17 @@ const DemandForecast = () => {
         (state) => state.warehouseSelect,
     )
 
-    const warehouseDemandState = useAppSelector(
+    const warehouseProductivityState = useAppSelector(
         // @ts-ignore
-        (state) => state.warehouseDemand,
+        (state) => state.warehouseProductivity,
     )
 
     const [snackbarState, setSnackbarState] = useState(false)
 
     const fetchData = () => {
-        const context = {
-            start_date: dayjs(warehouseSelectState.planning_start_date).format(
-                'YYYY-MM-DD',
-            ),
-            end_date: dayjs(warehouseSelectState.planning_end_date).format(
-                'YYYY-MM-DD',
-            ),
-        }
-
         dispatch(
             // @ts-ignore
-            getDemandForecastData(
-                context,
+            getBenchmarkProductivityData(
                 warehouseSelectState.planning_warehouse?.id,
             ),
         )
@@ -63,32 +57,51 @@ const DemandForecast = () => {
 
     useEffect(() => {
         setSnackbarState(true)
-    }, [warehouseDemandState.message])
+    }, [warehouseProductivityState.message])
 
-    const demandForecastFile = useRef() as MutableRefObject<HTMLInputElement>
+    const benchmarkProductivityFile =
+        useRef() as MutableRefObject<HTMLInputElement>
 
     const [updatedTableData]: any = useState([])
 
     const [updateRequestPayload]: any = useState([])
 
-    const processDataChange = (newRow: GridRowModel, oldRow: GridRowModel) => {
+    const editableCols = [
+        'productivity_experienced_employee',
+        'productivity_new_employee',
+    ]
+
+    const processDataChange = (newRow: GridRowModel) => {
         const updatedRow = { ...newRow }
+        const selectedRow =
+            warehouseProductivityState.productivity_table_data.find(
+                (row: any) => row.id === updatedRow.id,
+            )
 
-        let updatedCol: any = null
-
-        Object.keys(oldRow).forEach((key) => {
-            if (oldRow[key] !== newRow[key]) {
-                updatedCol = key
+        if (JSON.stringify(selectedRow) !== JSON.stringify(updatedRow)) {
+            const requestPayload: any = {
+                id: selectedRow.id,
             }
-        })
 
-        if (updatedCol) {
-            updateRequestPayload.push({
-                id: warehouseDemandState.demand_table_data[newRow.date][
-                    updatedCol
-                ]['id'],
-                demand: updatedRow[updatedCol],
-            })
+            for (const col in editableCols) {
+                if (
+                    selectedRow[editableCols[col]] !=
+                    updatedRow[editableCols[col]]
+                ) {
+                    requestPayload[editableCols[col]] =
+                        updatedRow[editableCols[col]]
+                }
+            }
+
+            updateRequestPayload.some(
+                (payload: any) => payload.id === requestPayload.id,
+            )
+                ? updateRequestPayload.map((obj: any) => {
+                      if (obj.id === requestPayload.id) {
+                          obj = Object.assign(obj, requestPayload)
+                      }
+                  })
+                : updateRequestPayload.push(requestPayload)
 
             updatedTableData.some((payload: any) => payload.id === newRow.id)
                 ? updatedTableData.map((obj: any) => {
@@ -99,14 +112,14 @@ const DemandForecast = () => {
                 : updatedTableData.push(newRow)
 
             // @ts-ignore
-            dispatch(updateFlagDemandTableUpdated(true))
+            dispatch(updateFlagProductivityTableUpdated(true))
         }
         return updatedRow
     }
 
     const handleClickSave = () => {
         const tableData = JSON.parse(
-            JSON.stringify(warehouseDemandState.modified_demand_table_data),
+            JSON.stringify(warehouseProductivityState.productivity_table_data),
         )
         updatedTableData.map((newObj: any, index: any) => {
             const oldObjIndex = tableData.findIndex(
@@ -116,10 +129,13 @@ const DemandForecast = () => {
         })
         dispatch(
             // @ts-ignore
-            putDemandForecastData({ demands: updateRequestPayload }, tableData),
+            putBenchmarkProductivityData(
+                { productivity: updateRequestPayload },
+                tableData,
+            ),
         )
         // @ts-ignore
-        dispatch(updateFlagDemandTableUpdated(false))
+        dispatch(updateFlagProductivityTableUpdated(false))
     }
 
     const handleChange = (event: any) => {
@@ -127,17 +143,12 @@ const DemandForecast = () => {
         const fileObj = event.target.files && event.target.files[0]
         if (fileObj) {
             const context = {
-                start_date: dayjs(
-                    warehouseSelectState.planning_start_date,
-                ).format('YYYY-MM-DD'),
-                end_date: dayjs(warehouseSelectState.planning_end_date).format(
-                    'YYYY-MM-DD',
-                ),
+                file: fileObj,
             }
             dispatch(
                 // @ts-ignore
-                uploadDemandFile(
-                    { ...context, file: fileObj },
+                uploadProductivityFile(
+                    context,
                     warehouseSelectState.planning_warehouse?.id,
                     fileObj.name,
                 ),
@@ -148,13 +159,16 @@ const DemandForecast = () => {
     return (
         <ThemeProvider theme={theme}>
             <Container component='main' sx={{ flexGrow: 1 }} fixed>
-                <FormBackdropElement loader={warehouseDemandState.isLoading} />
-                {snackbarState && warehouseDemandState.message && (
+                <FormBackdropElement
+                    loader={warehouseProductivityState.isLoading}
+                />
+                {snackbarState && warehouseProductivityState.message && (
                     <FormSnackBarElement
-                        message={warehouseDemandState.message}
+                        message={warehouseProductivityState.message}
                         onClose={() => setSnackbarState(false)}
                     />
                 )}
+
                 <Grid
                     container
                     direction='column'
@@ -169,13 +183,13 @@ const DemandForecast = () => {
                         alignItems='center'
                     >
                         <Grid item lg={8}>
-                            <FormLabel label='Upload demand forecast file (only .xls and .xlsx files supported)' />
+                            <FormLabel label='Upload benchmark productivity file (only .xls and .xlsx files supported)' />
                         </Grid>
                         <Grid item lg={2}>
                             <FormUploadButton
-                                id='demand-forecast-upload-btn'
+                                id='benchmark-productivity-upload-btn'
                                 label='CHOOSE FILE'
-                                fileRef={demandForecastFile}
+                                fileRef={benchmarkProductivityFile}
                                 loader={false}
                                 onChange={handleChange}
                                 disabled={false}
@@ -183,7 +197,9 @@ const DemandForecast = () => {
                         </Grid>
                         <Grid item lg={2}>
                             <Typography>
-                                {warehouseDemandState.demand_file_name}
+                                {
+                                    warehouseProductivityState.productivity_file_name
+                                }
                             </Typography>
                         </Grid>
                     </Grid>
@@ -196,15 +212,16 @@ const DemandForecast = () => {
                         alignItems='center'
                         sx={{ marginTop: '10px', height: '350px' }}
                     >
-                        {warehouseDemandState.modified_demand_table_data && (
+                        {warehouseProductivityState.productivity_table_data && (
                             <FormDataGrid
                                 columns={
-                                    warehouseDemandState.demand_table_cols
-                                        ? warehouseDemandState.demand_table_cols
+                                    warehouseProductivityState
+                                        .productivity_table_data.length > 0
+                                        ? benchmarkProductivityTableColumns
                                         : []
                                 }
                                 rows={
-                                    warehouseDemandState.modified_demand_table_data
+                                    warehouseProductivityState.productivity_table_data
                                 }
                                 processDataChange={processDataChange}
                             />
@@ -217,16 +234,16 @@ const DemandForecast = () => {
                         justifyContent='center'
                         alignContent='center'
                         alignItems='center'
-                        sx={{ marginTop: '10px', height: '50px' }}
+                        sx={{ marginTop: '10px' }}
                     >
                         <PrimaryButton
-                            id='save-demand-forecast-table-btn'
+                            id='save-benchmark-productivity-table-btn'
                             label='Save Data'
                             onClick={() => {
                                 handleClickSave()
                             }}
                             disabled={
-                                !warehouseDemandState.flag_demand_table_updated
+                                !warehouseProductivityState.flag_productivity_table_updated
                             }
                         />
                     </Grid>
@@ -236,4 +253,4 @@ const DemandForecast = () => {
     )
 }
 
-export default DemandForecast
+export default BenchmarkProductivity

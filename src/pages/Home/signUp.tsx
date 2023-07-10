@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { createTheme, ThemeProvider } from '@mui/material/styles'
+import { useNavigate, Link } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from '../../hooks/redux-hooks'
 import { userRegister } from '../../redux/actions/user/auth'
 import {
@@ -21,7 +22,6 @@ import {
     FormSnackBarElement,
     FormTextField,
 } from '../../components/FormElements'
-import { Link } from 'react-router-dom'
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined'
 import { PrimaryButton } from '../../components/Buttons'
 
@@ -29,6 +29,7 @@ const theme = createTheme()
 
 const SignUp = () => {
     const dispatch = useAppDispatch()
+    const navigate = useNavigate()
 
     const userAuthState = useAppSelector(
         // @ts-ignore
@@ -64,7 +65,11 @@ const SignUp = () => {
             password: userPassword,
         }
         //@ts-ignore
-        dispatch(userRegister(context))
+        dispatch(userRegister(context)).then((res) => {
+            if (res && res?.payload && res?.payload?.status == 201) {
+                navigate('/signin')
+            }
+        })
     }
 
     useEffect(() => {
@@ -179,7 +184,7 @@ const SignUp = () => {
                             />
                         </Tooltip>
                         <FormTextField
-                            id='user-email-textfield'
+                            id='user-password-textfield'
                             value={userPassword}
                             type={showPassword ? 'text' : 'password'}
                             onChange={(e: any) =>

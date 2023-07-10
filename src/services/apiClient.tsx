@@ -37,10 +37,7 @@ export const warehouseApiClientForForm = axios.create({
 })
 export const authApiClient = axios.create({
     baseURL: `${process.env.REACT_APP_API_URL_AUTH}`,
-    headers: {
-        Authorization: token ? `Bearer ${token}` : '',
-        'Content-Type': 'application/json',
-    },
+    withCredentials: true,
 })
 
 export const authApiClientForForm = axios.create({
@@ -50,7 +47,6 @@ export const authApiClientForForm = axios.create({
         'Content-Type': 'multipart/form-data',
     },
 })
-
 
 // interceptor if a request failed then retry getting user token
 apiClient.interceptors.response.use(

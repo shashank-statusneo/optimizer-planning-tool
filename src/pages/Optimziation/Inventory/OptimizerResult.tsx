@@ -1,29 +1,24 @@
-import {
-    Grid,
-    SelectChangeEvent,
-    Container,
-    Paper,
-} from '@mui/material'
+import { Grid, SelectChangeEvent, Container, Paper } from '@mui/material'
 import { createTheme, ThemeProvider } from '@mui/material/styles'
 
 import dayjs from 'dayjs'
 
-import { useAppDispatch, useAppSelector } from '../../hooks/redux-hooks'
+import { useAppDispatch, useAppSelector } from '../../../hooks/redux-hooks'
 
 import { lineData, policyTableHeaders } from './constants'
-import { PrimaryButton } from '../../components/Buttons'
+import { PrimaryButton } from '../../../components/Buttons'
 import {
     FormDateSelector,
     FormLabel,
     FormDropDown,
     InventoryFormCard,
-} from '../../components/FormElements'
-import { FormGraph, FormInventoryTable } from '../../components/Table'
+} from '../../../components/FormElements'
+import { FormGraph, FormInventoryTable } from '../../../components/Table'
 
 import {
     updateInventoryStartDate,
     updateInventoryEndDate,
-} from '../../redux/actions/inventory/result'
+} from '../../../redux/actions/inventory/result'
 
 import { utils, writeFile } from 'xlsx'
 

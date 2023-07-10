@@ -27,16 +27,26 @@ const getUser = () => {
 }
 
 const setUser = (user: User) => {
-    localStorage.setItem('user', JSON.stringify(user))
+    localStorage.setItem('user_id', JSON.stringify(user))
 }
 
 const removeUser = () => {
-    localStorage.removeItem('user')
+    localStorage.removeItem('user_id')
 }
 
 const isAuthenticated = () => {
     //@ts-ignore
-    return JSON.parse(localStorage.getItem('user')) !== null
+    return localStorage.getItem('user_id') !== null
+}
+
+const setUserId = (user_id: string | undefined) => {
+    if (user_id) {
+        localStorage.setItem('user_id', user_id)
+    }
+}
+
+const removeUserId = () => {
+    localStorage.removeItem('user_id')
 }
 
 const UserSession = {
@@ -45,7 +55,8 @@ const UserSession = {
     getUser,
     setUserToken,
     setUser,
-    removeUser,
+    setUserId,
+    removeUserId,
     isAuthenticated,
 }
 

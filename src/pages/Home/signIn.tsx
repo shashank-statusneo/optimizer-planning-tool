@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { createTheme, ThemeProvider } from '@mui/material/styles'
 import { useAppDispatch, useAppSelector } from '../../hooks/redux-hooks'
 import UserSession from '../../services/auth'
-import { 0 } from '../../redux/actions/user/auth'
+import { userLogin } from '../../redux/actions/user/auth'
 
 import {
     Container,
@@ -38,8 +38,8 @@ const SignIn = () => {
     )
     const [snackbarState, setSnackbarState] = useState(false)
 
-    const [userEmail, setUserEmail] = useState('')
-    const [userPassword, setUserPassword] = useState('')
+    const [userEmail, setUserEmail] = useState('shashank@gmail.com')
+    const [userPassword, setUserPassword] = useState('123456789')
 
     const [showPassword, setShowPassword] = useState(false)
 
@@ -51,9 +51,9 @@ const SignIn = () => {
         event.preventDefault()
     }
 
-    React.useEffect(() => {
+    useEffect(() => {
         if (UserSession.isAuthenticated()) {
-            navigate('/')
+            navigate('/welcome')
         } else {
             navigate('/signin')
         }
@@ -67,7 +67,16 @@ const SignIn = () => {
             password: userPassword,
         }
         // @ts-ignore
-        dispatch(userLogin(context))
+        dispatch(userLogin(context)).then((res) => {
+            if (
+                res &&
+                res?.payload &&
+                res?.payload?.status == 200 &&
+                localStorage.getItem('user_id')
+            ) {
+                navigate('/welcome')
+            }
+        })
     }
 
     useEffect(() => {
@@ -137,7 +146,7 @@ const SignIn = () => {
                         </Typography>
 
                         <FormTextField
-                            id='user-email-textfield'
+                            id='user-password-textfield'
                             value={userPassword}
                             type={showPassword ? 'text' : 'password'}
                             onChange={(e: any) =>
@@ -177,12 +186,12 @@ const SignIn = () => {
                             onClick={(e: any) => handleSubmit(e)}
                         />
                     </Grid>
-                    <Grid item container lg={10} justifyContent='center'>
+                    {/* <Grid item container lg={10} justifyContent='center'>
                         <Link to='/forget_password'>{'Forget Password'}</Link>
-                    </Grid>
+                    </Grid> */}
                     <Grid item container lg={10} justifyContent='center'>
                         <Link to='/signup'>
-                            {'Don\'t have an account? Sign Up'}
+                            {"Don't have an account? Sign Up"}
                         </Link>
                     </Grid>
                 </Grid>

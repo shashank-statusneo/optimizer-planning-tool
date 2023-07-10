@@ -2,6 +2,8 @@ import {
     CHANGE_PASSWORD,
     LOGIN_API,
     REGISTER_API,
+    USER_DETAIL_API,
+    LOGOUT_API,
 } from '../../../services/routes'
 import { authApiClient } from '../../../services/apiClient'
 
@@ -13,6 +15,12 @@ import {
     postUserLogin,
     postUserLoginSuccess,
     postUserLoginFailed,
+    postUserLogout,
+    postUserLogoutSuccess,
+    postUserLogoutFailed,
+    getUserDetail,
+    getUserDetailSuccess,
+    getUserDetailFailed,
 } from '../../reducer/user/auth'
 
 const globalConfig = {
@@ -34,7 +42,10 @@ export const userRegister = (payload) => async (dispatch) => {
     await dispatch(postUserSignup())
     try {
         const response = await authApiClient.post(REGISTER_API, payload)
-        return dispatch(postUserSignupSuccess(response))
+        if (response.status === 201) {
+            return dispatch(postUserSignupSuccess(response))
+        }
+        return dispatch(postUserSignupFailed(response))
     } catch (err) {
         return dispatch(postUserSignupFailed(err))
     }
@@ -47,9 +58,47 @@ export const userLogin = (payload) => async (dispatch) => {
     await dispatch(postUserLogin())
     try {
         const response = await authApiClient.post(LOGIN_API, payload)
-        return dispatch(postUserLoginSuccess(response))
+        if (response.status === 200) {
+            return dispatch(postUserLoginSuccess(response))
+        }
+        return dispatch(postUserLoginFailed(response))
     } catch (err) {
+        console.log(err)
         return dispatch(postUserLoginFailed(err))
+    }
+}
+
+// @ts-ignore
+export const userLogout = () => async (dispatch) => {
+    console.log('Calling action : userLogout()')
+    // @ts-ignore
+    await dispatch(postUserLogout())
+    try {
+        const response = await authApiClient.get(LOGOUT_API)
+        if (response.status === 200) {
+            return dispatch(postUserLogoutSuccess(response))
+        }
+        return dispatch(postUserLogoutFailed(response))
+    } catch (err) {
+        console.log(err)
+        return dispatch(postUserLogoutFailed(err))
+    }
+}
+
+// @ts-ignore
+export const userDetail = (payload) => async (dispatch) => {
+    console.log('Calling action : userDetail()')
+    // @ts-ignore
+    await dispatch(getUserDetail())
+    try {
+        const response = await authApiClient.get(`${USER_DETAIL_API}/8`)
+        if (response.status === 200) {
+            return dispatch(getUserDetailSuccess(response))
+        }
+        return dispatch(getUserDetailFailed(response))
+    } catch (err) {
+        console.log(err)
+        return dispatch(getUserDetailFailed(err))
     }
 }
 
