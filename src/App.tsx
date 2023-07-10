@@ -4,9 +4,11 @@ import InventoryOptimizer from './pages/InventoryOptimizer'
 import WareHouse from './pages/Warehouse'
 import Transport from './pages/Transport'
 import TopBar from './components/TopBar'
-import SignIn from './pages/Home/signIn'
-import SignUp from './pages/Home/signUp'
+import SignIn from './pages/Home/SignIn'
+import SignUp from './pages/Home/SignUp'
 import Profile from './pages/Home/profile'
+import WelcomePage from './pages/Home/Welcome'
+import PageNotFound from './pages/Home/PageNotFound'
 import UserSession from './services/auth'
 import { TabContext } from '@mui/lab'
 import { Container, Tabs, Tab } from '@mui/material'
@@ -69,10 +71,12 @@ const App = () => {
                 <></>
             )}
             <Routes>
+                <Route path='*' element={<PageNotFound/>} />
+
                 <Route
                     // exact
                     path='/'
-                    element={UserSession.isAuthenticated() ? <></> : <SignIn />}
+                    element={UserSession.isAuthenticated() ? <WelcomePage/> : <SignIn />}
                 />
 
                 <Route path='/warehouse' element={<WareHouse />} />

@@ -7,8 +7,6 @@ import {
     Box,
     Avatar,
     Typography,
-    TextField,
-    Button,
     Grid,
     InputAdornment,
     IconButton,
@@ -18,14 +16,10 @@ import { Visibility, VisibilityOff } from '@mui/icons-material'
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined'
 
 import {
-    FormLabel,
-    FormSubLabel,
-    FormSubText,
     FormBackdropElement,
+    FormLabel,
     FormSnackBarElement,
     FormTextField,
-    FormRadioButton,
-    CustomFormRadioButton,
 } from '../../components/FormElements'
 import { Link } from 'react-router-dom'
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined'
@@ -107,11 +101,19 @@ const SignUp = () => {
                         xs={10}
                         container
                         justifyContent='center'
-                        marginBottom={2}
                     >
                         <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
                             <LockOutlinedIcon />
                         </Avatar>
+                    </Grid>
+                    <Grid
+                        item
+                        lg={10}
+                        xs={10}
+                        container
+                        justifyContent='center'
+                    >
+                        <FormLabel label='Sign Up' />
                     </Grid>
                     <Grid item lg={5} md={5} xs={12} container>
                         <Typography variant='subtitle2' fontWeight='bold'>
@@ -217,7 +219,7 @@ const SignUp = () => {
                             onClick={(e: any) => handleSubmit(e)}
                         />
                     </Grid>
-                    <Grid item lg={10} container justifyContent='center'> 
+                    <Grid item lg={10} container justifyContent='center'>
                         <Link to='/signin'>
                             Already have an account? Sign in
                         </Link>

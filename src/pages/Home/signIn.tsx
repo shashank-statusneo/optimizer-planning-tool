@@ -2,24 +2,29 @@ import React, { useEffect, useState } from 'react'
 import { createTheme, ThemeProvider } from '@mui/material/styles'
 import { useAppDispatch, useAppSelector } from '../../hooks/redux-hooks'
 import UserSession from '../../services/auth'
-import { userLogin } from '../../redux/actions/user/auth'
+import { 0 } from '../../redux/actions/user/auth'
 
 import {
     Container,
-    CssBaseline,
     Box,
     Avatar,
     Typography,
-    TextField,
-    Button,
     Grid,
+    InputAdornment,
+    IconButton,
+    Tooltip,
 } from '@mui/material'
-import { Link, useNavigate } from 'react-router-dom'
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined'
+import { Visibility, VisibilityOff } from '@mui/icons-material'
+
 import {
     FormBackdropElement,
+    FormLabel,
     FormSnackBarElement,
+    FormTextField,
 } from '../../components/FormElements'
+import { Link, useNavigate } from 'react-router-dom'
+import LockOutlinedIcon from '@mui/icons-material/LockOutlined'
+import { PrimaryButton } from '../../components/Buttons'
 
 const theme = createTheme()
 
@@ -27,9 +32,24 @@ const SignIn = () => {
     const navigate = useNavigate()
     const dispatch = useAppDispatch()
     // @ts-ignore
-    const authState = useAppSelector((state) => state.authReducer)
-
+    const userAuthState = useAppSelector(
+        // @ts-ignore
+        (state) => state.userAuth,
+    )
     const [snackbarState, setSnackbarState] = useState(false)
+
+    const [userEmail, setUserEmail] = useState('')
+    const [userPassword, setUserPassword] = useState('')
+
+    const [showPassword, setShowPassword] = useState(false)
+
+    const handleClickShowPassword = () => setShowPassword((show) => !show)
+
+    const handleMouseDownPassword = (
+        event: React.MouseEvent<HTMLButtonElement>,
+    ) => {
+        event.preventDefault()
+    }
 
     React.useEffect(() => {
         if (UserSession.isAuthenticated()) {
@@ -42,10 +62,9 @@ const SignIn = () => {
     // @ts-ignore
     const handleSubmit = (event) => {
         event.preventDefault()
-        const data = new FormData(event.currentTarget)
         const context = {
-            username: data.get('username'),
-            password: data.get('password'),
+            email: userEmail,
+            password: userPassword,
         }
         // @ts-ignore
         dispatch(userLogin(context))
@@ -53,82 +72,120 @@ const SignIn = () => {
 
     useEffect(() => {
         setSnackbarState(true)
-    }, [authState.message])
+    }, [userAuthState.message])
 
     return (
         <ThemeProvider theme={theme}>
-            <Container component='main' maxWidth='xs'>
-                <FormBackdropElement loader={authState.isLoading} />
-                {snackbarState && authState.message && (
-                    <FormSnackBarElement
-                        message={authState.message}
-                        onClose={() => setSnackbarState(false)}
-                    />
-                )}
-                <CssBaseline />
-                <Box
-                    sx={{
-                        marginTop: 8,
-                        display: 'flex',
-                        flexDirection: 'column',
-                        alignItems: 'center',
-                    }}
+            <Container component='main' maxWidth='sm' fixed>
+                <FormBackdropElement
+                    loader={userAuthState.isLoading || userAuthState.isLoading}
+                />
+                {snackbarState &&
+                    (userAuthState.message || userAuthState.message) && (
+                        <FormSnackBarElement
+                            message={userAuthState.message}
+                            onClose={() => setSnackbarState(false)}
+                        />
+                    )}
+                <Grid
+                    marginTop={10}
+                    container
+                    justifyContent='flex-start'
+                    alignContent='center'
+                    alignItems='center'
+                    flex='column'
+                    rowGap={2}
+                    columnGap={1}
                 >
-                    <Avatar sx={{ m: 1, bgcolor: '#6DEDAE' }}>
-                        <LockOutlinedIcon />
-                    </Avatar>
-                    <Typography component='h1' variant='h5'>
-                        Sign in
-                    </Typography>
-                    <Box
-                        component='form'
-                        onSubmit={handleSubmit}
-                        noValidate
-                        sx={{ mt: 1 }}
+                    <Grid
+                        item
+                        lg={10}
+                        xs={10}
+                        container
+                        justifyContent='center'
                     >
-                        <TextField
-                            margin='normal'
-                            required
-                            fullWidth
-                            id='username'
-                            label='Username'
-                            name='username'
-                            autoComplete='username'
-                            autoFocus
-                        />
-                        <TextField
-                            margin='normal'
-                            required
-                            fullWidth
-                            name='password'
-                            label='Password'
-                            type='password'
-                            id='password'
-                            autoComplete='current-password'
-                        />
+                        <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+                            <LockOutlinedIcon />
+                        </Avatar>
+                    </Grid>
+                    <Grid
+                        item
+                        lg={10}
+                        xs={10}
+                        container
+                        justifyContent='center'
+                    >
+                        <FormLabel label='Sign In' />
+                    </Grid>
 
-                        <Button
-                            data-type='SignIn'
-                            type='submit'
-                            fullWidth
-                            variant='contained'
-                            sx={{ mt: 3, mb: 2 }}
-                        >
-                            Sign In
-                        </Button>
+                    <Grid item lg={10} container>
+                        <Typography variant='subtitle2' fontWeight='bold'>
+                            Email
+                        </Typography>
+                        <FormTextField
+                            id='user-email-textfield'
+                            value={userEmail}
+                            type='text'
+                            onChange={(e: any) => setUserEmail(e.target.value)}
+                            size={'small'}
+                            sx={{ width: '100%' }}
+                        />
+                    </Grid>
+                    <Grid item lg={10} container>
+                        <Typography variant='subtitle2' fontWeight='bold'>
+                            Password
+                        </Typography>
 
-                        <Grid container>
-                            <Grid item xs>
-                                <Link to='#'>Forgot password?</Link>
-                            </Grid>
-                            <Grid item>
-                                <Link to='/signup'>
-                                    {'Don\'t have an account? Sign Up'}
-                                </Link>
-                            </Grid>
-                        </Grid>
-                    </Box>
-                </Box>
+                        <FormTextField
+                            id='user-email-textfield'
+                            value={userPassword}
+                            type={showPassword ? 'text' : 'password'}
+                            onChange={(e: any) =>
+                                setUserPassword(e.target.value)
+                            }
+                            size={'small'}
+                            sx={{ width: '100%' }}
+                            inputProps={{
+                                endAdornment: (
+                                    <InputAdornment position='end'>
+                                        <IconButton
+                                            aria-label='toggle password visibility'
+                                            onClick={handleClickShowPassword}
+                                            onMouseDown={
+                                                handleMouseDownPassword
+                                            }
+                                            edge='end'
+                                        >
+                                            {showPassword ? (
+                                                <VisibilityOff />
+                                            ) : (
+                                                <Visibility />
+                                            )}
+                                        </IconButton>
+                                    </InputAdornment>
+                                ),
+                                inputProps: {
+                                    min: 0,
+                                },
+                            }}
+                        />
+                    </Grid>
+                    <Grid item lg={10} container justifyContent='center'>
+                        <PrimaryButton
+                            id='sign-in-submit-btn'
+                            label='Sign In'
+                            onClick={(e: any) => handleSubmit(e)}
+                        />
+                    </Grid>
+                    <Grid item container lg={10} justifyContent='center'>
+                        <Link to='/forget_password'>{'Forget Password'}</Link>
+                    </Grid>
+                    <Grid item container lg={10} justifyContent='center'>
+                        <Link to='/signup'>
+                            {'Don\'t have an account? Sign Up'}
+                        </Link>
+                    </Grid>
+                </Grid>
             </Container>
         </ThemeProvider>
     )
