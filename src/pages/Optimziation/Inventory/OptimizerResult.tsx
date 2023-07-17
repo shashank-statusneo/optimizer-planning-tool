@@ -152,7 +152,7 @@ const OptimizerResultContainer = () => {
                                 label='Select Vendor'
                                 value={null}
                                 data={VendorList}
-                                onChange={handleVendorChange}
+                                onChange={undefined}
                             />
                         </Grid>
                     </Grid>

@@ -1,5 +1,5 @@
 import { Button, SxProps, Theme } from '@mui/material'
-import { MouseEventHandler } from 'react'
+import { MouseEventHandler, ChangeEventHandler, SyntheticEvent } from 'react'
 
 // General function to export Form Primary Button
 export const PrimaryButton = (props: {
@@ -8,7 +8,7 @@ export const PrimaryButton = (props: {
     onClick: MouseEventHandler
     disabled?: boolean
     sx?: SxProps<Theme>
-}): JSX.Element  => {
+}): JSX.Element => {
     return (
         <Button
             variant='contained'
@@ -16,8 +16,8 @@ export const PrimaryButton = (props: {
             size='medium'
             id={props.id}
             onClick={props.onClick}
-            disabled={props?.disabled ? props?.disabled : false} 
-            sx={{...props?.sx}}
+            disabled={props?.disabled ? props?.disabled : false}
+            sx={{ ...props?.sx }}
         >
             {props.label}
         </Button>
@@ -27,10 +27,10 @@ export const PrimaryButton = (props: {
 export const NavigationBtn = (props: {
     id: string
     label: string
-    onClick: any
+    onClick: MouseEventHandler
     disabled: boolean
     render: boolean
-}) => {
+}): JSX.Element => {
     if (props.render) {
         return (
             <Button
@@ -54,9 +54,9 @@ export const FormUploadButton = (props: {
     label: string
     fileRef: any
     loader: boolean
-    onChange: any
+    onChange: ChangeEventHandler
     disabled: boolean
-}) => {
+}): JSX.Element => {
     return (
         <Button
             variant='outlined'

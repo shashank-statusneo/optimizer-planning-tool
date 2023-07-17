@@ -1,4 +1,10 @@
 import {
+    MouseEventHandler,
+    ChangeEventHandler,
+    SyntheticEvent,
+    ChangeEvent,
+} from 'react'
+import {
     InputLabel,
     MenuItem,
     Select,
@@ -28,14 +34,21 @@ import {
     SxProps,
     Theme,
     OutlinedTextFieldProps,
+    SnackbarCloseReason,
+    ModalProps,
 } from '@mui/material'
 
-import { LocalizationProvider } from '@mui/x-date-pickers'
+import { PickerChangeHandlerContext } from '@mui/x-date-pickers/internals/hooks/usePicker/usePickerValue.types'
+import { SelectInputProps } from '@mui/material/Select/SelectInput'
+
+import { LocalizationProvider, DateValidationError } from '@mui/x-date-pickers'
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
 import { DatePicker } from '@mui/x-date-pickers/DatePicker'
 
 // General function to export Form Loader
-export const FormBackdropElement = (props: { loader: boolean }) => {
+export const FormBackdropElement = (props: {
+    loader: boolean
+}): JSX.Element => {
     return (
         <Backdrop
             sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
@@ -48,9 +61,12 @@ export const FormBackdropElement = (props: { loader: boolean }) => {
 
 // General function to export Form SnackBar
 export const FormSnackBarElement = (props: {
-    message: boolean
-    onClose: any
-}) => {
+    message: string | null | undefined
+    onClose: (
+        event: Event | SyntheticEvent<any, Event>,
+        reason: SnackbarCloseReason,
+    ) => void
+}): JSX.Element => {
     return (
         <Snackbar
             anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
@@ -70,14 +86,14 @@ type AlertBtn = {
 
 // General function to export Form Alert Dialog
 export const FormAlertElement = (props: {
-    open: boolean
-    onClose: any
-    label: string
     id: string
+    label: string
     title: string
+    open: boolean
+    onClose: ModalProps['onClose']
     content: string
     buttons: AlertBtn
-}) => {
+}): JSX.Element => {
     return (
         <Dialog
             open={props.open}
@@ -134,7 +150,7 @@ export const FormTextField = (props: {
                 sx={{
                     backgroundColor: props.disabled ? '#E0E0E0' : null,
                     borderRadius: props.disabled ? '4px' : null,
-                      ...props?.sx,
+                    ...props?.sx,
                 }}
             />
         </Tooltip>
@@ -142,7 +158,7 @@ export const FormTextField = (props: {
 }
 
 // General function to export Form label
-export const FormLabel = (props: { label: string }) => {
+export const FormLabel = (props: { label: string }): JSX.Element => {
     return (
         <Typography variant='h6' fontWeight='bold'>
             {props.label}
@@ -151,7 +167,7 @@ export const FormLabel = (props: { label: string }) => {
 }
 
 // General function to export Form Sub Text
-export const FormSubText = (props: { subText: string }) => {
+export const FormSubText = (props: { subText: string }): JSX.Element => {
     return (
         <Typography variant='caption' fontStyle='italic'>
             {props.subText}
@@ -160,7 +176,7 @@ export const FormSubText = (props: { subText: string }) => {
 }
 
 // General function to export Form Sub label
-export const FormSubLabel = (props: { label: string }) => {
+export const FormSubLabel = (props: { label: string }): JSX.Element => {
     return (
         <Typography
             variant='h6'
@@ -174,7 +190,7 @@ export const FormSubLabel = (props: { label: string }) => {
 }
 
 // General function to export Form Sub label 2
-export const FormSubLabel2 = (props: { label: string }) => {
+export const FormSubLabel2 = (props: { label: string }): JSX.Element => {
     return (
         <Typography variant='body1' fontWeight='bold' color='text.secondary'>
             {props.label}
@@ -189,9 +205,9 @@ export const FormSwitchBtn = (props: {
     label: string
     value: string
     position: switchPostion
-    onChange: any
+    onChange: ChangeEventHandler
     defaultChecked: boolean
-}) => {
+}): JSX.Element => {
     return (
         <FormGroup row>
             <FormControlLabel
@@ -210,15 +226,24 @@ export const FormSwitchBtn = (props: {
     )
 }
 
+type DropDownValue = {
+    id: string | number | undefined | null
+} | null
+
+type DroptDownData = {
+    id: string | number | undefined
+    name: string | undefined
+}[]
+
 // General function to export Form Dropdown
 export const FormDropDown = (props: {
     id: string
     label: string
     labelId: string
-    value: any
-    data: any
-    onChange: any
-}) => {
+    value: DropDownValue
+    data: DroptDownData
+    onChange: SelectInputProps<string | number>['onChange'] | undefined
+}): JSX.Element => {
     return (
         <FormControl fullWidth>
             <InputLabel id={props.id}>{props.label}</InputLabel>
@@ -243,10 +268,10 @@ export const FormMultiDropDown = (props: {
     id: string
     label: string
     labelId: string
-    value: any
-    data: any
-    onChange: any
-}) => {
+    value: any[]
+    data: any[]
+    onChange: SelectInputProps<any>['onChange'] | undefined
+}): JSX.Element => {
     return (
         <FormControl fullWidth>
             <InputLabel id={props.id}>{props.label}</InputLabel>
@@ -279,10 +304,13 @@ export const FormMultiDropDown = (props: {
 // General function to export Form Date Selector
 export const FormDateSelector = (props: {
     label: string
-    value: any
-    onChange: any
+    value: ChangeEvent<Element> | null
+    onChange: (
+        value: ChangeEvent<Element> | null,
+        context: PickerChangeHandlerContext<DateValidationError>,
+    ) => void
     minDate: any
-}) => {
+}): JSX.Element => {
     return (
         <LocalizationProvider dateAdapter={AdapterDayjs}>
             <DatePicker
@@ -296,7 +324,10 @@ export const FormDateSelector = (props: {
 }
 
 // General function to export Form Card
-const FormCard = (props: { value: string | number; label: string }) => {
+const FormCard = (props: {
+    value: string | number
+    label: string
+}): JSX.Element => {
     return (
         <Paper elevation={2}>
             <Grid
@@ -321,7 +352,7 @@ const FormCard = (props: { value: string | number; label: string }) => {
 export const InventoryFormCard = (props: {
     value: string | number
     label: string
-}) => {
+}): JSX.Element => {
     return (
         <Grid item lg={3}>
             <Paper elevation={2}>
@@ -347,7 +378,7 @@ type CardItems = {
 }[]
 
 // General function to export Form Card Field
-export const FormCardField = (props: { items: CardItems }) => {
+export const FormCardField = (props: { items: CardItems }): JSX.Element => {
     return (
         <Grid
             container
@@ -373,7 +404,7 @@ export const FormRadioButton = (props: {
         event: React.ChangeEvent<HTMLInputElement>,
         value: string,
     ) => void
-}) => {
+}): JSX.Element => {
     return (
         <FormControl>
             <RadioGroup
@@ -409,7 +440,7 @@ export const CustomFormRadioButton = (props: {
         event: React.ChangeEvent<HTMLInputElement>,
         value: string,
     ) => void
-}) => {
+}): JSX.Element => {
     return (
         <FormControl>
             <RadioGroup

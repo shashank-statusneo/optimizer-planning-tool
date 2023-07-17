@@ -48,11 +48,11 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
 
 export const FormTable = (props: {
     id: string
-    tableType: any
-    tableHeaders: any
-    tableData: any
+    tableType: 'category' | 'demand'
+    tableHeaders: string[]
+    tableData: any[]
     total: any
-}) => {
+}): JSX.Element => {
     return (
         <TableContainer component={Paper} sx={{ maxHeight: '100%' }}>
             <Table aria-label={props.id} stickyHeader>
@@ -94,7 +94,7 @@ const GetTableRows = (props: {
     total: any
     tableType: any
     index: any
-}) => {
+}): JSX.Element => {
     const childRows: any = object.omit(
         props.rowData,
         Object.keys(props.rowData)[0],
@@ -158,7 +158,10 @@ const GetTableRows = (props: {
     )
 }
 
-const CategoryWiseOutputDataCells = (props: { rowData: any; rowKey: any }) => {
+const CategoryWiseOutputDataCells = (props: {
+    rowData: any
+    rowKey: any
+}): JSX.Element => {
     return (
         <>
             <StyledTableCell rowSpan={1} align='center'>
@@ -180,7 +183,10 @@ const CategoryWiseOutputDataCells = (props: { rowData: any; rowKey: any }) => {
     )
 }
 
-const DemandWiseOutputDataCells = (props: { rowData: any; rowKey: any }) => {
+const DemandWiseOutputDataCells = (props: {
+    rowData: any
+    rowKey: any
+}): JSX.Element => {
     return (
         <>
             <StyledTableCell rowSpan={1} align='center'>
@@ -217,7 +223,7 @@ export const FormInventoryTable = (props: {
     tableData: InventoryTableData
     totalOrderQty: number
     totalCost: number
-}) => {
+}): JSX.Element => {
     return (
         <TableContainer component={Paper} sx={{ maxHeight: '100%' }}>
             <Table aria-label={props.id} stickyHeader>
@@ -272,7 +278,7 @@ export const FormRouteTable = (props: {
     id: string
     tableHeaders: string[]
     tableData: RouteTableData
-}) => {
+}): JSX.Element => {
     return (
         <TableContainer component={Paper} sx={{ maxHeight: '100%' }}>
             <Table aria-label={props.id} stickyHeader>
@@ -326,7 +332,7 @@ export const FormDataGrid = (props: {
     columns: GridColDef[]
     rows: any
     processDataChange: any
-}) => {
+}): JSX.Element => {
     return (
         <StyledDataGrid
             processRowUpdate={props.processDataChange}
@@ -346,7 +352,7 @@ export const FormGraph = (props: {
     xLabel: any
     yLabel: any
     lineData: any
-}) => {
+}): JSX.Element => {
     const [graphProps, setGraphProps] = useState(
         props.lineData.reduce(
             (line: any, { key }: any) => {
