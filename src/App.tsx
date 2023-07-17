@@ -16,8 +16,7 @@ import SignUp from './pages/Home/SignUp'
 import WelcomePage from './pages/Home/Welcome'
 import PageNotFound from './pages/Home/PageNotFound'
 import UserSession from './services/auth'
-import { TabContext } from '@mui/lab'
-import { Container, Tabs, Tab } from '@mui/material'
+
 import AppTabs from './components/Tabs'
 
 const App = () => {

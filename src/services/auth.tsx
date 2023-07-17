@@ -30,10 +30,6 @@ const setUser = (user: User) => {
     localStorage.setItem('user_id', JSON.stringify(user))
 }
 
-const removeUser = () => {
-    localStorage.removeItem('user_id')
-}
-
 const isAuthenticated = () => {
     //@ts-ignore
     return localStorage.getItem('user_id') !== null

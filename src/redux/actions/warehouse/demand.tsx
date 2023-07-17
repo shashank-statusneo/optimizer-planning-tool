@@ -2,10 +2,7 @@ import {
     UPLOAD_DEMAND_FILE_API,
     DEMAND_FORECAST_API,
 } from '../../../services/routes'
-import {
-    warehouseApiClient,
-    warehouseApiClientForForm,
-} from '../../../services/apiClient'
+import { apiClient, apiClientForForm } from '../../../services/apiClient'
 
 import {
     resetWarehouseDemandData,
@@ -40,7 +37,7 @@ export const uploadDemandFile = (payload, id, fileName) => async (dispatch) => {
     // @ts-ignore
     await dispatch(postDemand())
     try {
-        const response = await warehouseApiClientForForm.post(
+        const response = await apiClientForForm.post(
             `${UPLOAD_DEMAND_FILE_API}/${id}`,
             payload,
         )
@@ -62,7 +59,7 @@ export const getDemandForecastData = (payload, id) => async (dispatch) => {
     // @ts-ignore
     await dispatch(getDemandForecast())
     try {
-        const response = await warehouseApiClient.get(
+        const response = await apiClient.get(
             `${DEMAND_FORECAST_API}/${id}?start_date=${payload.start_date}&end_date=${payload.end_date}`,
         )
         if (response.status === 200) {
@@ -93,7 +90,6 @@ const modifyDemandTableData = (data) => async (dispatch) => {
     ]
 
     if (data && !object.isEmpty(data)) {
-
         const columnList = Object.keys(data[Object.keys(data)[0]])
 
         for (const col in columnList) {
@@ -155,10 +151,7 @@ export const putDemandForecastData = (payload, data) => async (dispatch) => {
     // @ts-ignore
     await dispatch(putDemandForecast())
     try {
-        const response = await warehouseApiClient.put(
-            DEMAND_FORECAST_API,
-            payload,
-        )
+        const response = await apiClient.put(DEMAND_FORECAST_API, payload)
         if (response.status === 200) {
             return dispatch(putDemandForecastSuccess(data))
         }

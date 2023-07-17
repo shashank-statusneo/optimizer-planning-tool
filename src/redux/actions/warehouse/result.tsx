@@ -1,5 +1,5 @@
 import { RESULT_API } from '../../../services/routes'
-import { warehouseApiClient } from '../../../services/apiClient'
+import { apiClient } from '../../../services/apiClient'
 import {
     resetWarehouseResultData,
     updateResultStartDateValue,
@@ -35,7 +35,7 @@ export const postResultData = (payload) => async (dispatch) => {
     // @ts-ignore
     await dispatch(postResult())
     try {
-        const response = await warehouseApiClient.post(RESULT_API, payload)
+        const response = await apiClient.post(RESULT_API, payload)
         if (response.status === 200) {
             return dispatch(postResultSuccess(response.data))
         }

@@ -1,6 +1,6 @@
 import { GET_WAREHOUSE_API } from '../../../services/routes'
 
-import { warehouseApiClient } from '../../../services/apiClient'
+import { apiClient } from '../../../services/apiClient'
 
 import {
     resetWarehouseSelectData,
@@ -25,7 +25,7 @@ export const getWarehouse = () => async (dispatch) => {
     // @ts-ignore
     await dispatch(getWarehouses())
     try {
-        const response = await warehouseApiClient.get(GET_WAREHOUSE_API)
+        const response = await apiClient.get(GET_WAREHOUSE_API)
         if (response.status === 200) {
             return dispatch(getWarehousesSuccess(response.data))
         }

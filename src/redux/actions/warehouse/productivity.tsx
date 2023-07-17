@@ -3,10 +3,7 @@ import {
     BENCHMARK_PRODUCTIVITY_API,
 } from '../../../services/routes'
 
-import {
-    warehouseApiClient,
-    warehouseApiClientForForm,
-} from '../../../services/apiClient'
+import { apiClient, apiClientForForm } from '../../../services/apiClient'
 
 import {
     resetWarehouseProductivityData,
@@ -37,7 +34,7 @@ export const uploadProductivityFile =
         // @ts-ignore
         await dispatch(postProductivity())
         try {
-            const response = await warehouseApiClientForForm.post(
+            const response = await apiClientForForm.post(
                 `${UPLOAD_PRODUCTIVITY_FILE_API}/${id}`,
                 payload,
             )
@@ -59,7 +56,7 @@ export const getBenchmarkProductivityData = (id) => async (dispatch) => {
     // @ts-ignore
     await dispatch(getBenchmarkProductivity())
     try {
-        const response = await warehouseApiClient.get(
+        const response = await apiClient.get(
             `${BENCHMARK_PRODUCTIVITY_API}/${id}`,
         )
         if (response.status === 200) {
@@ -78,7 +75,7 @@ export const putBenchmarkProductivityData =
         // @ts-ignore
         await dispatch(putBenchmarkProductivity())
         try {
-            const response = await warehouseApiClient.put(
+            const response = await apiClient.put(
                 BENCHMARK_PRODUCTIVITY_API,
                 payload,
             )

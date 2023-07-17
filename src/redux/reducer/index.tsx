@@ -1,5 +1,5 @@
 // import authReducer from './auth'
-import userAuth  from './user/auth'
+import userAuth from './user/auth'
 import inventoryOptimizer from './inventory/optimizer'
 import inventoryResult from './inventory/result'
 import inventorySimulator from './inventory/simulator'
