@@ -76,7 +76,7 @@ const OptimizerResultContainer = () => {
             label: 'Reorder Point',
         },
         {
-            value: inventoryResultState?.result?.reorder_qty
+            value: inventoryResultState.result.reorder_qty
                 ? inventoryResultState?.result?.reorder_qty
                 : 0,
             label: 'Reorder Qty',

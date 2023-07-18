@@ -40,10 +40,7 @@ const theme = createTheme()
 const RouteOptimizer = () => {
     const dispatch = useAppDispatch()
 
-    const routeOptimizerState = useAppSelector(
-        // @ts-ignore
-        (state) => state.routeOptimizer,
-    )
+    const routeOptimizerState = useAppSelector((state) => state.routeOptimizer)
 
     const [snackbarState, setSnackbarState] = useState(false)
 
@@ -70,10 +67,7 @@ const RouteOptimizer = () => {
                 file: fileObj,
                 file_type: fileType,
             }
-            dispatch(
-                // @ts-ignore
-                uploadRoute(context, fileType, fileObj.name),
-            )
+            dispatch(uploadRoute(context, fileType, fileObj.name))
         }
     }
 
@@ -84,7 +78,6 @@ const RouteOptimizer = () => {
             ? setIsObjectiveCost(true)
             : setIsObjectiveCost(false)
         dispatch(
-            // @ts-ignore
             updateObjective(
                 event.target.value == 'minimizeCost'
                     ? 'minimize_cost'
@@ -101,7 +94,6 @@ const RouteOptimizer = () => {
             : setRoundTripEnabled(false)
 
         dispatch(
-            // @ts-ignore
             updateRoundTripDistance(event.target.value == 'yes' ? true : false),
         )
     }
@@ -114,7 +106,6 @@ const RouteOptimizer = () => {
             : setInfiniteFleetSizeEnabled(false)
 
         dispatch(
-            // @ts-ignore
             updateInfiniteFleetSize(event.target.value == 'yes' ? true : false),
         )
     }
@@ -128,20 +119,13 @@ const RouteOptimizer = () => {
     }
 
     const handleVariablePerOrderChange = (e: any) => {
-        dispatch(
-            // @ts-ignore
-            updateVariableComponentPerOrder(e.target.value),
-        )
+        dispatch(updateVariableComponentPerOrder(e.target.value))
     }
     const handleVariablePerHandlingUnitChange = (e: any) => {
-        dispatch(
-            // @ts-ignore
-            updateVariableComponentPerHandlingUnit(e.target.value),
-        )
+        dispatch(updateVariableComponentPerHandlingUnit(e.target.value))
     }
 
     const handleSubmit = () => {
-        // @ts-ignore
         // dispatch(algorithmApi(routeOptimizerState))
         console.log(routeOptimizerState)
     }
@@ -337,7 +321,7 @@ const RouteOptimizer = () => {
                             <Grid container>
                                 <Typography>
                                     {
-                                        routeOptimizerState.destination_coordinates_file_name
+                                        routeOptimizerState.destination_coordinate_file_name
                                     }
                                 </Typography>
                             </Grid>
@@ -417,7 +401,6 @@ const RouteOptimizer = () => {
                                             type='number'
                                             onChange={(e: any) => {
                                                 dispatch(
-                                                    // @ts-ignore
                                                     updateMaxTripDistance(
                                                         e.target.value,
                                                     ),
@@ -459,7 +442,6 @@ const RouteOptimizer = () => {
                                             type='number'
                                             onChange={(e: any) => {
                                                 dispatch(
-                                                    // @ts-ignore
                                                     updateMaxTripDuration(
                                                         e.target.value,
                                                     ),
@@ -511,11 +493,10 @@ const RouteOptimizer = () => {
                             <Grid item lg={6}>
                                 <FormTextField
                                     id='max-trip-distance-textfield'
-                                    value={routeOptimizerState.fixed_cost}
+                                    value={routeOptimizerState.fixed_component}
                                     type='number'
                                     onChange={(e: any) => {
                                         dispatch(
-                                            // @ts-ignore
                                             updateFixedComponent(
                                                 e.target.value,
                                             ),
@@ -699,7 +680,6 @@ const RouteOptimizer = () => {
                                     position='start'
                                     onChange={(e: any) =>
                                         dispatch(
-                                            // @ts-ignore
                                             updateFlagVehicleWeightCapacity(
                                                 e.target.checked,
                                             ),
@@ -717,7 +697,6 @@ const RouteOptimizer = () => {
                                     position='start'
                                     onChange={(e: any) =>
                                         dispatch(
-                                            // @ts-ignore
                                             updateFlagVehicleVolumetricCapacity(
                                                 e.target.checked,
                                             ),
@@ -735,7 +714,6 @@ const RouteOptimizer = () => {
                                     position='start'
                                     onChange={(e: any) =>
                                         dispatch(
-                                            // @ts-ignore
                                             updateFlagVehicleMaxOrderCapacity(
                                                 e.target.checked,
                                             ),
@@ -871,30 +849,12 @@ const RouteOptimizer = () => {
                             id='generate-order-policy-btn'
                             label='GENERATE ROUTE PLAN'
                             onClick={() => handleSubmit()}
-                            // disabled={
-                            //     !(
-                            //         routeOptimizerState?.demand_master_id &&
-                            //         routeOptimizerState?.vendor_master_id &&
-                            //         routeOptimizerState?.annual_cost &&
-                            //         (routeOptimizerState.fill_rate ||
-                            //             routeOptimizerState.cycle_service_level)
-                            //     )
-                            // }
-                            disabled={false}
                         />
                         <PrimaryButton
                             id='generate-order-policy-btn'
                             label='VIEW/DOWNLOAD PLAN >'
                             onClick={() => handleSubmit()}
-                            disabled={
-                                !(
-                                    routeOptimizerState?.demand_master_id &&
-                                    routeOptimizerState?.vendor_master_id &&
-                                    routeOptimizerState?.annual_cost &&
-                                    (routeOptimizerState.fill_rate ||
-                                        routeOptimizerState.cycle_service_level)
-                                )
-                            }
+                            disabled={false}
                         />
                     </Grid>
                 </Grid>

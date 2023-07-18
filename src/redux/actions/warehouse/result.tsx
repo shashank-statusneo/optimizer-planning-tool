@@ -7,55 +7,65 @@ import {
     postResult,
     postResultSuccess,
     postResultFailed,
-    updateResultCategoriesValue,
     updateResultCategoryValue,
     updateResultTableValue,
 } from '../../reducer/warehouse/result'
 
-// @ts-ignore
-export const resetWarehouseResultState = (payload) => async (dispatch) => {
-    console.log('Calling action : resetWarehouseResultState()')
-    // @ts-ignore
-    await dispatch(resetWarehouseResultData(payload))
-}
-
-// @ts-ignore
-export const updateResultStartDate = (payload) => async (dispatch) => {
-    await dispatch(updateResultStartDateValue(payload))
-}
-
-// @ts-ignore
-export const updateResultEndDate = (payload) => async (dispatch) => {
-    await dispatch(updateResultEndDateValue(payload))
-}
-
-// @ts-ignore
-export const postResultData = (payload) => async (dispatch) => {
-    console.log('Calling action : postResultData()')
-    // @ts-ignore
-    await dispatch(postResult())
-    try {
-        const response = await apiClient.post(RESULT_API, payload)
-        if (response.status === 200) {
-            return dispatch(postResultSuccess(response.data))
-        }
-        return dispatch(postResultFailed(response))
-    } catch (err) {
-        return dispatch(postResultFailed(err))
+export const resetWarehouseResultState =
+    (payload: any) =>
+    async (dispatch: any): Promise<any> => {
+        console.log('Calling action : resetWarehouseResultState()')
+        await dispatch(resetWarehouseResultData(payload))
     }
+
+export const updateResultStartDate =
+    (payload: any) =>
+    async (dispatch: any): Promise<any> => {
+        await dispatch(updateResultStartDateValue(payload))
+    }
+
+export const updateResultEndDate =
+    (payload: any) =>
+    async (dispatch: any): Promise<any> => {
+        await dispatch(updateResultEndDateValue(payload))
+    }
+
+interface warehouseResultApiSchema {
+    plan_from_date: string
+    plan_to_date: string
+    num_current_employees: number
+    day_working_hours: number
+    warehouse_id: number
+    cost_per_employee_per_month: number
+    percentage_absent_expected: number
+    total_hiring_budget: number
 }
 
-// @ts-ignore
-export const updateResultCategories = (payload) => async (dispatch) => {
-    await dispatch(updateResultCategoriesValue(payload))
-}
+export const postResultData =
+    (payload: warehouseResultApiSchema) =>
+    async (dispatch: any): Promise<any> => {
+        console.log('Calling action : postResultData()')
+        // @ts-ignore
+        await dispatch(postResult())
+        try {
+            const response = await apiClient.post(RESULT_API, payload)
+            if (response.status === 200) {
+                return dispatch(postResultSuccess(response.data))
+            }
+            return dispatch(postResultFailed(response))
+        } catch (err) {
+            return dispatch(postResultFailed(err))
+        }
+    }
 
-// @ts-ignore
-export const updateResultCategory = (payload) => async (dispatch) => {
-    await dispatch(updateResultCategoryValue(payload))
-}
+export const updateResultCategory =
+    (payload: string[]) =>
+    async (dispatch: any): Promise<any> => {
+        await dispatch(updateResultCategoryValue(payload))
+    }
 
-// @ts-ignore
-export const updateResultTable = (payload) => async (dispatch) => {
-    await dispatch(updateResultTableValue(payload))
-}
+export const updateResultTable =
+    (payload: any) =>
+    async (dispatch: any): Promise<any> => {
+        await dispatch(updateResultTableValue(payload))
+    }

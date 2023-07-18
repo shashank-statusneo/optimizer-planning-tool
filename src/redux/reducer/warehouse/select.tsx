@@ -1,10 +1,25 @@
 import { createSlice } from '@reduxjs/toolkit'
 import dayjs from 'dayjs'
 
-const initialState = {
+type selectedWarehouseType = {
+    id: number
+    name: string
+}
+
+// Define a type for the initial state
+interface StateType {
+    isLoading: boolean
+    message: string
+    warehouses: any[]
+    planning_warehouse: null | selectedWarehouseType
+    planning_start_date: dayjs.Dayjs
+    planning_end_date: dayjs.Dayjs
+}
+
+const initialState: StateType = {
     isLoading: false,
     message: '',
-    warehouses: null,
+    warehouses: [],
     planning_warehouse: null,
     planning_start_date: dayjs(null),
     planning_end_date: dayjs(null),
@@ -21,7 +36,7 @@ export const warehouseSelect = createSlice({
             }
         },
 
-        getWarehouses(state, action) {
+        getWarehouses(state) {
             return {
                 ...state,
                 message: '',

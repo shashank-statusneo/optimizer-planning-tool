@@ -1,7 +1,22 @@
 import { createSlice } from '@reduxjs/toolkit'
 import dayjs from 'dayjs'
 
-const initialState = {
+// Define a type for the initial state
+interface StateType {
+    isLoading: boolean
+    message: string
+    result_start_date: dayjs.Dayjs
+    result_end_date: dayjs.Dayjs
+    result_output: any
+    result_additional_data: any
+    result_warehouse_name: any
+    result_demand_vs_fulfillment_data: any
+    result_categories: any
+    result_category: any
+    result_table: any
+}
+
+const initialState: StateType = {
     isLoading: false,
     message: '',
     result_start_date: dayjs(null),
@@ -16,8 +31,8 @@ const initialState = {
 }
 
 // @ts-ignore
-export const warehouseResult = createSlice({
-    name: 'warehouseResult',
+export const warehouseResults = createSlice({
+    name: 'warehouseResults',
     initialState,
     reducers: {
         resetWarehouseResultData(state, action) {
@@ -49,7 +64,7 @@ export const warehouseResult = createSlice({
             }
         },
 
-        postResult(state, action) {
+        postResult(state) {
             return {
                 ...state,
                 message: '',
@@ -119,6 +134,6 @@ export const {
     updateResultCategoriesValue,
     updateResultCategoryValue,
     updateResultTableValue,
-} = warehouseResult.actions
+} = warehouseResults.actions
 
-export default warehouseResult.reducer
+export default warehouseResults.reducer

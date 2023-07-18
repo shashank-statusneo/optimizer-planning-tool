@@ -203,7 +203,7 @@ type switchPostion = 'start' | 'end' | 'top' | 'bottom'
 // General function to export Form Swtich Button
 export const FormSwitchBtn = (props: {
     label: string
-    value: string
+    value: boolean
     position: switchPostion
     onChange: ChangeEventHandler
     defaultChecked: boolean
@@ -304,7 +304,7 @@ export const FormMultiDropDown = (props: {
 // General function to export Form Date Selector
 export const FormDateSelector = (props: {
     label: string
-    value: ChangeEvent<Element> | null
+    value: any
     onChange: (
         value: ChangeEvent<Element> | null,
         context: PickerChangeHandlerContext<DateValidationError>,

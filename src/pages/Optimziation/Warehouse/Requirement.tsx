@@ -17,7 +17,6 @@ const WarehouseRequirement = () => {
     const dispatch = useAppDispatch()
 
     const warehouseRequirementState = useAppSelector(
-        // @ts-ignore
         (state) => state.warehouseRequirement,
     )
 
@@ -162,8 +161,8 @@ const WarehouseRequirement = () => {
                                     },
                                 }}
                                 error={
-                                    warehouseRequirementState.total_hiring_budget <
-                                    warehouseRequirementState.cost_per_employee_per_month
+                                    warehouseRequirementState?.total_hiring_budget <
+                                    warehouseRequirementState?.cost_per_employee_per_month
                                 }
                                 onErrorMessage={
                                     'Total Hiring Budget should be more than or equal to Monthly cost per Employee'
@@ -251,7 +250,7 @@ const WarehouseRequirement = () => {
                                     },
                                 }}
                                 error={
-                                    warehouseRequirementState.day_working_hours >
+                                    warehouseRequirementState?.day_working_hours >
                                     24
                                 }
                                 onErrorMessage={

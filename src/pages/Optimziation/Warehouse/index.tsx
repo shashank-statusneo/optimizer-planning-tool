@@ -61,11 +61,9 @@ const WareHouse = () => {
             element: <BenchmarkProductivity />,
             previous: 'select',
             next: 'demand',
-            complete:
-                warehouseProductivityState?.productivity_table_data &&
-                warehouseProductivityState?.productivity_table_data.length > 0
-                    ? true
-                    : false,
+            complete: warehouseProductivityState?.productivity_table_data
+                ? true
+                : false,
             prompt: warehouseProductivityState.flag_productivity_table_updated,
         },
         demand: {

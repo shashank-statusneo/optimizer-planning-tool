@@ -29,14 +29,12 @@ const WarehouseSelect = () => {
     const [selectedWarehouse, setSelectedWarehouse] = useState(null)
 
     const warehouseSelectState = useAppSelector(
-        // @ts-ignore
         (state) => state.warehouseSelect,
     )
 
     const [snackbarState, setSnackbarState] = useState(false)
 
     const fetchData = () => {
-        // @ts-ignore
         dispatch(getWarehouse())
     }
 
@@ -58,7 +56,6 @@ const WarehouseSelect = () => {
                 warehouseToBeUpdated = warehouseSelectState?.warehouses[0]
             }
             setSelectedWarehouse(warehouseToBeUpdated)
-            // @ts-ignore
             dispatch(updatePlanningWarehouse(warehouseToBeUpdated))
         }
     }, [warehouseSelectState.warehouses])
@@ -74,7 +71,6 @@ const WarehouseSelect = () => {
             }),
         )
         dispatch(
-            // @ts-ignore
             updatePlanningWarehouse(
                 warehouseSelectState.warehouses.find((obj: any) => {
                     return obj.id === e.target.value
@@ -185,7 +181,7 @@ const WarehouseSelect = () => {
                                 value={warehouseSelectState.planning_end_date}
                                 onChange={handleWarehouseEndDateChange}
                                 minDate={
-                                    warehouseSelectState.planning_start_date >=
+                                    warehouseSelectState?.planning_start_date >=
                                     dayjs()
                                         ? warehouseSelectState.planning_start_date
                                         : dayjs()

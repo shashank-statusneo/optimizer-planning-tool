@@ -13,12 +13,10 @@ const InventoryOptimizer = () => {
     const navigate = useNavigate()
 
     const inventoryOptimizerState = useAppSelector(
-        // @ts-ignore
         (state) => state.inventoryOptimizer,
     )
 
     const inventoryResultState = useAppSelector(
-        // @ts-ignore
         (state) => state.inventoryResult,
     )
 

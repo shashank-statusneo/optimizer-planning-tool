@@ -31,12 +31,10 @@ const BenchmarkProductivity = () => {
     const dispatch = useAppDispatch()
 
     const warehouseSelectState = useAppSelector(
-        // @ts-ignore
         (state) => state.warehouseSelect,
     )
 
     const warehouseProductivityState = useAppSelector(
-        // @ts-ignore
         (state) => state.warehouseProductivity,
     )
 
@@ -44,7 +42,6 @@ const BenchmarkProductivity = () => {
 
     const fetchData = () => {
         dispatch(
-            // @ts-ignore
             getBenchmarkProductivityData(
                 warehouseSelectState.planning_warehouse?.id,
             ),

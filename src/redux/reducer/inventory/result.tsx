@@ -1,8 +1,18 @@
 import { createSlice } from '@reduxjs/toolkit'
 import dayjs from 'dayjs'
 
+// Define a type for the initial state
+interface StateType {
+    isLoading: boolean
+    message: string
+    result: any
+    policy_detail: any
+    simulation_output: any
+    inventory_start_date: dayjs.Dayjs
+    inventory_end_date: dayjs.Dayjs
+}
 
-const initialState = {
+const initialState: StateType = {
     isLoading: false,
     message: '',
     result: {},
@@ -61,7 +71,7 @@ export const {
     postAlgorithmApiSuccess,
     postAlgorithmApiFailed,
     updateInventoryStartDateValue,
-    updateInventoryEndDateValue
+    updateInventoryEndDateValue,
 } = inventoryResult.actions
 
 export default inventoryResult.reducer

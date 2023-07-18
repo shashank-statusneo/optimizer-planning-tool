@@ -1,6 +1,29 @@
 import { createSlice } from '@reduxjs/toolkit'
 
-const initialState = {
+// Define a type for the initial state
+interface StateType {
+    isLoading: boolean
+    message: string
+    distance_matrix_file_name: string
+    source_coordinates_file_name: string
+    destination_coordinate_file_name: string
+    fleet_details_file_name: string
+    vehicle_availability_file_name: string
+    order_details_file_name: string
+    objective: string
+    round_trip_distance: boolean
+    max_trip_distance: string
+    max_trip_duration: string
+    fixed_component: string
+    variable_component_per_order: string
+    variable_component_per_handling_unit: string
+    infinite_fleet_size: boolean
+    flag_vehicle_weight_capacity: boolean
+    flag_vehicle_volumetric_capacity: boolean
+    flag_vehicle_max_order_capacity: boolean
+}
+
+const initialState: StateType = {
     isLoading: false,
     message: '',
     distance_matrix_file_name: '',

@@ -1,11 +1,22 @@
 import { createSlice } from '@reduxjs/toolkit'
 
-const initialState = {
+// Define a type for the initial state
+interface StateType {
+    isLoading: boolean
+    message: string
+    demand_file_name: string
+    demand_table_data: any[]
+    modified_demand_table_data: any[]
+    demand_table_cols: any
+    flag_demand_table_updated: boolean
+}
+
+const initialState: StateType = {
     isLoading: false,
     message: '',
     demand_file_name: '',
-    demand_table_data: null,
-    modified_demand_table_data: null,
+    demand_table_data: [],
+    modified_demand_table_data: [],
     demand_table_cols: null,
     flag_demand_table_updated: false,
 }

@@ -39,18 +39,15 @@ const Result = () => {
     const dispatch = useAppDispatch()
 
     const warehouseSelectState = useAppSelector(
-        // @ts-ignore
         (state) => state.warehouseSelect,
     )
 
     const warehouseRequirementState = useAppSelector(
-        // @ts-ignore
         (state) => state.warehouseRequirement,
     )
 
     const warehouseResultState = useAppSelector(
-        // @ts-ignore
-        (state) => state.warehouseResult,
+        (state) => state.warehouseResults,
     )
 
     const [selectedCategory, setSelectedCategory] = useState<any[]>([])

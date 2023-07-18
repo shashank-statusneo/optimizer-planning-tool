@@ -27,13 +27,11 @@ const DemandForecast = () => {
     const dispatch = useAppDispatch()
 
     const warehouseSelectState = useAppSelector(
-        // @ts-ignore
-        (state) => state.warehouseSelect,
+        (state: any) => state.warehouseSelect,
     )
 
     const warehouseDemandState = useAppSelector(
-        // @ts-ignore
-        (state) => state.warehouseDemand,
+        (state: any) => state.warehouseDemand,
     )
 
     const [snackbarState, setSnackbarState] = useState(false)
@@ -67,14 +65,14 @@ const DemandForecast = () => {
 
     const demandForecastFile = useRef() as MutableRefObject<HTMLInputElement>
 
-    const [updatedTableData]: any = useState([])
+    const [updatedTableData]: any[] = useState([])
 
-    const [updateRequestPayload]: any = useState([])
+    const [updateRequestPayload]: any[] = useState([])
 
     const processDataChange = (newRow: GridRowModel, oldRow: GridRowModel) => {
         const updatedRow = { ...newRow }
 
-        let updatedCol: any = null
+        let updatedCol: string | number | null = null
 
         Object.keys(oldRow).forEach((key) => {
             if (oldRow[key] !== newRow[key]) {
@@ -108,7 +106,7 @@ const DemandForecast = () => {
         const tableData = JSON.parse(
             JSON.stringify(warehouseDemandState.modified_demand_table_data),
         )
-        updatedTableData.map((newObj: any, index: any) => {
+        updatedTableData.map((newObj: any) => {
             const oldObjIndex = tableData.findIndex(
                 (oldObj: any) => oldObj.id === newObj.id,
             )

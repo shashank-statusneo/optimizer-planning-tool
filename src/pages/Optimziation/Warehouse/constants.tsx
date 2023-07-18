@@ -58,7 +58,12 @@ export const lineData = [
     },
 ]
 
-export const ResultTableTypes: any = [
+type resultTableTypes = {
+    id: number
+    name: string
+}[]
+
+export const ResultTableTypes: resultTableTypes = [
     {
         id: 1,
         name: 'Category-wise schedule',

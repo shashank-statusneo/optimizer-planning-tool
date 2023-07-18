@@ -1,11 +1,20 @@
 import { createSlice } from '@reduxjs/toolkit'
 
-const initialState = {
-    percentage_absent_expected: '',
-    num_current_employees: '',
-    total_hiring_budget: '',
-    cost_per_employee_per_month: '',
-    day_working_hours: '',
+// Define a type for the initial state
+interface StateType {
+    percentage_absent_expected: number
+    num_current_employees: number
+    total_hiring_budget: number
+    cost_per_employee_per_month: number
+    day_working_hours: number
+}
+
+const initialState: StateType = {
+    percentage_absent_expected: 0,
+    num_current_employees: 0,
+    total_hiring_budget: 0,
+    cost_per_employee_per_month: 0,
+    day_working_hours: 0,
 }
 
 // @ts-ignore

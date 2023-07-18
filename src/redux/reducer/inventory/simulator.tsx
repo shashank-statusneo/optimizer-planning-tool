@@ -1,6 +1,19 @@
 import { createSlice } from '@reduxjs/toolkit'
 
-const initialState = {
+// Define a type for the initial state
+interface StateType {
+    isLoading: boolean
+    message: string
+    reorder_point: any
+    avg_lead_time: any
+    reorder_qty: any
+    sd_of_lead_time: any
+    result: any
+    policy_detail: any[]
+    simulation_output: any[]
+}
+
+const initialState: StateType = {
     isLoading: false,
     message: '',
     reorder_point: null,

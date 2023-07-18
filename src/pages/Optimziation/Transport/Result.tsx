@@ -22,10 +22,7 @@ const theme = createTheme()
 const RouteResult = () => {
     const dispatch = useAppDispatch()
 
-    const routeOptimizerState = useAppSelector(
-        // @ts-ignore
-        (state) => state.routeOptimizer,
-    )
+    const routeOptimizerState = useAppSelector((state) => state.routeOptimizer)
 
     const [snackbarState, setSnackbarState] = useState(false)
 
