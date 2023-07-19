@@ -31,11 +31,7 @@ const theme = createTheme()
 const SignIn = () => {
     const navigate = useNavigate()
     const dispatch = useAppDispatch()
-    // @ts-ignore
-    const userAuthState = useAppSelector(
-        // @ts-ignore
-        (state) => state.userAuth,
-    )
+    const userAuthState = useAppSelector((state) => state.userAuth)
     const [snackbarState, setSnackbarState] = useState(false)
 
     const [userEmail, setUserEmail] = useState('shashank@gmail.com')
@@ -59,14 +55,12 @@ const SignIn = () => {
         }
     }, [UserSession.isAuthenticated()])
 
-    // @ts-ignore
-    const handleSubmit = (event) => {
+    const handleSubmit = (event: { preventDefault: () => void }) => {
         event.preventDefault()
         const context = {
             email: userEmail,
             password: userPassword,
         }
-        // @ts-ignore
         dispatch(userLogin(context)).then((res) => {
             if (
                 res &&

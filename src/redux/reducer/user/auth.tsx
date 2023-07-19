@@ -2,7 +2,15 @@ import { createSlice } from '@reduxjs/toolkit'
 import UserSession from '../../../services/auth'
 import Cookies from 'js-cookie'
 
-const initialState = {
+// Define a type for the initial state
+interface StateType {
+    isLoading: boolean
+    message: string
+    access_token: any
+    user: any
+}
+
+const initialState: StateType = {
     isLoading: false,
     message: '',
     access_token: null,
@@ -17,7 +25,7 @@ export const userAuth = createSlice({
                 ...initialState,
             }
         },
-        postUserSignup(state, action) {
+        postUserSignup(state) {
             return {
                 ...state,
                 message: '',
@@ -41,7 +49,7 @@ export const userAuth = createSlice({
                 isLoading: false,
             }
         },
-        postUserLogin(state, action) {
+        postUserLogin(state) {
             return {
                 ...state,
                 message: '',
@@ -66,7 +74,7 @@ export const userAuth = createSlice({
                 isLoading: false,
             }
         },
-        postUserLogout(state, action) {
+        postUserLogout(state) {
             return {
                 ...state,
                 message: '',
@@ -91,7 +99,7 @@ export const userAuth = createSlice({
                 isLoading: false,
             }
         },
-        getUserDetail(state, action) {
+        getUserDetail(state) {
             return {
                 ...state,
                 message: '',
