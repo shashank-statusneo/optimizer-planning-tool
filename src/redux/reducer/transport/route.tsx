@@ -4,19 +4,25 @@ import { createSlice } from '@reduxjs/toolkit'
 interface StateType {
     isLoading: boolean
     message: string
+    distance_matrix_master_id: any
     distance_matrix_file_name: string
     source_coordinates_file_name: string
-    destination_coordinate_file_name: string
+    source_coordinates_master_id: any
+    destination_coordinates_file_name: string
+    destination_coordinates_master_id: any
     fleet_details_file_name: string
+    fleet_details_master_id: any
     vehicle_availability_file_name: string
+    vehicle_availability_master_id: any
     order_details_file_name: string
-    objective: string
+    order_details_master_id: any
+    objective: 'minimize_cost' | 'minimize_time'
     round_trip_distance: boolean
-    max_trip_distance: string
-    max_trip_duration: string
-    fixed_component: string
-    variable_component_per_order: string
-    variable_component_per_handling_unit: string
+    max_trip_distance: number | ''
+    max_trip_duration: number | ''
+    fixed_component: number | ''
+    variable_component_per_order: number | ''
+    variable_component_per_handling_unit: number | ''
     infinite_fleet_size: boolean
     flag_vehicle_weight_capacity: boolean
     flag_vehicle_volumetric_capacity: boolean
@@ -26,13 +32,19 @@ interface StateType {
 const initialState: StateType = {
     isLoading: false,
     message: '',
+    distance_matrix_master_id: null,
     distance_matrix_file_name: '',
+    source_coordinates_master_id: null,
     source_coordinates_file_name: '',
-    destination_coordinate_file_name: '',
+    destination_coordinates_master_id: null,
+    destination_coordinates_file_name: '',
+    fleet_details_master_id: null,
     fleet_details_file_name: '',
+    vehicle_availability_master_id: null,
     vehicle_availability_file_name: '',
+    order_details_master_id: null,
     order_details_file_name: '',
-    objective: '',
+    objective: 'minimize_cost',
     round_trip_distance: false,
     max_trip_distance: '',
     max_trip_duration: '',
@@ -61,9 +73,11 @@ export const routeOptimizer = createSlice({
                 isLoading: true,
             }
         },
+
         postDistanceMatrixSuccess(state, action) {
             return {
                 ...state,
+                distance_matrix_master_id: action?.payload?.master_id,
                 distance_matrix_file_name: action?.payload?.fileName,
                 isLoading: false,
             }
@@ -71,6 +85,7 @@ export const routeOptimizer = createSlice({
         postSourceCoordinatesSuccess(state, action) {
             return {
                 ...state,
+                source_coordinates_master_id: action?.payload?.master_id,
                 source_coordinates_file_name: action?.payload?.fileName,
                 isLoading: false,
             }
@@ -78,6 +93,7 @@ export const routeOptimizer = createSlice({
         postDestinationCoordinatesSuccess(state, action) {
             return {
                 ...state,
+                destination_coordinates_master_id: action?.payload?.master_id,
                 destination_coordinates_file_name: action?.payload?.fileName,
                 isLoading: false,
             }
@@ -85,6 +101,7 @@ export const routeOptimizer = createSlice({
         postFleetDetailsSuccess(state, action) {
             return {
                 ...state,
+                fleet_details_master_id: action?.payload?.master_id,
                 fleet_details_file_name: action?.payload?.fileName,
                 isLoading: false,
             }
@@ -92,6 +109,7 @@ export const routeOptimizer = createSlice({
         postVehicleAvailabiltySuccess(state, action) {
             return {
                 ...state,
+                vehicle_availability_master_id: action?.payload?.master_id,
                 vehicle_availability_file_name: action?.payload?.fileName,
                 isLoading: false,
             }
@@ -99,6 +117,7 @@ export const routeOptimizer = createSlice({
         postOrderDetailsSuccess(state, action) {
             return {
                 ...state,
+                order_details_master_id: action?.payload?.master_id,
                 order_details_file_name: action?.payload?.fileName,
                 isLoading: false,
             }

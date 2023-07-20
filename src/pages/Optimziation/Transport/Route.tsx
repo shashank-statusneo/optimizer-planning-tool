@@ -19,6 +19,7 @@ import {
 import { FormUploadButton, PrimaryButton } from '../../../components/Buttons'
 import { DataTemplates } from './constants'
 import { utils, writeFile } from 'xlsx'
+import { useNavigate } from 'react-router-dom'
 
 import {
     uploadRoute,
@@ -35,12 +36,18 @@ import {
     updateFlagVehicleMaxOrderCapacity,
 } from '../../../redux/actions/transport/route'
 
+import { createRoutePlan } from '../../../redux/actions/transport/result'
+
 const theme = createTheme()
 
 const RouteOptimizer = () => {
     const dispatch = useAppDispatch()
+    const navigate = useNavigate()
 
     const routeOptimizerState = useAppSelector((state) => state.routeOptimizer)
+    const routeResultOptimizerState = useAppSelector(
+        (state) => state.routeOptimizerResult,
+    )
 
     const [snackbarState, setSnackbarState] = useState(false)
 
@@ -126,8 +133,54 @@ const RouteOptimizer = () => {
     }
 
     const handleSubmit = () => {
-        // dispatch(algorithmApi(routeOptimizerState))
-        console.log(routeOptimizerState)
+        let context = {
+            distance_matrix_master_id:
+                routeOptimizerState.distance_matrix_master_id,
+            source_coordinates_master_id:
+                routeOptimizerState.source_coordinates_master_id,
+            destination_coordinates_master_id:
+                routeOptimizerState.destination_coordinates_master_id,
+            fleet_details_master_id:
+                routeOptimizerState.fleet_details_master_id,
+            vehicle_availability_master_id:
+                routeOptimizerState.vehicle_availability_master_id,
+            order_details_master_id:
+                routeOptimizerState.order_details_master_id,
+            travelled_time: routeOptimizerState.max_trip_duration,
+            travelled_distance: routeOptimizerState.max_trip_distance,
+            fixed_cost: routeOptimizerState.fixed_component,
+            variable_cost:
+                routeOptimizerState.variable_component_per_handling_unit,
+            total_cost: routeOptimizerState.variable_component_per_order,
+            default:
+                routeOptimizerState.objective == 'minimize_cost' ? true : false,
+            vehicle_weight_capacity:
+                routeOptimizerState.flag_vehicle_weight_capacity,
+            vehicle_volume_capacity:
+                routeOptimizerState.flag_vehicle_volumetric_capacity,
+            vehicle_order_capacity:
+                routeOptimizerState.flag_vehicle_max_order_capacity,
+            break_time_of_vehicle: false,
+            max_travel_distance: false,
+            max_travel_duration: false,
+            customer_TW_constraint: false,
+            vehicle_TW_constraint: false,
+            infinite_vehicles_available:
+                routeOptimizerState.infinite_fleet_size,
+            pickup_delivery: false,
+            split_delivery: false,
+        }
+        context = Object.entries(context).reduce(
+            (a: any, [k, v]: any) =>
+                v == null || v == '' ? a : ((a[k] = v), a),
+            {},
+        )
+
+        dispatch(createRoutePlan(context))
+    }
+
+    const handleViewPlan = () => {
+        navigate('/transport/result')
     }
 
     const DownloadTemplateData = (templateType: string) => {
@@ -145,13 +198,28 @@ const RouteOptimizer = () => {
         setSnackbarState(true)
     }, [routeOptimizerState.message])
 
+    useEffect(() => {
+        setSnackbarState(true)
+    }, [routeResultOptimizerState.message])
+
     return (
         <ThemeProvider theme={theme}>
             <Container component='main' sx={{ flexGrow: 1 }} fixed>
-                <FormBackdropElement loader={routeOptimizerState.isLoading} />
+                <FormBackdropElement
+                    loader={
+                        routeOptimizerState.isLoading ||
+                        routeResultOptimizerState.isLoading
+                    }
+                />
                 {snackbarState && routeOptimizerState.message && (
                     <FormSnackBarElement
                         message={routeOptimizerState.message}
+                        onClose={() => setSnackbarState(false)}
+                    />
+                )}
+                {snackbarState && routeResultOptimizerState.message && (
+                    <FormSnackBarElement
+                        message={routeResultOptimizerState.message}
                         onClose={() => setSnackbarState(false)}
                     />
                 )}
@@ -321,7 +389,7 @@ const RouteOptimizer = () => {
                             <Grid container>
                                 <Typography>
                                     {
-                                        routeOptimizerState.destination_coordinate_file_name
+                                        routeOptimizerState.destination_coordinates_file_name
                                     }
                                 </Typography>
                             </Grid>
@@ -611,7 +679,7 @@ const RouteOptimizer = () => {
                                         onChange={(e: any) => {
                                             handleFileUpload(e, 'fleet_details')
                                         }}
-                                        disabled={false}
+                                        disabled={true}
                                     />
                                 </Grid>
                                 <Grid item lg={6}>
@@ -757,7 +825,7 @@ const RouteOptimizer = () => {
                                                 'vehicle_availability',
                                             )
                                         }}
-                                        disabled={false}
+                                        disabled={true}
                                     />
                                 </Grid>
                                 <Grid item lg={6}>
@@ -812,7 +880,7 @@ const RouteOptimizer = () => {
                                         onChange={(e: any) => {
                                             handleFileUpload(e, 'order_details')
                                         }}
-                                        disabled={false}
+                                        disabled={true}
                                     />
                                 </Grid>
                                 <Grid item lg={6}>
@@ -849,12 +917,17 @@ const RouteOptimizer = () => {
                             id='generate-order-policy-btn'
                             label='GENERATE ROUTE PLAN'
                             onClick={() => handleSubmit()}
+                            disabled={
+                                !routeOptimizerState.distance_matrix_master_id &&
+                                !routeOptimizerState.source_coordinates_master_id &&
+                                !routeOptimizerState.destination_coordinates_master_id
+                            }
                         />
                         <PrimaryButton
                             id='generate-order-policy-btn'
                             label='VIEW/DOWNLOAD PLAN >'
-                            onClick={() => handleSubmit()}
-                            disabled={false}
+                            onClick={() => handleViewPlan()}
+                            disabled={!routeResultOptimizerState.result_id}
                         />
                     </Grid>
                 </Grid>

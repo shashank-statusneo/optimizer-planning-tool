@@ -7,8 +7,14 @@ import RouteOptimizer from './Route'
 import RouteResult from './Result'
 import UserSession from '../../../services/auth'
 
+import { useAppSelector } from '../../../hooks/redux-hooks'
+
 const Transport = () => {
     const navigate = useNavigate()
+
+    const routeResultOptimizerState = useAppSelector(
+        (state) => state.routeOptimizerResult,
+    )
 
     const TransportMenuTabs: any = {
         route: {
@@ -19,7 +25,7 @@ const Transport = () => {
         result: {
             label: 'Simulation Result',
             element: <RouteResult />,
-            active: true,
+            active: routeResultOptimizerState.result_id,
         },
     }
 
