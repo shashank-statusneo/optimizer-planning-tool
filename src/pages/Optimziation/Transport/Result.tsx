@@ -32,6 +32,10 @@ const RouteResult = () => {
 
     const [snackbarState, setSnackbarState] = useState(false)
 
+    const [modifiedResultData, setModifiedResultData] = useState<any>(null)
+    const [selectedVehicle, setSelectedVehicle] = useState<any>(null)
+    const [selectedOrder, setSelectedOrder] = useState<any>(null)
+
     useEffect(() => {
         if (routeResultOptimizerState.result_id) {
             dispatch(getRoutePlan(routeResultOptimizerState.result_id))
@@ -39,11 +43,38 @@ const RouteResult = () => {
     }, [])
 
     useEffect(() => {
+        setModifiedResultData(routeResultOptimizerState.table_data)
+    }, [routeResultOptimizerState.table_data])
+
+    useEffect(() => {
         setSnackbarState(true)
     }, [routeOptimizerState.message])
 
+    useEffect(() => {
+        if (routeResultOptimizerState.table_data) {
+            setModifiedResultData(
+                routeResultOptimizerState.table_data.filter(
+                    (obj: any, index: any) => {
+                        if (selectedVehicle && selectedOrder) {
+                            return (
+                                obj?.vehicle_id == selectedVehicle?.name &&
+                                obj?.order_id == selectedOrder.name
+                            )
+                        } else if (selectedVehicle && !selectedOrder) {
+                            return obj?.vehicle_id == selectedVehicle?.name
+                        } else if (!selectedVehicle && selectedOrder) {
+                            return obj?.order_id == selectedOrder?.name
+                        } else {
+                            return obj
+                        }
+                    },
+                ),
+            )
+        }
+    }, [selectedVehicle, selectedOrder])
+
     const DownloadResultData = () => {
-        const worksheetData: any = routeSampleTableData
+        const worksheetData: any = modifiedResultData
 
         const worksheet = utils.json_to_sheet(worksheetData)
         worksheet['!cols'] = [{ wch: 10 }, { wch: 9 }, { wch: 21 }]
@@ -51,6 +82,22 @@ const RouteResult = () => {
         utils.book_append_sheet(workbook, worksheet, 'Sheet1')
 
         writeFile(workbook, 'Optimization Result' + '.xlsx')
+    }
+
+    const handleVehicleChange = (e: any) => {
+        setSelectedVehicle(
+            routeResultOptimizerState.vehicle_ids.find((obj: any) => {
+                return obj.id === e.target.value
+            }),
+        )
+    }
+
+    const handleOrderChange = (e: any) => {
+        setSelectedOrder(
+            routeResultOptimizerState.order_ids.find((obj: any) => {
+                return obj.id === e.target.value
+            }),
+        )
     }
 
     return (
@@ -66,6 +113,7 @@ const RouteResult = () => {
                     />
                 )}{' '}
                 {routeResultOptimizerState.table_data &&
+                    modifiedResultData &&
                     routeResultOptimizerState.map_data && (
                         <Grid container direction='column' rowGap={4}>
                             <Grid
@@ -97,40 +145,58 @@ const RouteResult = () => {
                                     justifyContent='center'
                                     lg={10}
                                     columnGap={4}
+                                    rowGap={2}
                                 >
-                                    <Grid item lg={4}>
+                                    <Grid item lg={4} sm={6} xs={6}>
                                         <FormDropDown
                                             id='select-vehicle-dropdown'
                                             labelId='select-table-vehicle-dropdown-input-label'
                                             label='Select Vehicle'
-                                            value={null}
-                                            data={[
-                                                { id: '1', name: 'Vehicle 1' },
-                                            ]}
-                                            onChange={undefined}
+                                            value={selectedVehicle}
+                                            data={
+                                                routeResultOptimizerState.vehicle_ids
+                                            }
+                                            onChange={(e: any) =>
+                                                handleVehicleChange(e)
+                                            }
+                                            displayClearBtn={true}
+                                            handleClearClick={() =>
+                                                setSelectedVehicle(null)
+                                            }
                                         />
                                     </Grid>
-                                    <Grid item lg={4}>
+                                    <Grid item lg={4} sm={6} xs={6}>
                                         <FormDropDown
                                             id='select-order-dropdown'
                                             labelId='select-table-order-dropdown-input-label'
                                             label='Select Order'
-                                            value={null}
-                                            data={[
-                                                { id: '1', name: 'Order 1' },
-                                            ]}
-                                            onChange={undefined}
+                                            value={selectedOrder}
+                                            data={
+                                                routeResultOptimizerState.order_ids
+                                            }
+                                            onChange={(e: any) =>
+                                                handleOrderChange(e)
+                                            }
+                                            displayClearBtn={true}
+                                            handleClearClick={() =>
+                                                setSelectedOrder(null)
+                                            }
                                         />
                                     </Grid>
                                 </Grid>
 
-                                <Grid item lg={10}>
+                                <Grid
+                                    item
+                                    lg={10}
+                                    xs={12}
+                                    sx={{
+                                        height: '400px',
+                                    }}
+                                >
                                     <FormRouteTable
                                         id='route-simulation-result-table'
                                         tableHeaders={routeSimulationHeaders}
-                                        tableData={
-                                            routeResultOptimizerState.table_data
-                                        }
+                                        tableData={modifiedResultData}
                                     />
                                 </Grid>
                                 <Grid item>

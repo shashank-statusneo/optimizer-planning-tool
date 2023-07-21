@@ -36,7 +36,9 @@ import {
     OutlinedTextFieldProps,
     SnackbarCloseReason,
     ModalProps,
+    IconButton,
 } from '@mui/material'
+import ClearIcon from '@mui/icons-material/Clear'
 
 import { PickerChangeHandlerContext } from '@mui/x-date-pickers/internals/hooks/usePicker/usePickerValue.types'
 import { SelectInputProps } from '@mui/material/Select/SelectInput'
@@ -242,6 +244,8 @@ export const FormDropDown = (props: {
     labelId: string
     value: DropDownValue
     data: DroptDownData
+    displayClearBtn?: boolean
+    handleClearClick?: any
     onChange: SelectInputProps<string | number>['onChange'] | undefined
 }): JSX.Element => {
     return (
@@ -252,6 +256,18 @@ export const FormDropDown = (props: {
                 label={props.label}
                 labelId={props.labelId}
                 onChange={props.onChange}
+                startAdornment={
+                    props?.displayClearBtn && props.value?.id ? (
+                        <IconButton
+                            onClick={props.handleClearClick}
+                            color='primary'
+                            size='small'
+                            sx={{ marginRight: '5px' }}
+                        >
+                            <ClearIcon />
+                        </IconButton>
+                    ) : null
+                }
             >
                 {props.data.map((obj: any, key: any) => (
                     <MenuItem value={obj.id} key={key}>

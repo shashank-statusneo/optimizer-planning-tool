@@ -7,6 +7,8 @@ interface StateType {
     result_id: any
     map_data: string
     table_data: any[]
+    vehicle_ids: any[]
+    order_ids: any[]
 }
 
 const initialState: StateType = {
@@ -15,6 +17,8 @@ const initialState: StateType = {
     result_id: null,
     map_data: '',
     table_data: [],
+    vehicle_ids: [],
+    order_ids: [],
 }
 
 export const routeOptimizerResult = createSlice({
@@ -36,7 +40,6 @@ export const routeOptimizerResult = createSlice({
         },
 
         postRouteResultSuccess(state, action) {
-            console.log(action?.payload?.id)
             return {
                 ...state,
                 result_id: action?.payload?.id,
@@ -60,10 +63,41 @@ export const routeOptimizerResult = createSlice({
         },
 
         getRouteResultSuccess(state, action) {
+            const vehicle_ids: any = []
+            const order_ids: any = []
+            if (action?.payload?.routes && action?.payload?.routes.length > 0) {
+                const vehicles = action?.payload?.routes
+                    .map((item: any, index: any) => item.vehicle_id)
+                    .filter(
+                        (value: any, index: any, self: any) =>
+                            self.indexOf(value) === index,
+                    )
+                vehicles.forEach((obj: any, index: any) => {
+                    vehicle_ids.push({
+                        id: index + 1,
+                        name: obj,
+                    })
+                })
+                const orders = action?.payload?.routes
+                    .map((item: any) => item.order_id)
+                    .filter(
+                        (value: any, index: any, self: any) =>
+                            self.indexOf(value) === index,
+                    )
+                orders.forEach((obj: any, index: any) => {
+                    order_ids.push({
+                        id: index + 1,
+                        name: obj,
+                    })
+                })
+            }
+
             return {
                 ...state,
                 map_data: action?.payload?.route_map,
                 table_data: action?.payload?.routes,
+                vehicle_ids: vehicle_ids,
+                order_ids: order_ids,
                 isLoading: false,
             }
         },
