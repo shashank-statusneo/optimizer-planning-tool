@@ -25,7 +25,6 @@ const initialState: StateType = {
     planning_end_date: dayjs(null),
 }
 
-// @ts-ignore
 export const warehouseSelect = createSlice({
     name: 'warehouseSelect',
     initialState,

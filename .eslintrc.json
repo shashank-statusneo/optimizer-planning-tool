@@ -21,19 +21,13 @@
         "@typescript-eslint/ban-ts-comment": "off",
         "@typescript-eslint/jsx-no-target-blank": "off",
         "@typescript-eslint/no-explicit-any": "off",
-        // "@typescript-eslint/camelcase": ["warn"],
         "react/react-in-jsx-scope": "off",
         "camelcase": "off",
         "spaced-comment": "off",
         "quotes": ["warn", "single"],
         "no-duplicate-imports": "error",
-        " @typescript-eslint/no-unused-vars": "off"
-        // "@typescript-eslint/no-explicit-any": [
-        //     "error",
-        //     {
-        //       "ignoreRestArgs": true
-        //     }
-        //   ]
+        "@typescript-eslint/no-unused-vars": "off"
+        // "@typescript-eslint/camelcase": ["warn"]
     },
     "settings": {
         "import/resolver": {

@@ -3,7 +3,6 @@ export const LOGOUT_API = '/auth/logout'
 export const USER_DETAIL_API = '/auth/user'
 export const REGISTER_API = '/auth/signup'
 export const CHANGE_PASSWORD = '/auth/change_password'
-export const REFREST_TOKEN = '/auth/refresh'
 
 export const UPLOAD_INVENTORY_API = '/inventory/upload'
 

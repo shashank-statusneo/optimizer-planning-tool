@@ -1,6 +1,5 @@
 import axios from 'axios'
 import UserSession from './auth'
-import { REFREST_TOKEN } from './routes'
 
 const token = UserSession.getToken()
 
