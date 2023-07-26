@@ -1,11 +1,4 @@
-import { useState } from 'react'
-import {
-    BrowserRouter,
-    Routes,
-    Route,
-    useNavigate,
-    useLocation,
-} from 'react-router-dom'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import InventoryOptimizer from './pages/Optimziation/Inventory'
 import WareHouse from './pages/Optimziation/Warehouse'
 import Transport from './pages/Optimziation/Transport'
