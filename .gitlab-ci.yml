@@ -17,7 +17,7 @@ deploy-job:
         # - npm run format
         # - echo "Code format checking complete."
 
-        - CI= npm run build
+        - npm run build
         - echo "Build generated!"
 
     script:
