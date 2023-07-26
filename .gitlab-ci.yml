@@ -7,22 +7,33 @@ stages:
 
 deploy-job:
     stage: deploy        
+    
+    # variables:
+    #     BUILD_PATH: 
+    #     DEPLOY_PATH:
+    #     SSH_PRIVATE_KEY:
+    #     SSH_USER:
+    #     VM_IPADDRESS:
+    #     SSH_REPOSITORY_URL: 
+
     before_script:
-        - npm install 
-        - echo "Install packages"
-
-        # - npm run lint:fix
-        # - echo "Lint checking complete"
-
-        # - npm run format
-        # - echo "Code format checking complete."
-
-        - CI= npm run build
-        - echo "Build generated!"
+        - echo "Setup SSH"
+        - 'command -v ssh-agent >/dev/null || ( apk add --update openssh )' 
+        - eval $(ssh-agent -s)
+        - echo "${SSH_PRIVATE_KEY}" | ssh-add 
+        - mkdir -p ~/.ssh
+        - chmod 0700 ~/.ssh
+        - ssh-keyscan $VM_IPADDRESS >> ~/.ssh/known_hosts
+        - chmod 0700 ~/.ssh/known_hosts
 
     script:
-        - echo "Good to deploy"
-
+        - ssh $SSH_USER@$VM_IPADDRESS "rm -rf $BUILD_PATH/* && 
+            cd $BUILD_PATH && 
+            git clone $SSH_REPOSITORY_URL && 
+            cd optimization-app-ui && 
+            npm i && npm run build && 
+            sudo rm -rf $DEPLOY_PATH/* && 
+            sudo mv -vuf build/* $DEPLOY_PATH"
        
     artifacts:
         paths:
