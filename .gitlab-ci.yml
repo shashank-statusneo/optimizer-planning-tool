@@ -1,0 +1,52 @@
+default:
+    image: node:20-alpine3.17
+       
+
+stages:
+    - deploy
+
+deploy-job:
+    stage: deploy
+    variables:
+    # # Variables update for Gitlab-Runner locally
+    # variables:
+    #     BUILD_PATH: 
+    #     DEPLOY_PATH: 
+    #     SSH_PRIVATE_KEY: 
+    #     SSH_USER: 
+    #     VM_IPADDRESS: 
+        
+    before_script:
+        - echo "Setup SSH"
+        - 'command -v ssh-agent >/dev/null || ( apk add --update openssh )' 
+        - eval $(ssh-agent -s)
+        - echo "${SSH_PRIVATE_KEY}" | ssh-add 
+        - mkdir -p ~/.ssh
+        - chmod 0700 ~/.ssh
+        - ssh-keyscan $VM_IPADDRESS >> ~/.ssh/known_hosts
+        - chmod 0700 ~/.ssh/known_hosts
+
+        - npm install 
+        - echo "Install packages"
+
+        # - npm run lint:fix
+        # - echo "Lint checking complete"
+
+        # - npm run format
+        # - echo "Code format checking complete."
+
+        - CI= npm run build
+        - echo "Build generated!"
+
+    script:
+        - ssh $SSH_USER@$VM_IPADDRESS "rm -rf $BUILD_PATH/*"
+        - scp -r ./.next/* $SSH_USER@$VM_IPADDRESS:$BUILD_PATH
+        - ssh $SSH_USER@$VM_IPADDRESS "sudo rm -rf $DEPLOY_PATH/* && sudo mv -vuf $BUILD_PATH/* $DEPLOY_PATH && rm -rf $BUILD_PATH/*"
+
+       
+    artifacts:
+        paths:
+            - public
+
+# Setup GitLab runner For reference:    https://docs.gitlab.com/runner/install/linux-repository.html
+# Run job :                             gitlab-Runner exec shell deploy-job
