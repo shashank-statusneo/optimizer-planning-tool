@@ -7,7 +7,6 @@ stages:
 
 deploy-job:
     stage: deploy
-    variables:
     # # Variables update for Gitlab-Runner locally
     # variables:
     #     BUILD_PATH: 
