@@ -189,7 +189,7 @@ const SignIn = () => {
                     </Grid> */}
                     <Grid item container lg={10} justifyContent='center'>
                         <Link to='/signup'>
-                            {"Don't have an account? Sign Up"}
+                            {'Do not have an account? Sign Up'}
                         </Link>
                     </Grid>
                 </Grid>
