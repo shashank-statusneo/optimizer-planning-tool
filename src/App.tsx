@@ -14,7 +14,7 @@ import AppTabs from './components/Tabs'
 const App = () => {
     // @ts-ignore
     return (
-        <BrowserRouter>
+        <BrowserRouter basename={process.env.REACT_APP_BASE_PATH}>
             <TopBar />
             <AppTabs />
 

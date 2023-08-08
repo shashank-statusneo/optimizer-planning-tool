@@ -89,7 +89,7 @@ const TopBar = () => {
                         variant='h6'
                         noWrap
                         component='a'
-                        href='/'
+                        href={`/${process.env.REACT_APP_BASE_PATH}`}
                         sx={{
                             mr: 2,
                             ml: 2,
