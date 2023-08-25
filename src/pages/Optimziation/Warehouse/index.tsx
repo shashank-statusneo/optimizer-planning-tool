@@ -51,6 +51,9 @@ const WareHouse = () => {
                 dayjs(warehouseSelectState.planning_end_date).format(
                     'YYYY-MM-DD',
                 ) !== 'Invalid Date' &&
+                dayjs(warehouseSelectState.planning_start_date).format(
+                    'YYYY-MM-DD',
+                ) >= dayjs().format('YYYY-MM-DD') &&
                 warehouseSelectState.planning_end_date >=
                     warehouseSelectState.planning_start_date
                     ? true

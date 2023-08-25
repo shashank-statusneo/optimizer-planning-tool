@@ -44,3 +44,20 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
 To learn React, check out the [React documentation](https://reactjs.org/).
+
+## Tesing with Cypress
+
+A solid test generally covers 3 phases:
+
+-- Set up the application state.
+-- Take an action.
+-- Make an assertion about the resulting application state.
+
+You might also see this phrased as "Given, When, Then", or "Arrange, Act, Assert". But the idea is: First you put the application into a specific state, then you take some action in the application that causes it to change, and finally you check the resulting application state.
+
+We'll take a narrow view of these steps and map them cleanly to Cypress commands:
+
+-- Visit a web page.
+-- Query for an element.
+-- Interact with that element.
+-- Assert about the content on the page.

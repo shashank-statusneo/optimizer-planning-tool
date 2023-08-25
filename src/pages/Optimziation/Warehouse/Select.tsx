@@ -151,6 +151,7 @@ const WarehouseSelect = () => {
                         justifyContent='center'
                         alignContent='center'
                         alignItems='center'
+                        data-cy='planning-start-date-selector'
                     >
                         <Grid item lg={3}>
                             <FormLabel label='Start Date' />
@@ -171,6 +172,7 @@ const WarehouseSelect = () => {
                         justifyContent='center'
                         alignContent='center'
                         alignItems='center'
+                        data-cy='planning-end-date-selector'
                     >
                         <Grid item lg={3}>
                             <FormLabel label='End Date' />

@@ -75,6 +75,7 @@ export const FormSnackBarElement = (props: {
             open={true}
             autoHideDuration={6000}
             onClose={props.onClose}
+            id='default-snackbar-element'
         >
             <Alert severity='error'>{props.message}</Alert>
         </Snackbar>
@@ -250,8 +251,9 @@ export const FormDropDown = (props: {
 }): JSX.Element => {
     return (
         <FormControl fullWidth>
-            <InputLabel id={props.id}>{props.label}</InputLabel>
+            <InputLabel>{props.label}</InputLabel>
             <Select
+                id={props.id}
                 value={props.value?.id ? props.value?.id : ''}
                 label={props.label}
                 labelId={props.labelId}
@@ -270,7 +272,11 @@ export const FormDropDown = (props: {
                 }
             >
                 {props.data.map((obj: any, key: any) => (
-                    <MenuItem value={obj.id} key={key}>
+                    <MenuItem
+                        data-cy={`select-element-${key}`}
+                        value={obj.id}
+                        key={key}
+                    >
                         {obj.name}
                     </MenuItem>
                 ))}

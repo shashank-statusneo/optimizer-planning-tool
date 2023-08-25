@@ -25,33 +25,6 @@ export const lineData = [
     },
 ]
 
-// export const lineData = [
-//     {
-//         key: 'Inventory Level',
-//         stroke: '#8B7AFF',
-//     },
-//     {
-//         key: 'Daily Demand',
-//         stroke: '#45AC54',
-//     },
-//     {
-//         key: 'Orders Fulfilled',
-//         stroke: '#008E19',
-//     },
-//     {
-//         key: 'Stockout On',
-//         stroke: '#8B7AFF',
-//     },
-//     {
-//         key: 'PO Raised On',
-//         stroke: '#FF7073',
-//     },
-//     {
-//         key: 'PO Received On',
-//         stroke: '#FF7078',
-//     },
-// ]
-
 export const policyTableHeaders = [
     'Order Date',
     'Vendor',

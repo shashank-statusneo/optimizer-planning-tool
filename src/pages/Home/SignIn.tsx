@@ -36,8 +36,8 @@ const SignIn = () => {
     )
     const [snackbarState, setSnackbarState] = useState(false)
 
-    const [userEmail, setUserEmail] = useState('shashank@gmail.com')
-    const [userPassword, setUserPassword] = useState('123456789')
+    const [userEmail, setUserEmail] = useState()
+    const [userPassword, setUserPassword] = useState()
 
     const [showPassword, setShowPassword] = useState(false)
 
