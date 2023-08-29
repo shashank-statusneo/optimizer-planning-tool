@@ -1,9 +1,4 @@
-import {
-    MouseEventHandler,
-    ChangeEventHandler,
-    SyntheticEvent,
-    ChangeEvent,
-} from 'react'
+import { ChangeEventHandler, SyntheticEvent, ChangeEvent } from 'react'
 import {
     InputLabel,
     MenuItem,
@@ -294,8 +289,8 @@ export const FormMultiDropDown = (props: {
     id: string
     label: string
     labelId: string
-    value: any[]
-    data: any[]
+    value: string[]
+    data: string[]
     onChange: SelectInputProps<any>['onChange'] | undefined
 }): JSX.Element => {
     return (
@@ -456,17 +451,33 @@ export const FormRadioButton = (props: {
     )
 }
 
+type CustomRadioButtonTextField = {
+    id: string
+    value: string | number | undefined | null
+    type: 'number' | 'text' | 'password'
+    onChange: ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement> | any
+    inputProps?: any
+    error?: boolean
+    onErrorMessage?: string | undefined
+    disabled?: boolean
+    sx?: SxProps<Theme>
+}[]
+
 // General function to export Form Custom Radio Btn
 export const CustomFormRadioButton = (props: {
     id: string
     identifier: boolean
     options: { [x: string]: string }
-    textFieldsProps: any
+    textFieldsProps: CustomRadioButtonTextField
     onChange: (
         event: React.ChangeEvent<HTMLInputElement>,
         value: string,
     ) => void
 }): JSX.Element => {
+    console.log(props.identifier)
+    console.log(props.textFieldsProps)
+    console.log(props.options)
+
     return (
         <FormControl>
             <RadioGroup

@@ -1,5 +1,6 @@
 import { defineConfig } from 'cypress'
 export default defineConfig({
+    projectId: 'pzor62',
     env: {
         apiUrl: 'http://localhost:5000/optimization-api',
         authUrl: 'http://localhost:10001/auth',

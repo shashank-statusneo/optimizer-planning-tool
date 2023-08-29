@@ -9,7 +9,6 @@ declare global {
         interface Chainable {
             // Add Custom commands type here
             logInTestUser(): Chainable<JQuery<HTMLElement>>
-            loadReduxStore(): Chainable<JQuery<HTMLElement>>
 
             mount: typeof mount
         }
