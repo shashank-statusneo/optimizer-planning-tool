@@ -4,10 +4,13 @@ const sampleDate = dayjs()
 
 describe('Warehouse Selection', () => {
     beforeEach(() => {
-        cy.intercept({
-            method: 'GET',
-            url: `${Cypress.env('apiUrl')}/wmp/warehouses`,
-        }).as('warehouses')
+        cy.intercept(
+            {
+                method: 'GET',
+                url: `${Cypress.env('apiUrl')}/wmp/warehouses`,
+            },
+            { fixture: 'warehouse/warehouses_list.json' },
+        ).as('warehouses')
 
         cy.logInTestUser()
     })

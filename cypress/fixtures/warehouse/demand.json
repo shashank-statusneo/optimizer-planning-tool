@@ -1,0 +1,1397 @@
+{
+    "2023-08-25": {
+        "category 1": {
+            "category_id": 1,
+            "created_on": "Fri, 25 Aug 2023 17:24:59 GMT",
+            "demand": 269,
+            "id": 1,
+            "updated_on": null
+        },
+        "category 10": {
+            "category_id": 10,
+            "created_on": "Fri, 25 Aug 2023 17:24:59 GMT",
+            "demand": 226,
+            "id": 10,
+            "updated_on": null
+        },
+        "category 11": {
+            "category_id": 11,
+            "created_on": "Fri, 25 Aug 2023 17:24:59 GMT",
+            "demand": 187,
+            "id": 11,
+            "updated_on": null
+        },
+        "category 12": {
+            "category_id": 12,
+            "created_on": "Fri, 25 Aug 2023 17:24:59 GMT",
+            "demand": 148,
+            "id": 12,
+            "updated_on": null
+        },
+        "category 13": {
+            "category_id": 13,
+            "created_on": "Fri, 25 Aug 2023 17:24:59 GMT",
+            "demand": 109,
+            "id": 13,
+            "updated_on": null
+        },
+        "category 14": {
+            "category_id": 14,
+            "created_on": "Fri, 25 Aug 2023 17:24:59 GMT",
+            "demand": 70,
+            "id": 14,
+            "updated_on": null
+        },
+        "category 15": {
+            "category_id": 15,
+            "created_on": "Fri, 25 Aug 2023 17:24:59 GMT",
+            "demand": 71,
+            "id": 15,
+            "updated_on": null
+        },
+        "category 16": {
+            "category_id": 16,
+            "created_on": "Fri, 25 Aug 2023 17:24:59 GMT",
+            "demand": 72,
+            "id": 16,
+            "updated_on": null
+        },
+        "category 17": {
+            "category_id": 17,
+            "created_on": "Fri, 25 Aug 2023 17:24:59 GMT",
+            "demand": 73,
+            "id": 17,
+            "updated_on": null
+        },
+        "category 18": {
+            "category_id": 18,
+            "created_on": "Fri, 25 Aug 2023 17:24:59 GMT",
+            "demand": 74,
+            "id": 18,
+            "updated_on": null
+        },
+        "category 19": {
+            "category_id": 19,
+            "created_on": "Fri, 25 Aug 2023 17:24:59 GMT",
+            "demand": 75,
+            "id": 19,
+            "updated_on": null
+        },
+        "category 2": {
+            "category_id": 2,
+            "created_on": "Fri, 25 Aug 2023 17:24:59 GMT",
+            "demand": 324,
+            "id": 2,
+            "updated_on": null
+        },
+        "category 20": {
+            "category_id": 20,
+            "created_on": "Fri, 25 Aug 2023 17:24:59 GMT",
+            "demand": 176,
+            "id": 20,
+            "updated_on": null
+        },
+        "category 21": {
+            "category_id": 21,
+            "created_on": "Fri, 25 Aug 2023 17:24:59 GMT",
+            "demand": 77,
+            "id": 21,
+            "updated_on": null
+        },
+        "category 22": {
+            "category_id": 22,
+            "created_on": "Fri, 25 Aug 2023 17:24:59 GMT",
+            "demand": 78,
+            "id": 22,
+            "updated_on": null
+        },
+        "category 23": {
+            "category_id": 23,
+            "created_on": "Fri, 25 Aug 2023 17:24:59 GMT",
+            "demand": 79,
+            "id": 23,
+            "updated_on": null
+        },
+        "category 24": {
+            "category_id": 24,
+            "created_on": "Fri, 25 Aug 2023 17:24:59 GMT",
+            "demand": 80,
+            "id": 24,
+            "updated_on": null
+        },
+        "category 3": {
+            "category_id": 3,
+            "created_on": "Fri, 25 Aug 2023 17:24:59 GMT",
+            "demand": 379,
+            "id": 3,
+            "updated_on": null
+        },
+        "category 4": {
+            "category_id": 4,
+            "created_on": "Fri, 25 Aug 2023 17:24:59 GMT",
+            "demand": 380,
+            "id": 4,
+            "updated_on": null
+        },
+        "category 5": {
+            "category_id": 5,
+            "created_on": "Fri, 25 Aug 2023 17:24:59 GMT",
+            "demand": 381,
+            "id": 5,
+            "updated_on": null
+        },
+        "category 6": {
+            "category_id": 6,
+            "created_on": "Fri, 25 Aug 2023 17:24:59 GMT",
+            "demand": 382,
+            "id": 6,
+            "updated_on": null
+        },
+        "category 7": {
+            "category_id": 7,
+            "created_on": "Fri, 25 Aug 2023 17:24:59 GMT",
+            "demand": 343,
+            "id": 7,
+            "updated_on": null
+        },
+        "category 8": {
+            "category_id": 8,
+            "created_on": "Fri, 25 Aug 2023 17:24:59 GMT",
+            "demand": 304,
+            "id": 8,
+            "updated_on": null
+        },
+        "category 9": {
+            "category_id": 9,
+            "created_on": "Fri, 25 Aug 2023 17:24:59 GMT",
+            "demand": 265,
+            "id": 9,
+            "updated_on": null
+        },
+        "total": 4622
+    },
+    "2023-08-26": {
+        "category 1": {
+            "category_id": 1,
+            "created_on": "Fri, 25 Aug 2023 17:24:59 GMT",
+            "demand": 270,
+            "id": 25,
+            "updated_on": null
+        },
+        "category 10": {
+            "category_id": 10,
+            "created_on": "Fri, 25 Aug 2023 17:24:59 GMT",
+            "demand": 227,
+            "id": 34,
+            "updated_on": null
+        },
+        "category 11": {
+            "category_id": 11,
+            "created_on": "Fri, 25 Aug 2023 17:24:59 GMT",
+            "demand": 188,
+            "id": 35,
+            "updated_on": null
+        },
+        "category 12": {
+            "category_id": 12,
+            "created_on": "Fri, 25 Aug 2023 17:24:59 GMT",
+            "demand": 149,
+            "id": 36,
+            "updated_on": null
+        },
+        "category 13": {
+            "category_id": 13,
+            "created_on": "Fri, 25 Aug 2023 17:24:59 GMT",
+            "demand": 110,
+            "id": 37,
+            "updated_on": null
+        },
+        "category 14": {
+            "category_id": 14,
+            "created_on": "Fri, 25 Aug 2023 17:24:59 GMT",
+            "demand": 71,
+            "id": 38,
+            "updated_on": null
+        },
+        "category 15": {
+            "category_id": 15,
+            "created_on": "Fri, 25 Aug 2023 17:24:59 GMT",
+            "demand": 72,
+            "id": 39,
+            "updated_on": null
+        },
+        "category 16": {
+            "category_id": 16,
+            "created_on": "Fri, 25 Aug 2023 17:24:59 GMT",
+            "demand": 73,
+            "id": 40,
+            "updated_on": null
+        },
+        "category 17": {
+            "category_id": 17,
+            "created_on": "Fri, 25 Aug 2023 17:24:59 GMT",
+            "demand": 74,
+            "id": 41,
+            "updated_on": null
+        },
+        "category 18": {
+            "category_id": 18,
+            "created_on": "Fri, 25 Aug 2023 17:24:59 GMT",
+            "demand": 75,
+            "id": 42,
+            "updated_on": null
+        },
+        "category 19": {
+            "category_id": 19,
+            "created_on": "Fri, 25 Aug 2023 17:24:59 GMT",
+            "demand": 76,
+            "id": 43,
+            "updated_on": null
+        },
+        "category 2": {
+            "category_id": 2,
+            "created_on": "Fri, 25 Aug 2023 17:24:59 GMT",
+            "demand": 325,
+            "id": 26,
+            "updated_on": null
+        },
+        "category 20": {
+            "category_id": 20,
+            "created_on": "Fri, 25 Aug 2023 17:24:59 GMT",
+            "demand": 77,
+            "id": 44,
+            "updated_on": null
+        },
+        "category 21": {
+            "category_id": 21,
+            "created_on": "Fri, 25 Aug 2023 17:24:59 GMT",
+            "demand": 78,
+            "id": 45,
+            "updated_on": null
+        },
+        "category 22": {
+            "category_id": 22,
+            "created_on": "Fri, 25 Aug 2023 17:24:59 GMT",
+            "demand": 79,
+            "id": 46,
+            "updated_on": null
+        },
+        "category 23": {
+            "category_id": 23,
+            "created_on": "Fri, 25 Aug 2023 17:24:59 GMT",
+            "demand": 80,
+            "id": 47,
+            "updated_on": null
+        },
+        "category 24": {
+            "category_id": 24,
+            "created_on": "Fri, 25 Aug 2023 17:24:59 GMT",
+            "demand": 81,
+            "id": 48,
+            "updated_on": null
+        },
+        "category 3": {
+            "category_id": 3,
+            "created_on": "Fri, 25 Aug 2023 17:24:59 GMT",
+            "demand": 380,
+            "id": 27,
+            "updated_on": null
+        },
+        "category 4": {
+            "category_id": 4,
+            "created_on": "Fri, 25 Aug 2023 17:24:59 GMT",
+            "demand": 381,
+            "id": 28,
+            "updated_on": null
+        },
+        "category 5": {
+            "category_id": 5,
+            "created_on": "Fri, 25 Aug 2023 17:24:59 GMT",
+            "demand": 382,
+            "id": 29,
+            "updated_on": null
+        },
+        "category 6": {
+            "category_id": 6,
+            "created_on": "Fri, 25 Aug 2023 17:24:59 GMT",
+            "demand": 383,
+            "id": 30,
+            "updated_on": null
+        },
+        "category 7": {
+            "category_id": 7,
+            "created_on": "Fri, 25 Aug 2023 17:24:59 GMT",
+            "demand": 344,
+            "id": 31,
+            "updated_on": null
+        },
+        "category 8": {
+            "category_id": 8,
+            "created_on": "Fri, 25 Aug 2023 17:24:59 GMT",
+            "demand": 305,
+            "id": 32,
+            "updated_on": null
+        },
+        "category 9": {
+            "category_id": 9,
+            "created_on": "Fri, 25 Aug 2023 17:24:59 GMT",
+            "demand": 266,
+            "id": 33,
+            "updated_on": null
+        },
+        "total": 4546
+    },
+    "2023-08-27": {
+        "category 1": {
+            "category_id": 1,
+            "created_on": "Fri, 25 Aug 2023 17:24:59 GMT",
+            "demand": 271,
+            "id": 49,
+            "updated_on": null
+        },
+        "category 10": {
+            "category_id": 10,
+            "created_on": "Fri, 25 Aug 2023 17:25:00 GMT",
+            "demand": 228,
+            "id": 58,
+            "updated_on": null
+        },
+        "category 11": {
+            "category_id": 11,
+            "created_on": "Fri, 25 Aug 2023 17:25:00 GMT",
+            "demand": 189,
+            "id": 59,
+            "updated_on": null
+        },
+        "category 12": {
+            "category_id": 12,
+            "created_on": "Fri, 25 Aug 2023 17:25:00 GMT",
+            "demand": 150,
+            "id": 60,
+            "updated_on": null
+        },
+        "category 13": {
+            "category_id": 13,
+            "created_on": "Fri, 25 Aug 2023 17:25:00 GMT",
+            "demand": 111,
+            "id": 61,
+            "updated_on": null
+        },
+        "category 14": {
+            "category_id": 14,
+            "created_on": "Fri, 25 Aug 2023 17:25:00 GMT",
+            "demand": 72,
+            "id": 62,
+            "updated_on": null
+        },
+        "category 15": {
+            "category_id": 15,
+            "created_on": "Fri, 25 Aug 2023 17:25:00 GMT",
+            "demand": 73,
+            "id": 63,
+            "updated_on": null
+        },
+        "category 16": {
+            "category_id": 16,
+            "created_on": "Fri, 25 Aug 2023 17:25:00 GMT",
+            "demand": 74,
+            "id": 64,
+            "updated_on": null
+        },
+        "category 17": {
+            "category_id": 17,
+            "created_on": "Fri, 25 Aug 2023 17:25:00 GMT",
+            "demand": 75,
+            "id": 65,
+            "updated_on": null
+        },
+        "category 18": {
+            "category_id": 18,
+            "created_on": "Fri, 25 Aug 2023 17:25:00 GMT",
+            "demand": 76,
+            "id": 66,
+            "updated_on": null
+        },
+        "category 19": {
+            "category_id": 19,
+            "created_on": "Fri, 25 Aug 2023 17:25:00 GMT",
+            "demand": 77,
+            "id": 67,
+            "updated_on": null
+        },
+        "category 2": {
+            "category_id": 2,
+            "created_on": "Fri, 25 Aug 2023 17:24:59 GMT",
+            "demand": 326,
+            "id": 50,
+            "updated_on": null
+        },
+        "category 20": {
+            "category_id": 20,
+            "created_on": "Fri, 25 Aug 2023 17:25:00 GMT",
+            "demand": 78,
+            "id": 68,
+            "updated_on": null
+        },
+        "category 21": {
+            "category_id": 21,
+            "created_on": "Fri, 25 Aug 2023 17:25:00 GMT",
+            "demand": 79,
+            "id": 69,
+            "updated_on": null
+        },
+        "category 22": {
+            "category_id": 22,
+            "created_on": "Fri, 25 Aug 2023 17:25:00 GMT",
+            "demand": 80,
+            "id": 70,
+            "updated_on": null
+        },
+        "category 23": {
+            "category_id": 23,
+            "created_on": "Fri, 25 Aug 2023 17:25:00 GMT",
+            "demand": 81,
+            "id": 71,
+            "updated_on": null
+        },
+        "category 24": {
+            "category_id": 24,
+            "created_on": "Fri, 25 Aug 2023 17:25:00 GMT",
+            "demand": 82,
+            "id": 72,
+            "updated_on": null
+        },
+        "category 3": {
+            "category_id": 3,
+            "created_on": "Fri, 25 Aug 2023 17:25:00 GMT",
+            "demand": 381,
+            "id": 51,
+            "updated_on": null
+        },
+        "category 4": {
+            "category_id": 4,
+            "created_on": "Fri, 25 Aug 2023 17:25:00 GMT",
+            "demand": 382,
+            "id": 52,
+            "updated_on": null
+        },
+        "category 5": {
+            "category_id": 5,
+            "created_on": "Fri, 25 Aug 2023 17:25:00 GMT",
+            "demand": 383,
+            "id": 53,
+            "updated_on": null
+        },
+        "category 6": {
+            "category_id": 6,
+            "created_on": "Fri, 25 Aug 2023 17:25:00 GMT",
+            "demand": 384,
+            "id": 54,
+            "updated_on": null
+        },
+        "category 7": {
+            "category_id": 7,
+            "created_on": "Fri, 25 Aug 2023 17:25:00 GMT",
+            "demand": 345,
+            "id": 55,
+            "updated_on": null
+        },
+        "category 8": {
+            "category_id": 8,
+            "created_on": "Fri, 25 Aug 2023 17:25:00 GMT",
+            "demand": 306,
+            "id": 56,
+            "updated_on": null
+        },
+        "category 9": {
+            "category_id": 9,
+            "created_on": "Fri, 25 Aug 2023 17:25:00 GMT",
+            "demand": 267,
+            "id": 57,
+            "updated_on": null
+        },
+        "total": 4570
+    },
+    "2023-08-28": {
+        "category 1": {
+            "category_id": 1,
+            "created_on": "Fri, 25 Aug 2023 17:25:00 GMT",
+            "demand": 272,
+            "id": 73,
+            "updated_on": null
+        },
+        "category 10": {
+            "category_id": 10,
+            "created_on": "Fri, 25 Aug 2023 17:25:00 GMT",
+            "demand": 229,
+            "id": 82,
+            "updated_on": null
+        },
+        "category 11": {
+            "category_id": 11,
+            "created_on": "Fri, 25 Aug 2023 17:25:00 GMT",
+            "demand": 190,
+            "id": 83,
+            "updated_on": null
+        },
+        "category 12": {
+            "category_id": 12,
+            "created_on": "Fri, 25 Aug 2023 17:25:00 GMT",
+            "demand": 151,
+            "id": 84,
+            "updated_on": null
+        },
+        "category 13": {
+            "category_id": 13,
+            "created_on": "Fri, 25 Aug 2023 17:25:00 GMT",
+            "demand": 112,
+            "id": 85,
+            "updated_on": null
+        },
+        "category 14": {
+            "category_id": 14,
+            "created_on": "Fri, 25 Aug 2023 17:25:00 GMT",
+            "demand": 73,
+            "id": 86,
+            "updated_on": null
+        },
+        "category 15": {
+            "category_id": 15,
+            "created_on": "Fri, 25 Aug 2023 17:25:00 GMT",
+            "demand": 74,
+            "id": 87,
+            "updated_on": null
+        },
+        "category 16": {
+            "category_id": 16,
+            "created_on": "Fri, 25 Aug 2023 17:25:00 GMT",
+            "demand": 75,
+            "id": 88,
+            "updated_on": null
+        },
+        "category 17": {
+            "category_id": 17,
+            "created_on": "Fri, 25 Aug 2023 17:25:00 GMT",
+            "demand": 76,
+            "id": 89,
+            "updated_on": null
+        },
+        "category 18": {
+            "category_id": 18,
+            "created_on": "Fri, 25 Aug 2023 17:25:00 GMT",
+            "demand": 77,
+            "id": 90,
+            "updated_on": null
+        },
+        "category 19": {
+            "category_id": 19,
+            "created_on": "Fri, 25 Aug 2023 17:25:00 GMT",
+            "demand": 78,
+            "id": 91,
+            "updated_on": null
+        },
+        "category 2": {
+            "category_id": 2,
+            "created_on": "Fri, 25 Aug 2023 17:25:00 GMT",
+            "demand": 327,
+            "id": 74,
+            "updated_on": null
+        },
+        "category 20": {
+            "category_id": 20,
+            "created_on": "Fri, 25 Aug 2023 17:25:00 GMT",
+            "demand": 79,
+            "id": 92,
+            "updated_on": null
+        },
+        "category 21": {
+            "category_id": 21,
+            "created_on": "Fri, 25 Aug 2023 17:25:00 GMT",
+            "demand": 80,
+            "id": 93,
+            "updated_on": null
+        },
+        "category 22": {
+            "category_id": 22,
+            "created_on": "Fri, 25 Aug 2023 17:25:00 GMT",
+            "demand": 81,
+            "id": 94,
+            "updated_on": null
+        },
+        "category 23": {
+            "category_id": 23,
+            "created_on": "Fri, 25 Aug 2023 17:25:00 GMT",
+            "demand": 82,
+            "id": 95,
+            "updated_on": null
+        },
+        "category 24": {
+            "category_id": 24,
+            "created_on": "Fri, 25 Aug 2023 17:25:00 GMT",
+            "demand": 83,
+            "id": 96,
+            "updated_on": null
+        },
+        "category 3": {
+            "category_id": 3,
+            "created_on": "Fri, 25 Aug 2023 17:25:00 GMT",
+            "demand": 382,
+            "id": 75,
+            "updated_on": null
+        },
+        "category 4": {
+            "category_id": 4,
+            "created_on": "Fri, 25 Aug 2023 17:25:00 GMT",
+            "demand": 383,
+            "id": 76,
+            "updated_on": null
+        },
+        "category 5": {
+            "category_id": 5,
+            "created_on": "Fri, 25 Aug 2023 17:25:00 GMT",
+            "demand": 384,
+            "id": 77,
+            "updated_on": null
+        },
+        "category 6": {
+            "category_id": 6,
+            "created_on": "Fri, 25 Aug 2023 17:25:00 GMT",
+            "demand": 385,
+            "id": 78,
+            "updated_on": null
+        },
+        "category 7": {
+            "category_id": 7,
+            "created_on": "Fri, 25 Aug 2023 17:25:00 GMT",
+            "demand": 346,
+            "id": 79,
+            "updated_on": null
+        },
+        "category 8": {
+            "category_id": 8,
+            "created_on": "Fri, 25 Aug 2023 17:25:00 GMT",
+            "demand": 307,
+            "id": 80,
+            "updated_on": null
+        },
+        "category 9": {
+            "category_id": 9,
+            "created_on": "Fri, 25 Aug 2023 17:25:00 GMT",
+            "demand": 268,
+            "id": 81,
+            "updated_on": null
+        },
+        "total": 4594
+    },
+    "2023-08-29": {
+        "category 1": {
+            "category_id": 1,
+            "created_on": "Fri, 25 Aug 2023 17:25:00 GMT",
+            "demand": 273,
+            "id": 97,
+            "updated_on": null
+        },
+        "category 10": {
+            "category_id": 10,
+            "created_on": "Fri, 25 Aug 2023 17:25:00 GMT",
+            "demand": 230,
+            "id": 106,
+            "updated_on": null
+        },
+        "category 11": {
+            "category_id": 11,
+            "created_on": "Fri, 25 Aug 2023 17:25:00 GMT",
+            "demand": 191,
+            "id": 107,
+            "updated_on": null
+        },
+        "category 12": {
+            "category_id": 12,
+            "created_on": "Fri, 25 Aug 2023 17:25:00 GMT",
+            "demand": 152,
+            "id": 108,
+            "updated_on": null
+        },
+        "category 13": {
+            "category_id": 13,
+            "created_on": "Fri, 25 Aug 2023 17:25:00 GMT",
+            "demand": 113,
+            "id": 109,
+            "updated_on": null
+        },
+        "category 14": {
+            "category_id": 14,
+            "created_on": "Fri, 25 Aug 2023 17:25:00 GMT",
+            "demand": 74,
+            "id": 110,
+            "updated_on": null
+        },
+        "category 15": {
+            "category_id": 15,
+            "created_on": "Fri, 25 Aug 2023 17:25:00 GMT",
+            "demand": 75,
+            "id": 111,
+            "updated_on": null
+        },
+        "category 16": {
+            "category_id": 16,
+            "created_on": "Fri, 25 Aug 2023 17:25:00 GMT",
+            "demand": 76,
+            "id": 112,
+            "updated_on": null
+        },
+        "category 17": {
+            "category_id": 17,
+            "created_on": "Fri, 25 Aug 2023 17:25:00 GMT",
+            "demand": 77,
+            "id": 113,
+            "updated_on": null
+        },
+        "category 18": {
+            "category_id": 18,
+            "created_on": "Fri, 25 Aug 2023 17:25:00 GMT",
+            "demand": 78,
+            "id": 114,
+            "updated_on": null
+        },
+        "category 19": {
+            "category_id": 19,
+            "created_on": "Fri, 25 Aug 2023 17:25:00 GMT",
+            "demand": 79,
+            "id": 115,
+            "updated_on": null
+        },
+        "category 2": {
+            "category_id": 2,
+            "created_on": "Fri, 25 Aug 2023 17:25:00 GMT",
+            "demand": 328,
+            "id": 98,
+            "updated_on": null
+        },
+        "category 20": {
+            "category_id": 20,
+            "created_on": "Fri, 25 Aug 2023 17:25:00 GMT",
+            "demand": 80,
+            "id": 116,
+            "updated_on": null
+        },
+        "category 21": {
+            "category_id": 21,
+            "created_on": "Fri, 25 Aug 2023 17:25:00 GMT",
+            "demand": 81,
+            "id": 117,
+            "updated_on": null
+        },
+        "category 22": {
+            "category_id": 22,
+            "created_on": "Fri, 25 Aug 2023 17:25:00 GMT",
+            "demand": 82,
+            "id": 118,
+            "updated_on": null
+        },
+        "category 23": {
+            "category_id": 23,
+            "created_on": "Fri, 25 Aug 2023 17:25:00 GMT",
+            "demand": 83,
+            "id": 119,
+            "updated_on": null
+        },
+        "category 24": {
+            "category_id": 24,
+            "created_on": "Fri, 25 Aug 2023 17:25:00 GMT",
+            "demand": 84,
+            "id": 120,
+            "updated_on": null
+        },
+        "category 3": {
+            "category_id": 3,
+            "created_on": "Fri, 25 Aug 2023 17:25:00 GMT",
+            "demand": 383,
+            "id": 99,
+            "updated_on": null
+        },
+        "category 4": {
+            "category_id": 4,
+            "created_on": "Fri, 25 Aug 2023 17:25:00 GMT",
+            "demand": 384,
+            "id": 100,
+            "updated_on": null
+        },
+        "category 5": {
+            "category_id": 5,
+            "created_on": "Fri, 25 Aug 2023 17:25:00 GMT",
+            "demand": 385,
+            "id": 101,
+            "updated_on": null
+        },
+        "category 6": {
+            "category_id": 6,
+            "created_on": "Fri, 25 Aug 2023 17:25:00 GMT",
+            "demand": 386,
+            "id": 102,
+            "updated_on": null
+        },
+        "category 7": {
+            "category_id": 7,
+            "created_on": "Fri, 25 Aug 2023 17:25:00 GMT",
+            "demand": 347,
+            "id": 103,
+            "updated_on": null
+        },
+        "category 8": {
+            "category_id": 8,
+            "created_on": "Fri, 25 Aug 2023 17:25:00 GMT",
+            "demand": 308,
+            "id": 104,
+            "updated_on": null
+        },
+        "category 9": {
+            "category_id": 9,
+            "created_on": "Fri, 25 Aug 2023 17:25:00 GMT",
+            "demand": 269,
+            "id": 105,
+            "updated_on": null
+        },
+        "total": 4618
+    },
+    "2023-08-30": {
+        "category 1": {
+            "category_id": 1,
+            "created_on": "Fri, 25 Aug 2023 17:25:00 GMT",
+            "demand": 274,
+            "id": 121,
+            "updated_on": null
+        },
+        "category 10": {
+            "category_id": 10,
+            "created_on": "Fri, 25 Aug 2023 17:25:00 GMT",
+            "demand": 231,
+            "id": 130,
+            "updated_on": null
+        },
+        "category 11": {
+            "category_id": 11,
+            "created_on": "Fri, 25 Aug 2023 17:25:00 GMT",
+            "demand": 192,
+            "id": 131,
+            "updated_on": null
+        },
+        "category 12": {
+            "category_id": 12,
+            "created_on": "Fri, 25 Aug 2023 17:25:00 GMT",
+            "demand": 153,
+            "id": 132,
+            "updated_on": null
+        },
+        "category 13": {
+            "category_id": 13,
+            "created_on": "Fri, 25 Aug 2023 17:25:00 GMT",
+            "demand": 114,
+            "id": 133,
+            "updated_on": null
+        },
+        "category 14": {
+            "category_id": 14,
+            "created_on": "Fri, 25 Aug 2023 17:25:00 GMT",
+            "demand": 75,
+            "id": 134,
+            "updated_on": null
+        },
+        "category 15": {
+            "category_id": 15,
+            "created_on": "Fri, 25 Aug 2023 17:25:00 GMT",
+            "demand": 76,
+            "id": 135,
+            "updated_on": null
+        },
+        "category 16": {
+            "category_id": 16,
+            "created_on": "Fri, 25 Aug 2023 17:25:00 GMT",
+            "demand": 77,
+            "id": 136,
+            "updated_on": null
+        },
+        "category 17": {
+            "category_id": 17,
+            "created_on": "Fri, 25 Aug 2023 17:25:00 GMT",
+            "demand": 78,
+            "id": 137,
+            "updated_on": null
+        },
+        "category 18": {
+            "category_id": 18,
+            "created_on": "Fri, 25 Aug 2023 17:25:00 GMT",
+            "demand": 79,
+            "id": 138,
+            "updated_on": null
+        },
+        "category 19": {
+            "category_id": 19,
+            "created_on": "Fri, 25 Aug 2023 17:25:00 GMT",
+            "demand": 80,
+            "id": 139,
+            "updated_on": null
+        },
+        "category 2": {
+            "category_id": 2,
+            "created_on": "Fri, 25 Aug 2023 17:25:00 GMT",
+            "demand": 329,
+            "id": 122,
+            "updated_on": null
+        },
+        "category 20": {
+            "category_id": 20,
+            "created_on": "Fri, 25 Aug 2023 17:25:00 GMT",
+            "demand": 81,
+            "id": 140,
+            "updated_on": null
+        },
+        "category 21": {
+            "category_id": 21,
+            "created_on": "Fri, 25 Aug 2023 17:25:00 GMT",
+            "demand": 82,
+            "id": 141,
+            "updated_on": null
+        },
+        "category 22": {
+            "category_id": 22,
+            "created_on": "Fri, 25 Aug 2023 17:25:00 GMT",
+            "demand": 83,
+            "id": 142,
+            "updated_on": null
+        },
+        "category 23": {
+            "category_id": 23,
+            "created_on": "Fri, 25 Aug 2023 17:25:00 GMT",
+            "demand": 84,
+            "id": 143,
+            "updated_on": null
+        },
+        "category 24": {
+            "category_id": 24,
+            "created_on": "Fri, 25 Aug 2023 17:25:00 GMT",
+            "demand": 85,
+            "id": 144,
+            "updated_on": null
+        },
+        "category 3": {
+            "category_id": 3,
+            "created_on": "Fri, 25 Aug 2023 17:25:00 GMT",
+            "demand": 384,
+            "id": 123,
+            "updated_on": null
+        },
+        "category 4": {
+            "category_id": 4,
+            "created_on": "Fri, 25 Aug 2023 17:25:00 GMT",
+            "demand": 385,
+            "id": 124,
+            "updated_on": null
+        },
+        "category 5": {
+            "category_id": 5,
+            "created_on": "Fri, 25 Aug 2023 17:25:00 GMT",
+            "demand": 386,
+            "id": 125,
+            "updated_on": null
+        },
+        "category 6": {
+            "category_id": 6,
+            "created_on": "Fri, 25 Aug 2023 17:25:00 GMT",
+            "demand": 387,
+            "id": 126,
+            "updated_on": null
+        },
+        "category 7": {
+            "category_id": 7,
+            "created_on": "Fri, 25 Aug 2023 17:25:00 GMT",
+            "demand": 348,
+            "id": 127,
+            "updated_on": null
+        },
+        "category 8": {
+            "category_id": 8,
+            "created_on": "Fri, 25 Aug 2023 17:25:00 GMT",
+            "demand": 309,
+            "id": 128,
+            "updated_on": null
+        },
+        "category 9": {
+            "category_id": 9,
+            "created_on": "Fri, 25 Aug 2023 17:25:00 GMT",
+            "demand": 270,
+            "id": 129,
+            "updated_on": null
+        },
+        "total": 4642
+    },
+    "2023-08-31": {
+        "category 1": {
+            "category_id": 1,
+            "created_on": "Fri, 25 Aug 2023 17:25:00 GMT",
+            "demand": 275,
+            "id": 145,
+            "updated_on": null
+        },
+        "category 10": {
+            "category_id": 10,
+            "created_on": "Fri, 25 Aug 2023 17:25:00 GMT",
+            "demand": 232,
+            "id": 154,
+            "updated_on": null
+        },
+        "category 11": {
+            "category_id": 11,
+            "created_on": "Fri, 25 Aug 2023 17:25:00 GMT",
+            "demand": 193,
+            "id": 155,
+            "updated_on": null
+        },
+        "category 12": {
+            "category_id": 12,
+            "created_on": "Fri, 25 Aug 2023 17:25:00 GMT",
+            "demand": 154,
+            "id": 156,
+            "updated_on": null
+        },
+        "category 13": {
+            "category_id": 13,
+            "created_on": "Fri, 25 Aug 2023 17:25:00 GMT",
+            "demand": 115,
+            "id": 157,
+            "updated_on": null
+        },
+        "category 14": {
+            "category_id": 14,
+            "created_on": "Fri, 25 Aug 2023 17:25:00 GMT",
+            "demand": 76,
+            "id": 158,
+            "updated_on": null
+        },
+        "category 15": {
+            "category_id": 15,
+            "created_on": "Fri, 25 Aug 2023 17:25:00 GMT",
+            "demand": 77,
+            "id": 159,
+            "updated_on": null
+        },
+        "category 16": {
+            "category_id": 16,
+            "created_on": "Fri, 25 Aug 2023 17:25:00 GMT",
+            "demand": 78,
+            "id": 160,
+            "updated_on": null
+        },
+        "category 17": {
+            "category_id": 17,
+            "created_on": "Fri, 25 Aug 2023 17:25:00 GMT",
+            "demand": 79,
+            "id": 161,
+            "updated_on": null
+        },
+        "category 18": {
+            "category_id": 18,
+            "created_on": "Fri, 25 Aug 2023 17:25:00 GMT",
+            "demand": 80,
+            "id": 162,
+            "updated_on": null
+        },
+        "category 19": {
+            "category_id": 19,
+            "created_on": "Fri, 25 Aug 2023 17:25:00 GMT",
+            "demand": 81,
+            "id": 163,
+            "updated_on": null
+        },
+        "category 2": {
+            "category_id": 2,
+            "created_on": "Fri, 25 Aug 2023 17:25:00 GMT",
+            "demand": 330,
+            "id": 146,
+            "updated_on": null
+        },
+        "category 20": {
+            "category_id": 20,
+            "created_on": "Fri, 25 Aug 2023 17:25:00 GMT",
+            "demand": 82,
+            "id": 164,
+            "updated_on": null
+        },
+        "category 21": {
+            "category_id": 21,
+            "created_on": "Fri, 25 Aug 2023 17:25:00 GMT",
+            "demand": 83,
+            "id": 165,
+            "updated_on": null
+        },
+        "category 22": {
+            "category_id": 22,
+            "created_on": "Fri, 25 Aug 2023 17:25:00 GMT",
+            "demand": 84,
+            "id": 166,
+            "updated_on": null
+        },
+        "category 23": {
+            "category_id": 23,
+            "created_on": "Fri, 25 Aug 2023 17:25:00 GMT",
+            "demand": 85,
+            "id": 167,
+            "updated_on": null
+        },
+        "category 24": {
+            "category_id": 24,
+            "created_on": "Fri, 25 Aug 2023 17:25:00 GMT",
+            "demand": 86,
+            "id": 168,
+            "updated_on": null
+        },
+        "category 3": {
+            "category_id": 3,
+            "created_on": "Fri, 25 Aug 2023 17:25:00 GMT",
+            "demand": 385,
+            "id": 147,
+            "updated_on": null
+        },
+        "category 4": {
+            "category_id": 4,
+            "created_on": "Fri, 25 Aug 2023 17:25:00 GMT",
+            "demand": 386,
+            "id": 148,
+            "updated_on": null
+        },
+        "category 5": {
+            "category_id": 5,
+            "created_on": "Fri, 25 Aug 2023 17:25:00 GMT",
+            "demand": 387,
+            "id": 149,
+            "updated_on": null
+        },
+        "category 6": {
+            "category_id": 6,
+            "created_on": "Fri, 25 Aug 2023 17:25:00 GMT",
+            "demand": 388,
+            "id": 150,
+            "updated_on": null
+        },
+        "category 7": {
+            "category_id": 7,
+            "created_on": "Fri, 25 Aug 2023 17:25:00 GMT",
+            "demand": 349,
+            "id": 151,
+            "updated_on": null
+        },
+        "category 8": {
+            "category_id": 8,
+            "created_on": "Fri, 25 Aug 2023 17:25:00 GMT",
+            "demand": 310,
+            "id": 152,
+            "updated_on": null
+        },
+        "category 9": {
+            "category_id": 9,
+            "created_on": "Fri, 25 Aug 2023 17:25:00 GMT",
+            "demand": 271,
+            "id": 153,
+            "updated_on": null
+        },
+        "total": 4666
+    },
+    "2023-09-01": {
+        "category 1": {
+            "category_id": 1,
+            "created_on": "Fri, 25 Aug 2023 17:25:00 GMT",
+            "demand": 276,
+            "id": 169,
+            "updated_on": null
+        },
+        "category 10": {
+            "category_id": 10,
+            "created_on": "Fri, 25 Aug 2023 17:25:00 GMT",
+            "demand": 233,
+            "id": 178,
+            "updated_on": null
+        },
+        "category 11": {
+            "category_id": 11,
+            "created_on": "Fri, 25 Aug 2023 17:25:00 GMT",
+            "demand": 194,
+            "id": 179,
+            "updated_on": null
+        },
+        "category 12": {
+            "category_id": 12,
+            "created_on": "Fri, 25 Aug 2023 17:25:00 GMT",
+            "demand": 155,
+            "id": 180,
+            "updated_on": null
+        },
+        "category 13": {
+            "category_id": 13,
+            "created_on": "Fri, 25 Aug 2023 17:25:00 GMT",
+            "demand": 116,
+            "id": 181,
+            "updated_on": null
+        },
+        "category 14": {
+            "category_id": 14,
+            "created_on": "Fri, 25 Aug 2023 17:25:00 GMT",
+            "demand": 77,
+            "id": 182,
+            "updated_on": null
+        },
+        "category 15": {
+            "category_id": 15,
+            "created_on": "Fri, 25 Aug 2023 17:25:00 GMT",
+            "demand": 78,
+            "id": 183,
+            "updated_on": null
+        },
+        "category 16": {
+            "category_id": 16,
+            "created_on": "Fri, 25 Aug 2023 17:25:01 GMT",
+            "demand": 79,
+            "id": 184,
+            "updated_on": null
+        },
+        "category 17": {
+            "category_id": 17,
+            "created_on": "Fri, 25 Aug 2023 17:25:01 GMT",
+            "demand": 80,
+            "id": 185,
+            "updated_on": null
+        },
+        "category 18": {
+            "category_id": 18,
+            "created_on": "Fri, 25 Aug 2023 17:25:01 GMT",
+            "demand": 81,
+            "id": 186,
+            "updated_on": null
+        },
+        "category 19": {
+            "category_id": 19,
+            "created_on": "Fri, 25 Aug 2023 17:25:01 GMT",
+            "demand": 82,
+            "id": 187,
+            "updated_on": null
+        },
+        "category 2": {
+            "category_id": 2,
+            "created_on": "Fri, 25 Aug 2023 17:25:00 GMT",
+            "demand": 331,
+            "id": 170,
+            "updated_on": null
+        },
+        "category 20": {
+            "category_id": 20,
+            "created_on": "Fri, 25 Aug 2023 17:25:01 GMT",
+            "demand": 83,
+            "id": 188,
+            "updated_on": null
+        },
+        "category 21": {
+            "category_id": 21,
+            "created_on": "Fri, 25 Aug 2023 17:25:01 GMT",
+            "demand": 84,
+            "id": 189,
+            "updated_on": null
+        },
+        "category 22": {
+            "category_id": 22,
+            "created_on": "Fri, 25 Aug 2023 17:25:01 GMT",
+            "demand": 85,
+            "id": 190,
+            "updated_on": null
+        },
+        "category 23": {
+            "category_id": 23,
+            "created_on": "Fri, 25 Aug 2023 17:25:01 GMT",
+            "demand": 86,
+            "id": 191,
+            "updated_on": null
+        },
+        "category 24": {
+            "category_id": 24,
+            "created_on": "Fri, 25 Aug 2023 17:25:01 GMT",
+            "demand": 87,
+            "id": 192,
+            "updated_on": null
+        },
+        "category 3": {
+            "category_id": 3,
+            "created_on": "Fri, 25 Aug 2023 17:25:00 GMT",
+            "demand": 386,
+            "id": 171,
+            "updated_on": null
+        },
+        "category 4": {
+            "category_id": 4,
+            "created_on": "Fri, 25 Aug 2023 17:25:00 GMT",
+            "demand": 387,
+            "id": 172,
+            "updated_on": null
+        },
+        "category 5": {
+            "category_id": 5,
+            "created_on": "Fri, 25 Aug 2023 17:25:00 GMT",
+            "demand": 388,
+            "id": 173,
+            "updated_on": null
+        },
+        "category 6": {
+            "category_id": 6,
+            "created_on": "Fri, 25 Aug 2023 17:25:00 GMT",
+            "demand": 389,
+            "id": 174,
+            "updated_on": null
+        },
+        "category 7": {
+            "category_id": 7,
+            "created_on": "Fri, 25 Aug 2023 17:25:00 GMT",
+            "demand": 350,
+            "id": 175,
+            "updated_on": null
+        },
+        "category 8": {
+            "category_id": 8,
+            "created_on": "Fri, 25 Aug 2023 17:25:00 GMT",
+            "demand": 311,
+            "id": 176,
+            "updated_on": null
+        },
+        "category 9": {
+            "category_id": 9,
+            "created_on": "Fri, 25 Aug 2023 17:25:00 GMT",
+            "demand": 272,
+            "id": 177,
+            "updated_on": null
+        },
+        "total": 4690
+    },
+    "total": {
+        "category 1": 2180,
+        "category 10": 1836,
+        "category 11": 1524,
+        "category 12": 1212,
+        "category 13": 900,
+        "category 14": 588,
+        "category 15": 596,
+        "category 16": 604,
+        "category 17": 612,
+        "category 18": 620,
+        "category 19": 628,
+        "category 2": 2620,
+        "category 20": 736,
+        "category 21": 644,
+        "category 22": 652,
+        "category 23": 660,
+        "category 24": 668,
+        "category 3": 3060,
+        "category 4": 3068,
+        "category 5": 3076,
+        "category 6": 3084,
+        "category 7": 2772,
+        "category 8": 2460,
+        "category 9": 2148,
+        "total": 36948
+    }
+}

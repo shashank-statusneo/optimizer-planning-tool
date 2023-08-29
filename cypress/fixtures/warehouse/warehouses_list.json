@@ -1,0 +1,20 @@
+[
+    {
+        "created_at": "Mon, 14 Aug 2023 14:43:23 GMT",
+        "created_by": null,
+        "description": "Warehouse H",
+        "id": 1,
+        "name": "Warehouse H",
+        "updated_at": null,
+        "updated_by": null
+    },
+    {
+        "created_at": "Mon, 14 Aug 2023 14:43:23 GMT",
+        "created_by": null,
+        "description": "Warehouse I",
+        "id": 2,
+        "name": "Warehouse I",
+        "updated_at": null,
+        "updated_by": null
+    }
+]
